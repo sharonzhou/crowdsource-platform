@@ -80,7 +80,8 @@ INSTALLED_APPS = (
     'oauth2_provider',
     'ws4redis',
     'crowdsourcing',
-    'mturk'
+    'mturk',
+    'random2'
 )
 
 MIDDLEWARE_CLASSES = (
