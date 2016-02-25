@@ -34,15 +34,15 @@ def random_index(request, *args, **kwargs):
         "4": 0.25
     }
 
-    # if not daemo_id:
-    #    return HttpResponse("Missing identifier", status=400)
+    if not daemo_id:
+        return HttpResponse("Missing identifier", status=400)
     try:
         from django.conf import settings
         from copy import deepcopy
         from hashids import Hashids
         identifier_hash = Hashids(salt=settings.SECRET_KEY, min_length=settings.ID_HASH_MIN_LENGTH)
-        # if len(identifier_hash.decode(daemo_id)) == 0:
-        #    return HttpResponse("Invalid identifier", status=400)
+        if len(identifier_hash.decode(daemo_id)) == 0:
+            return HttpResponse("Invalid identifier", status=400)
         task_worker_id, task_id, template_item_id = identifier_hash.decode(daemo_id)
         task_worker = TaskWorker.objects.get(id=task_worker_id)
         task = Task.objects.get(id=task_id)
@@ -94,7 +94,7 @@ def random_index(request, *args, **kwargs):
                     "tasks": data_mappings[str(conf.project)]
                 })
 
-    except Exception as e:
+    except Exception:
         return HttpResponse("Something went wrong, try again!")
 
     return render(request, 'authorship.html', {'POST_URL': post_url,
