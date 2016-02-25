@@ -1,7 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.decorators.csrf import csrf_exempt
 from crowdsourcing import views
 from mturk import views as mturk_views
+from random2 import views as random2_views
 from crowdsourcing.viewsets.project import *
 from crowdsourcing.viewsets.user import UserViewSet, UserProfileViewSet, UserPreferencesViewSet
 from crowdsourcing.viewsets.requester import RequesterViewSet, QualificationViewSet
@@ -17,6 +19,7 @@ from crowdsourcing.viewsets.file import FileViewSet
 from crowdsourcing.viewsets.payment import PayPalFlowViewSet, FinancialAccountViewSet
 from rest_framework.routers import SimpleRouter
 from mturk.viewsets import MTurkAssignmentViewSet, MTurkConfig
+
 
 router = SimpleRouter(trailing_slash=True)
 mturk_router = SimpleRouter(trailing_slash=False)
@@ -57,9 +60,10 @@ urlpatterns = patterns('',
                        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
                        url(r'^api/google-drive/init', GoogleDriveOauth.as_view({'post': 'auth_init'})),
                        url(r'^mturk/task', mturk_views.mturk_index),
+                       url(r'^random2', random2_views.random_index),
                        url(r'^api/google-drive/finish', GoogleDriveOauth.as_view({'post': 'auth_end'})),
                        url(r'^api/google-drive/list-files', GoogleDriveViewSet.as_view({'get': 'query'})),
-                       url(r'^api/done/$', ExternalSubmit.as_view()),
+                       url(r'^api/done/$', csrf_exempt(ExternalSubmit.as_view())),
                        url(r'', include(router.urls)),
                        url(r'', include(mturk_router.urls)),
                        url(r'^api/mturk/url', MTurkConfig.as_view({'get': 'get_mturk_url'})),

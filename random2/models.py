@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 
-from crowdsourcing.models import Project
+from crowdsourcing.models import Project, Worker
 
 
 class Group(models.Model):
@@ -18,3 +18,10 @@ class ProjectGroup(models.Model):
     group = models.ForeignKey(Group, related_name='projects')
     project = models.ForeignKey(Project, related_name='groups')
     aux_attrib = JSONField(null=True)
+
+
+class WorkerConfig(models.Model):
+    worker = models.ForeignKey(Worker, related_name='config')
+    requester = models.SmallIntegerField()
+    project = models.SmallIntegerField()
+    config = JSONField(null=True)

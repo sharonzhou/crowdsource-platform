@@ -102,7 +102,7 @@ AUTHENTICATION_BACKENDS = (
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'static/django_templates'), os.path.join(BASE_DIR, 'static/mturk')],
+        'DIRS': [os.path.join(BASE_DIR, 'static/django_templates'), os.path.join(BASE_DIR, 'static/mturk'), os.path.join(BASE_DIR, 'static/random2')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
