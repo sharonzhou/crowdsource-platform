@@ -67,7 +67,7 @@ def random_index(request, *args, **kwargs):
                         if c in filtered_requesters.keys():
                             del filtered_requesters[c]
                     for x in filtered_requesters.keys():
-                        if str(x) not in processed:
+                        if str(x) not in processed and len(filtered_requesters.keys())>0:
                             filtered_requesters[x] = 1 / (len(filtered_requesters.keys()))
                     conf = np.random.choice(filtered_requesters.keys(), p=filtered_requesters.values())
                 else:
@@ -75,7 +75,7 @@ def random_index(request, *args, **kwargs):
                 processed.append(conf)
                 requesters[conf] = 0
                 for x in requesters.keys():
-                    if x != int(conf) and str(x) not in processed:
+                    if x != int(conf) and str(x) not in processed and len(requesters.keys()) - len(processed)>0:
                         requesters[x] = 1 / (len(requesters.keys()) - len(processed))
                 projects.append({
                     "index": index,
@@ -94,7 +94,7 @@ def random_index(request, *args, **kwargs):
                     "tasks": data_mappings[str(conf.project)]
                 })
 
-    except Exception:
+    except Exception as e:
         return HttpResponse("Something went wrong, try again!")
 
     return render(request, 'authorship.html', {'POST_URL': post_url,
