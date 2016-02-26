@@ -18,10 +18,10 @@ def random_index(request, *args, **kwargs):
     daemo_id = request.GET.get('daemo_id', False)
     post_url = '/api/done/?daemo_id=' + str(daemo_id)
     data_mappings = {
-        "1": data.yelp_photos,
-        "2": data.football,
-        "3": data.tweets,
-        "4": data.facts
+        "1": data.yelp_photos[:20],
+        "2": data.football[:20],
+        "3": data.tweets[:20],
+        "4": data.facts[:5]
 
     }
     total_tasks = 4
