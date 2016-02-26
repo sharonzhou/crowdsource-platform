@@ -148,7 +148,7 @@
             var inputItems = $filter('filter')(self.taskData.template.template_items, {role: 'input'});
             var remoteContentItems = $filter('filter')(self.taskData.template.template_items, {type: 'iframe'});
             var item = $filter('filter')(self.taskData.template.template_items, {id: message.template_item});
-
+            console.log(item);
             if (inputItems.length == 0 && item.aux_attributes.src.indexOf(message.daemo_id) > 0) {
                 item[0].isSubmitted = true;
                 var submitted = $filter('filter')(self.taskData.template.template_items, {
