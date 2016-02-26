@@ -231,6 +231,7 @@ ID_HASH_MIN_LENGTH = 8
 MTURK_WORKER_USERNAME = 'mturk'
 MTURK_QUALIFICATIONS = os.environ.get('MTURK_QUALIFICATIONS', True)
 MTURK_BEAT = os.environ.get('MTURK_BEAT', 1)
+MTURK_ONLY = os.environ.get('MTURK_ONLY', False)
 
 # Celery
 BROKER_URL = REDIS_URL

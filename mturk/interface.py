@@ -61,7 +61,10 @@ class MTurkProvider(object):
                                                     'rejected': TaskWorker.STATUS_REJECTED, 'project_id': project.id})
         for task in tasks:
             question = self.create_external_question(task)
-            max_assignments = 1
+            if str(settings.MTURK_ONLY) == 'True':
+                max_assignments = project.repetition
+            else:
+                max_assignments = 1
             qualifications = None
             if str(settings.MTURK_QUALIFICATIONS) == 'True':
                 qualifications = self.get_qualifications()
