@@ -10,7 +10,7 @@ from crowdsourcing.models import TaskWorker, Task
 from crowdsourcing.utils import get_model_or_none
 from django.db.models import Count
 import numpy as np
-
+from django.db.models import Q
 
 @xframe_options_exempt
 @csrf_exempt
@@ -24,7 +24,6 @@ def random_index(request, *args, **kwargs):
         "4": data.facts[:5]
 
     }
-    total_tasks = 4
     projects = []
     project_indexes = [1, 2, 3, 4]
     requesters = {
@@ -38,7 +37,7 @@ def random_index(request, *args, **kwargs):
         return HttpResponse("Missing identifier", status=400)
     try:
         from django.conf import settings
-        from copy import deepcopy
+        import random
         from hashids import Hashids
         identifier_hash = Hashids(salt=settings.SECRET_KEY, min_length=settings.ID_HASH_MIN_LENGTH)
         if len(identifier_hash.decode(daemo_id)) == 0:
@@ -46,37 +45,19 @@ def random_index(request, *args, **kwargs):
         task_worker_id, task_id, template_item_id = identifier_hash.decode(daemo_id)
         task_worker = TaskWorker.objects.get(id=task_worker_id)
         task = Task.objects.get(id=task_id)
-        repetition = task.project.repetition
         config = WorkerConfig.objects.filter(worker_id=task_worker.worker_id)
-        worker_config = None
         processed = []
         if not config:
             for index in project_indexes:
-                current_data = WorkerConfig.objects.values('requester').filter(project=index) \
-                    .annotate(num_workers=Count('requester')).order_by('num_workers')
-
+                current_data = WorkerConfig.objects.values('requester')\
+                    .filter(~Q(requester__in=processed), project=index) \
+                    .annotate(num_workers=Count('worker_id')).order_by('num_workers')
                 conf = None
-                if not current_data:
-                    conf = np.random.choice(requesters.keys(), p=requesters.values())
-                elif current_data.count() < len(requesters):
-                    filtered_requesters = deepcopy(requesters)
-                    for c in current_data:
-                        if str(c['requester']) in filtered_requesters.keys():
-                            del filtered_requesters[str(c['requester'])]
-                    for c in processed:
-                        if c in filtered_requesters.keys():
-                            del filtered_requesters[c]
-                    for x in filtered_requesters.keys():
-                        if str(x) not in processed and len(filtered_requesters.keys())>0:
-                            filtered_requesters[x] = 1 / (len(filtered_requesters.keys()))
-                    conf = np.random.choice(filtered_requesters.keys(), p=filtered_requesters.values())
+                if current_data.count() < len(requesters.keys()):
+                    conf = random.sample(set(requesters.keys()) - set(processed), 1)[0]
                 else:
-                    conf = str(current_data.first()['requester'])
-                processed.append(conf)
-                requesters[conf] = 0
-                for x in requesters.keys():
-                    if x != int(conf) and str(x) not in processed and len(requesters.keys()) - len(processed)>0:
-                        requesters[x] = 1 / (len(requesters.keys()) - len(processed))
+                    conf = current_data.first()['requester']
+                processed.append(str(conf))
                 projects.append({
                     "index": index,
                     "requester": int(conf),
