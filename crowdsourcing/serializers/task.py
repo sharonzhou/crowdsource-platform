@@ -64,6 +64,7 @@ class TaskWorkerSerializer(DynamicFieldsModelSerializer):
         project = kwargs['project']
         skipped = False
         task_worker = {}
+
         with self.lock:
             with transaction.atomic():  # select_for_update(nowait=False)
                 query = '''SELECT
@@ -135,6 +136,9 @@ class TaskWorkerSerializer(DynamicFieldsModelSerializer):
                     task_worker.save()
                 else:
                     return {}, 204
+                if not kwargs['worker'].experiment_configs.filter(project_id=project):
+                    a = 1
+                    pass
                 return task_worker, 200
 
     @staticmethod

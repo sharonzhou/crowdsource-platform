@@ -228,3 +228,13 @@ class ProjectBatchFileSerializer(DynamicFieldsModelSerializer):
     def create(self, project=None, **kwargs):
         project_file = models.ProjectBatchFile.objects.create(project_id=project, **self.validated_data)
         return project_file
+
+
+class WorkerExperimentConfigSerializer(DynamicFieldsModelSerializer):
+
+    class Meta:
+        model = models.WorkerExperimentConfig
+        fields = ('id', 'project', 'worker', 'config',)
+
+    def create(self, *args, **kwargs):
+        pass

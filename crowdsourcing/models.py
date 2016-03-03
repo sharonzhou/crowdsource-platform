@@ -260,6 +260,7 @@ class Project(models.Model):
     )
     feedback_permissions = models.IntegerField(choices=PERMISSION, default=PERMISSION_ORW_WRW)
     batch_files = models.ManyToManyField(BatchFile, through='ProjectBatchFile')
+    config = JSONField(null=True)
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
@@ -592,3 +593,10 @@ class Transaction(models.Model):
     reference = models.CharField(max_length=256, null=True)
     created_timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     last_updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+
+class WorkerExperimentConfig(models.Model):
+    worker = models.ForeignKey(Worker, related_name='experiment_configs')
+    project = models.ForeignKey(Project)
+    config = JSONField(null=True)
+
