@@ -46,6 +46,7 @@ class ProjectSerializer(DynamicFieldsModelSerializer):
     num_rows = serializers.IntegerField(write_only=True, allow_null=True, required=False)
     requester_rating = serializers.FloatField(read_only=True, required=False)
     raw_rating = serializers.IntegerField(read_only=True, required=False)
+    config = serializers.JSONField(allow_null=True)
 
     class Meta:
         model = models.Project
@@ -53,7 +54,7 @@ class ProjectSerializer(DynamicFieldsModelSerializer):
                   'batch_files', 'deleted', 'created_timestamp', 'last_updated', 'price', 'has_data_set',
                   'data_set_location', 'total_tasks', 'file_id', 'age', 'is_micro', 'is_prototype', 'task_time',
                   'allow_feedback', 'feedback_permissions', 'min_rating', 'has_comments',
-                  'available_tasks', 'comments', 'num_rows', 'requester_rating', 'raw_rating',)
+                  'available_tasks', 'comments', 'num_rows', 'requester_rating', 'raw_rating', 'config')
         read_only_fields = (
             'created_timestamp', 'last_updated', 'deleted', 'owner', 'has_comments', 'available_tasks',
             'comments', 'templates',)
@@ -237,6 +238,8 @@ class WorkerExperimentConfigSerializer(DynamicFieldsModelSerializer):
         read_only_fields = ('config',)
 
     def create(self, *args, **kwargs):
+        if project.config is None:
+            return None
         from crowdsourcing.experiment import ExperimentConfig
         project = models.Project.objects.get(id=self.validated_data['project'])
         config_data = ExperimentConfig(config=project.config).assign()

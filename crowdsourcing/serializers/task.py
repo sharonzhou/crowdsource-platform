@@ -137,8 +137,14 @@ class TaskWorkerSerializer(DynamicFieldsModelSerializer):
                 else:
                     return {}, 204
                 if not kwargs['worker'].experiment_configs.filter(project_id=project):
-                    a = 1
-                    pass
+                    from crowdsourcing.serializers.project import WorkerExperimentConfigSerializer
+                    data = {
+                        "worker": kwargs['worker'].id,
+                        "worker": task_worker.task.project.id,
+                    }
+                    config_serializer = WorkerExperimentConfigSerializer(data=data)
+                    if config_serializer.is_valid():
+                        config_serializer.create()
                 return task_worker, 200
 
     @staticmethod
