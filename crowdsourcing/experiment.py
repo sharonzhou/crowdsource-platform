@@ -20,12 +20,19 @@ class ExperimentConfig(object):
             self.conditions = config['conditions']
         else:
             self.conditions = []
-        self.data_choices = []
         self.choices = []
         self.weights = []
 
-    def assign(self, attributes, data):
-        pass
+    def assign(self):
+        self._parse_choices()
+        result = {
+            'selected': None
+        }
+        if self.type == self.TYPE_UNIFORM:
+            result['selected'] = str(self.uniform())
+        else:
+            result['selected'] = str(self.weighted())
+        return result
 
     def _parse_choices(self):
         for d in self.raw_choices:

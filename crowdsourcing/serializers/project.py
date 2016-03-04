@@ -93,16 +93,16 @@ class ProjectSerializer(DynamicFieldsModelSerializer):
 
     def get_available_tasks(self, obj):
         available_task_count = models.Project.objects.values('id').raw('''
-          select count(*) id from (
+          SELECT count(*) id FROM (
             SELECT
               "crowdsourcing_task"."id"
             FROM "crowdsourcing_task"
               INNER JOIN "crowdsourcing_project" ON ("crowdsourcing_task"."project_id" = "crowdsourcing_project"."id")
               LEFT OUTER JOIN "crowdsourcing_taskworker" ON ("crowdsourcing_task"."id" =
-                "crowdsourcing_taskworker"."task_id" and task_status not in (4,6))
+                "crowdsourcing_taskworker"."task_id" AND task_status NOT IN (4,6))
             WHERE ("crowdsourcing_task"."project_id" = %s AND NOT (
               ("crowdsourcing_task"."id" IN (SELECT U1."task_id" AS Col1
-              FROM "crowdsourcing_taskworker" U1 WHERE U1."worker_id" = %s and U1.task_status<>6))))
+              FROM "crowdsourcing_taskworker" U1 WHERE U1."worker_id" = %s AND U1.task_status<>6))))
             GROUP BY "crowdsourcing_task"."id", "crowdsourcing_project"."repetition"
             HAVING "crowdsourcing_project"."repetition" > (COUNT("crowdsourcing_taskworker"."id"))) available_tasks
             ''', params=[obj.id, self.context['request'].user.userprofile.worker.id])[0].id
@@ -231,10 +231,14 @@ class ProjectBatchFileSerializer(DynamicFieldsModelSerializer):
 
 
 class WorkerExperimentConfigSerializer(DynamicFieldsModelSerializer):
-
     class Meta:
         model = models.WorkerExperimentConfig
         fields = ('id', 'project', 'worker', 'config',)
+        read_only_fields = ('config',)
 
     def create(self, *args, **kwargs):
-        pass
+        from crowdsourcing.experiment import ExperimentConfig
+        project = models.Project.objects.get(id=self.validated_data['project'])
+        config_data = ExperimentConfig(config=project.config).assign()
+        worker_config = models.WorkerExperimentConfig.objects.create(config=config_data, **self.validated_data)
+        return worker_config
