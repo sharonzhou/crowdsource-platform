@@ -238,10 +238,10 @@ class WorkerExperimentConfigSerializer(DynamicFieldsModelSerializer):
         read_only_fields = ('config',)
 
     def create(self, *args, **kwargs):
-        if project.config is None:
-            return None
         from crowdsourcing.experiment import ExperimentConfig
         project = models.Project.objects.get(id=self.validated_data['project'])
+        if project.config is None:
+            return None
         config_data = ExperimentConfig(config=project.config).assign()
         worker_config = models.WorkerExperimentConfig.objects.create(config=config_data, **self.validated_data)
         return worker_config
