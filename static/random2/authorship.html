@@ -11,1059 +11,31 @@
 
 
     {% for project in projects %}
-        <!-- NalinC-->
+        <!-- dmajet-->
         {% if project.requester == 1 and project.index == 1 %}
-            <section class="container" id="Other"
-                     style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: rgb(51, 51, 51);">
-                <div class="row col-xs-12 col-md-12">
-                    <!-- Instructions -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" style="font-size: 0.9em;">
-                            <strong>Instructions</strong>
-                        </div>
-                        <div class="panel-body">
-                            <p style="font-size: 0.9em;">Looking at the photos, label following business attributes
-                                about
-                                the restaurant:</p>
-                            <p style="font-size: 0.9em;">0: good_for_lunch, 1: good_for_dinner,
-                                2:&nbsp;takes_reservations</p>
-                            <p style="font-size: 0.9em;">3: outdoor_seating, 4: restaurant_is_expensive,
-                                5:&nbsp;has_alcohol</p>
-                            <p style="font-size: 0.9em;">6: has_table_service, 7: ambience_is_classy,
-                                8:&nbsp;good_for_kids</p>
-                            <p>&nbsp;</p>
-                            <p>
-                                <span style="font-size: 11.7px;">Note: You may include multiple labels for a given restaurant</span>
-                            </p>
-                        </div>
-                    </div>
-                    {% for task in project.tasks %}
-                        <section style="font-size: 0.9em;">
-                            <fieldset>
-                                <p>
-                                    <span style="font-weight: bold; font-size: 0.9em; line-height: 1.6em;">&nbsp;Please choose appropriate label(s) for the restaurant images below:</span>
-                                </p>
-                                <p>&nbsp;</p>
-                                <div>
-                                    <img alt="image1" height="200" span="" src="{{ task.photoUrl1 }}"
-                                         style="opacity: 0.9; color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;"
-                                         width="200"/>
-                                    <img alt="image2" height="200" span="" src="{{ task.photoUrl2 }}"
-                                         style="opacity: 0.9; color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;"
-                                         width="200"/>
-                                    <img alt="image3" height="200" span="" src="{{ task.photoUrl3 }}"
-                                         style="opacity: 0.9; color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;"
-                                         width="200"/>
-                                    <img alt="image4" height="200" span="" src="{{ task.photoUrl4 }}"
-                                         style="opacity: 0.9; color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;"
-                                         width="200"/>
-                                    <img alt="image5" height="200" span="" src="{{ task.photoUrl5 }}"
-                                         style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;"
-                                         width="200"/>
-                                </div>
-                                <div class="checkbox">
-                    <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                        <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                    <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                        <label>
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_0"
-                                                   type="checkbox" value="0"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">good_for_lunch</span>
-                                        <br/>
-                                        <label>
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_1"
-                                                   type="checkbox" value="1"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">good_for_dinner</span>
-                                        <br/>
-                                        <label>
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_2"
-                                                   type="checkbox" value="2"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">takes_reservations</span>
-                                        <br/>
-                                        <label>
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_3"
-                                                   type="checkbox" value="3"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">outdoor_seating</span>
-                                        <br/>
-                                        <label>
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_4"
-                                                   type="checkbox" value="4"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">restaurant_is_expensive</span>
-                                        <br/>
-                                        <label>
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_5"
-                                                   type="checkbox" value="5"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">has_alcohol</span>
-                                        <br/>
-                                        <label>
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_6"
-                                                   type="checkbox" value="6"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">has_table_service</span>
-                                        <br/>
-                                        <label>
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_7"
-                                                   type="checkbox" value="7"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">ambience_is_classy</span>
-                                        <br/>
-                                        <label>
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_8"
-                                                   type="checkbox" value="8"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">good_for_kids</span>
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                    </span>
-                                </div>
-                            </fieldset>
-                    <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                    <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                        <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                    <!-- End Content Body -->
-                                </span>
-                            </span>
-                        </span>
-                    </span>
-                </span>
-
-                        </section>
-                    {% endfor %}
-                </div>
-            </section>
-            <p>
-            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-        <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                    <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                        <!-- close container -->
-                        <style type="text/css">fieldset {
-                            padding: 10px;
-                            background: #fbfbfb;
-                            border-radius: 5px;
-                            margin-bottom: 5px;
-                        }
-                        </style>
-                    </span>
-                </span>
-            </span>
-        </span>
-    </span>
-            </p>
-        {% elif project.requester == 1 and project.index == 2 %}
-            <section class="container" id="Other" style="margin-bottom: 15px; padding: 10px; color: rgb(51, 51, 51);">
-                <div class="row col-xs-12 col-md-12">
-                    <!-- Instructions -->
-                    <div class="panel panel-primary" style="font-family: Verdana, Geneva, sans-serif;">
-                        <div class="panel-heading" style="font-size: 0.9em;">
-                            <strong>Instructions</strong>
-                        </div>
-                        <div class="panel-body">
-                            <p style="font-size: 0.9em;">Given the description for a football match, choose the best
-                                coaching decision:</p>
-                            <p style="font-size: 0.9em;">0: punt, 1: pass, 2:&nbsp;run</p>
-                            <p style="font-size: 0.9em;">3: kick a field goal, 4: kneel down, 5:&nbsp;dont know</p>
-                            <p>
-                                <span style="font-size: 11.7px;">Note: You may choose only one decision&nbsp;for a given scenario</span>
-                            </p>
-                        </div>
-                    </div>
-                    {% for task in project.tasks %}
-                        <section>
-                            <fieldset>
-                                <p style="font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                    <span style="font-weight: bold; font-size: 0.9em; line-height: 1.6em;">&nbsp;Please choose appropriate decision&nbsp;for the given football scenario:</span>
-                                </p>
-                                <p style="font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">&nbsp;</p>
-                                <div style="font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                    &nbsp;{{ task.football_scenario }}&nbsp;</div>
-                                <div class="radio">
-                    <span style="color: rgb(68, 68, 68);">
-                        <span style="color: rgb(68, 68, 68);">
-                            <span style="color: rgb(68, 68, 68);">
-                                <span style="color: rgb(68, 68, 68);">
-                                    <span style="color: rgb(68, 68, 68);">
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_punt"
-                                                   type="radio" value="punt"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">punt</span>
-                                        <br/>
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_pass"
-                                                   type="radio" value="pass"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">pass</span>
-                                        <br/>
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_run"
-                                                   type="radio" value="run"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">run</span>
-                                        <br/>
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_kick-a-field-goal"
-                                                   type="radio" value="kick a field goal"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">kick a field goal</span>
-                                        <br/>
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_kneel-down"
-                                                   type="radio" value="kneel down"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">kneel down</span>
-                                        <br/>
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_dont-know"
-                                                   type="radio" value=">dont know"/>
-                                        </label>
-                                        <span style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">dont know</span>
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                    </span>
-                                </div>
-                            </fieldset>
-                        </section>
-                        <span style="font-family: 'Courier New', Courier, mono; color: rgb(68, 68, 68); font-size: 16px; line-height: 24px;">
-                    <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                        <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                    <!-- End Content Body -->
-                                </span>
-                            </span>
-                        </span>
-                    </span>
-                </span>
-
-                    {% endfor %}
-                </div>
-            </section>
-            <p>
-            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-        <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                    <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                        <!-- close container -->
-                        <style type="text/css">fieldset {
-                            padding: 10px;
-                            background: #fbfbfb;
-                            border-radius: 5px;
-                            margin-bottom: 5px;
-                        }
-                        </style>
-                    </span>
-                </span>
-            </span>
-        </span>
-    </span>
-            </p>
-
-
-
-        {% elif project.requester == 1 and project.index == 3 %}
-            <section class="container" id="Other" style="margin-bottom: 15px; padding: 10px;">
-                <div class="row col-xs-12 col-md-12">
-                    <!-- Instructions -->
-                    <div class="panel panel-primary"
-                         style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif;">
-                        <div class="panel-heading" style="font-size: 0.9em;">
-                            <strong>Instructions</strong>
-                        </div>
-                        <div class="panel-body">
-                            <p style="font-size: 0.9em;">Read tweets and classify them as:</p>
-                            <p style="font-size: 0.9em;">5: very positive, 4: slightly positive,</p>
-                            <p style="font-size: 0.9em;">3:&nbsp;neutral</p>
-                            <p style="font-size: 0.9em;">2: slightly negative, 1: very negative</p>
-                            <p style="font-size: 0.9em;">If the tweet doesn&#39;t match any of the sentiment above, you
-                                mat
-                                mark it as &#39;not_relevant&#39;</p>
-                            <p>
-                                <span style="font-size: 11.7px;">Note: You may choose only one sentiment for a given tweet</span>
-                            </p>
-                        </div>
-                    </div>
-                    {% for task in project.tasks %}
-                        <section>
-                            <fieldset>
-                                <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                    <span style="font-weight: bold; font-size: 0.9em; line-height: 1.6em;">&nbsp;Please choose appropriate sentiment for the given tweet:</span>
-                                </p>
-                                <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                    &nbsp;</p>
-                                <div style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                    &nbsp;{{ task.tweet }}&nbsp;</div>
-                                <div class="radio">
-                    <span style="color: rgb(68, 68, 68);">
-                        <span style="color: rgb(68, 68, 68);">
-                            <span style="color: rgb(68, 68, 68);">
-                                <span style="color: rgb(68, 68, 68);">
-                                    <span style="color: rgb(68, 68, 68);">
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_5"
-                                                   type="radio" value="5"/>
-                                        </label>
-                                        <font face="Verdana, Geneva, sans-serif">
-                                            <span style="font-size: 11.7px;">very positive</span>
-                                        </font>
-                                        <br/>
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_4"
-                                                   type="radio" value="4"/>
-                                        </label>
-                                        <font face="Verdana, Geneva, sans-serif">
-                                            <span style="font-size: 11.7px;">slightly positive</span>
-                                        </font>
-                                        <br/>
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_3"
-                                                   type="radio" value="3"/>
-                                        </label>
-                                        <font face="Verdana, Geneva, sans-serif">
-                                            <span style="font-size: 11.7px;">neutral</span>
-                                        </font>
-                                        <br/>
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_2"
-                                                   type="radio" value="2"/>
-                                        </label>
-                                        <font face="Verdana, Geneva, sans-serif">
-                                            <span style="font-size: 11.7px;">slightly negative</span>
-                                        </font>
-                                        <br/>
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_1"
-                                                   type="radio" value="1"/>
-                                        </label>
-                                        <font face="Verdana, Geneva, sans-serif">
-                                            <span style="font-size: 11.7px;">very negative</span>
-                                        </font>
-                                        <br/>
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_not-relevant"
-                                                   type="radio" value="not_relevant"/>
-                                        </label>
-                                        <font face="Verdana, Geneva, sans-serif">
-                                            <span style="font-size: 11.7px;">not_relevant</span>&nbsp;
-                                        </font>
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                    </span>
-                                </div>
-                            </fieldset>
-                        </section>
-                        <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                    <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                        <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                            <!-- End Content Body -->
-                        </span>
-                    </span>
-                </span>
-            </span>
-        </span>
-                    {% endfor %}
-                </div>
-            </section>
-            <p>
-            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                    <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                        <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                <!-- close container -->
-                                <style type="text/css">fieldset {
-                                    padding: 10px;
-                                    background: #fbfbfb;
-                                    border-radius: 5px;
-                                    margin-bottom: 5px;
-                                }
-                                </style>
-                            </span>
-                        </span>
-                    </span>
-                </span>
-            </span>
-            </p>
-        {% elif project.requester == 1 and project.index == 4 %}
-            <section class="container" id="Other" style="margin-bottom: 15px; padding: 10px;">
-                <div class="row col-xs-12 col-md-12">
-                    <!-- Instructions -->
-                    <div class="panel panel-primary"
-                         style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif;">
-                        <div class="panel-heading" style="font-size: 0.9em;">
-                            <strong>Instructions</strong>
-                        </div>
-                        <div class="panel-body">
-                            <p style="font-size: 0.9em;">Given a snippet, verify whether the fact in subject, predicate,&nbsp;object&nbsp;is
-                                true&nbsp;:</p>
-                            <p style="font-size: 0.9em;">0: false,</p>
-                            <p style="font-size: 0.9em;">1: true,</p>
-                            <p style="font-size: 0.9em;">2:&nbsp;skip/cannot be verified</p>
-                            <p style="font-size: 0.9em;">
-                                <span style="font-size: 11.7px; line-height: 1.6em;">Note: You may choose only one option for a given fact</span>
-                            </p>
-                            <p style="font-size: 0.9em;">For example, in the excerpt: &ldquo;Stephen Hawking graduated
-                                from
-                                Oxford,&rdquo; Stephen Hawking is the subject, graduated from is the relation /
-                                predicate,
-                                and Oxford University is the object. This excerpt is true.</p>
-                        </div>
-                    </div>
-                    {% for task in project.tasks %}
-                        <section>
-                            <fieldset>
-                                <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                    <span style="font-weight: bold; font-size: 0.9em; line-height: 1.6em;">&nbsp;Please choose appropriate sentiment for the given tweet:</span>
-                                </p>
-                                <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                    <span style="font-size: 0.9em; line-height: 1.6em;">Snippet: &nbsp; {{ task.snippet }}</span>
-                                </p>
-                                <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                    <span style="font-family: Verdana, Geneva, sans-serif; font-size: 0.9em; line-height: 1.6em; background-color: rgb(251, 251, 251);">Snippet source: &nbsp;{{ task.url }}</span>
-                                </p>
-                                <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                    <span style="font-size: 0.9em; line-height: 1.6em;">subject: </span>
-                                    <span style="font-family: Verdana, Geneva, sans-serif; font-size: 0.9em; line-height: 1.6em; background-color: rgb(251, 251, 251);">{{ task.sub }}</span>
-                                </p>
-                                <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                    <span style="font-size: 0.9em; line-height: 1.6em;">predicate: </span>
-                                    <span style="font-family: Verdana, Geneva, sans-serif; font-size: 0.9em; line-height: 1.6em; background-color: rgb(251, 251, 251);">{{ task.pred }}</span>
-                                </p>
-                                <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                    <span style="font-family: Verdana, Geneva, sans-serif; font-size: 0.9em; line-height: 1.6em; background-color: rgb(251, 251, 251);">object:&nbsp;{{ task.obj }}</span>
-                                </p>
-                                <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                    <span style="font-size: 0.9em; line-height: 1.6em;">Are&nbsp;the given sub,obj,pred valid for snippet provided?</span>
-                                </p>
-                                <div class="radio">
-                    <span style="color: rgb(68, 68, 68);">
-                        <span style="color: rgb(68, 68, 68);">
-                            <span style="color: rgb(68, 68, 68);">
-                                <span style="color: rgb(68, 68, 68);">
-                                    <span style="color: rgb(68, 68, 68);">
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_1"
-                                                   type="radio" value="1"/>
-                                        </label>
-                                        <font face="Verdana, Geneva, sans-serif">
-                                            <span style="font-size: 11.7px;">True</span>&nbsp;
-                                        </font>
-                                        <br/>
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_0"
-                                                   type="radio" value="0"/>
-                                        </label>
-                                        <font face="Verdana, Geneva, sans-serif">
-                                            <span style="font-size: 11.7px;">False</span>&nbsp;
-                                        </font>
-                                        <br/>
-                                        <label style="font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_2"
-                                                   type="radio" value="2"/>
-                                        </label>
-                                        <font face="Verdana, Geneva, sans-serif">
-                                            <span style="font-size: 11.7px;">Skip/cannot be verified</span>
-                                        </font>
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                    </span>
-                                </div>
-                            </fieldset>
-                        </section>
-                        <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                    <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                        <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                            <!-- End Content Body -->
-                        </span>
-                    </span>
-                </span>
-            </span>
-        </span>
-                    {% endfor %}
-                </div>
-            </section>
-            <p>
-            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-        <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-            <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                    <span style="color: rgb(68, 68, 68); font-family: 'Courier New', Courier, mono; font-size: 16px; line-height: 24px;">
-                        <!-- close container -->
-                        <style type="text/css">fieldset {
-                            padding: 10px;
-                            background: #fbfbfb;
-                            border-radius: 5px;
-                            margin-bottom: 5px;
-                        }
-                        </style>
-                    </span>
-                </span>
-            </span>
-        </span>
-    </span>
-            </p>
-            <!-- Presrini-->
-        {% elif project.requester == 2 and project.index == 1 %}
-            <section class="container" id="Other"
-                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
-                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><strong>Instructions</strong></div>
-
-                        <div class="panel-body">
-                            <ul>
-                                <li>You are required to select labels that characterize the business attributes for
-                                    restaurants by looking at their photos
-                                </li>
-                                <li>You can choose multiple attributes from the list provided</li>
-                            </ul>
-                        </div>
-                    </div>
-                    {% for task in project.tasks %}
-                        <div>
-                            <fieldset>
-                                <div><img alt="photoUrl1" class="imagecontainer" height="100" src="{{ task.photoUrl1 }}"
-                                          width="100"/>
-                                    <img alt="photoUrl2" class="imagecontainer" height="100" src="{{ task.photoUrl2 }}"
-                                         width="100"/>
-                                    <img alt="photoUrl3" class="imagecontainer" height="100" src="{{ task.photoUrl3 }}"
-                                         width="100"/>
-                                    <img alt="photoUrl4" class="imagecontainer" height="100" src="{{ task.photoUrl4 }}"
-                                         width="100"/>
-                                    <img alt="photoUrl5" class="imagecontainer" height="100" src="{{ task.photoUrl5 }}"
-                                         width="100"/>
-                                </div>
-
-                                <div class="tagfields">
-                                    <div class="form-group"><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_0"
-                                            size="30" type="checkbox" value="0"/> Good for
-                                        lunch
-                                    </div>
-
-                                    <div class="form-group"><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_1"
-                                            size="30" type="checkbox" value="1"/> Good for
-                                        dinner
-                                    </div>
-
-                                    <div class="form-group"><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_2"
-                                            size="30" type="checkbox" value="2"/> Takes
-                                        reservations
-                                    </div>
-
-                                    <div class="form-group"><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_3"
-                                            size="30" type="checkbox" value="3"/> Outdoor
-                                        seating
-                                    </div>
-
-                                    <div class="form-group"><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_4"
-                                            size="30" type="checkbox" value="4"/> Restaurant
-                                        is expensive
-                                    </div>
-
-                                    <div class="form-group"><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_5"
-                                            size="30" type="checkbox" value="5"/> Has alcohol
-                                    </div>
-
-                                    <div class="form-group"><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_6"
-                                            size="30" type="checkbox" value="6"/> Has table
-                                        service
-                                    </div>
-
-                                    <div class="form-group"><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_7"
-                                            size="30" type="checkbox" value="7"/> Ambience is
-                                        classy
-                                    </div>
-
-                                    <div class="form-group"><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_8"
-                                            size="30" type="checkbox" value="8"/> Good for
-                                        kids
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-                        <!-- End Instructions --><!-- Content Body -->
-                    {% endfor %}
-                    <section><!-- End Content Body --></section>
-                </div>
-            </section>
-        {% elif project.requester == 2 and project.index == 2 %}
-            <section class="container" id="Other"
-                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
-                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><strong>Instructions</strong></div>
-
-                        <div class="panel-body">
-                            <ul>
-                                <li>Read through each football scenario</li>
-                                <li>Select what the best coaching decision would be &nbsp;</li>
-                                <li>For example, a scenario can include &quot;It is third down and 3. The ball is on
-                                    your
-                                    opponent&#39;s
-                                    20 yard line. There are five seconds left. You are down by 4. Would you:&quot;</li>
-                            </ul>
-                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="checkbox" value="punt"/> Punt<br/>
-                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="checkbox" value="pass"/> Pass<br/>
-                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="checkbox" value="run"/> Run<br/>
-                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="checkbox" value="kick"/> Kick of field<br/>
-                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="checkbox" value="kneel"/> Kneel down<br/>
-                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="checkbox" value="dk"/> don&#39;t know
-                        </div>
-                        <!-- End Instructions --><!-- Content Body -->
-                        <style type="text/css">fieldset {
-                            padding: 10px;
-                            background: #fbfbfb;
-                            border-radius: 5px;
-                            margin-bottom: 5px;
-                        }
-                        </style>
-                        {% for task in project.tasks %}
-                            <section>
-                                <div>
-                                    <fieldset>
-                                        <p>{{ task.football_scenario }}</p>
-
-                                        <div class="tagfields">
-                                            <div class="form-group"><input
-                                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_punt"
-                                                    size="30" type="checkbox"
-                                                    value="punt"/>
-                                                Punt
-                                            </div>
-                                            <div class="form-group"><input
-                                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_pass"
-                                                    size="30" type="checkbox"
-                                                    value="pass"/>
-                                                Pass
-                                            </div>
-                                            <div class="form-group"><input
-                                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_run"
-                                                    size="30" type="checkbox"
-                                                    value="run"/>
-                                                Run
-                                            </div>
-                                            <div class="form-group"><input
-                                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_kick-a-field-goal"
-                                                    size="30" type="checkbox"
-                                                    value="kick a field goal"/>
-                                                Kick of
-                                                field
-                                            </div>
-                                            <div class="form-group"><input
-                                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_kneel-down"
-                                                    size="30" type="checkbox"
-                                                    value="kneel down"/>
-                                                Kneel down
-                                            </div>
-                                            <div class="form-group"><input
-                                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_dont-know"
-                                                    size="30" type="checkbox"
-                                                    value="dont know"/> Don&#39;t
-                                                know
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </section>
-                        {% endfor %}
-                        <!-- close container -->
-
-                    </div>
-                </div>
-            </section>
-        {% elif project.requester == 2 and project.index == 3 %}
-            <section class="container" id="Other"
-                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
-                <style type="text/css">fieldset {
-                    padding: 10px;
-                    background: #fbfbfb;
-                    border-radius: 5px;
-                    margin-bottom: 5px;
-                }
-                </style>
-                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><strong>Instructions</strong></div>
-
-                        <div class="panel-body">
-                            <ul>
-                                <li>You have to classify each tweet&nbsp;&nbsp;</li>
-                                <li>You will be provided with the following options to choose from:</li>
-                                <li>Very positive: if you strongly agree with the tweet&nbsp;</li>
-                                <li>Slightly positive: if you agree with the tweet</li>
-                                <li>Neutral: if you are neutral towards the tweet</li>
-                                <li>Slightly negative: if you disagree with the tweet</li>
-                                <li>Very negative: if you strongly disagree with the tweet</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- End Instructions --><!-- Content Body -->
-                    {% for task in project.tasks %}
-                        <section style="border-bottom: solid 1px rgba(0, 0, 0, 0.1)">
-                            <fieldset><label>{{ task.id }}. {{ task.tweet }} Select only ONE of the following:</label>
-
-                                <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_5"
-                                        type="radio" value="5"/>Very
-                                    Positive</label></div>
-
-                                <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_4"
-                                        type="radio" value="4"/>Positive</label>
-                                </div>
-
-                                <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_3"
-                                        type="radio" value="3"/>Neutral</label>
-                                </div>
-
-                                <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_2"
-                                        type="radio" value="2"/>Negative</label>
-                                </div>
-
-                                <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_1"
-                                        type="radio" value="1"/>Very
-                                    Negative</label></div>
-                            </fieldset>
-
-                            <fieldset><label><input
-                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_not-relevant"
-                                    type="checkbox" value="not_relevant"/> Is this tweet relevant to self-driving
-                                cars?</label></fieldset>
-                        </section>
-                    {% endfor %}
-                    <!-- End Content Body --></div>
-            </section>
-            <!-- close container -->
-
-        {% elif project.requester == 2 and project.index == 4 %}
-            <!-- Bootstrap v3.0.3 -->
-            <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet"/>
-            <section class="container" id="Other"
-                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
-                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><strong>Instructions</strong></div>
-
-                        <div class="panel-body">
-                            <ul>
-                                <li>Verify whether the fact in the (subject, predicate, object) is true from a snippet
-                                    of
-                                    text
-                                </li>
-                                <li>You will be provided with a snippet&nbsp;and the URL from where it was obtained</li>
-                                <li>You will also be provided with the corresponding subject, object, and predicate from
-                                    the
-                                    snippet
-                                </li>
-                                <li>The URL doesn&#39;t guarantee the legitimacy of the snippet; the snippet can be true
-                                    or
-                                    false
-                                </li>
-                                <li>You&nbsp;may choose from one of the three options: true, false, and skip/cannot be
-                                    verified
-                                </li>
-                                <li>For example, in the excerpt: &quot;Stephen Hawking graduated from Oxford,&quot;
-                                    &#39;Stephen
-                                    Hawking&#39; is the subject, &#39;graduated from&#39; is the relation or predicate,
-                                    and
-                                    &#39;Oxford University&#39; is the object. This excerpt is true.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- End Instructions --><!-- Content Body -->
-                    {% for task in project.tasks %}
-                        <section>
-                            <fieldset>
-                                <p><label>Snippet: &quot;{{ task.snippet }}&quot;</label></p>
-
-                                <p><label>​URL:&nbsp;</label><a target="_blank" href="{{ task.url }}">{{ task.url }}</a>
-                                </p>
-
-                                <p>Subject: <a target="_blank" href="{{ task.url }}">{{ task.sub }}</a></p>
-
-                                <p>Object: <a target="_blank" href="{{ task.url }}">{{ task.obj }}</a></p>
-
-                                <p>Predicate: <a target="_blank" href="{{ task.url }}">{{ task.pred }}</a>
-                                </p>
-
-                                <p>&nbsp;</p>
-
-                                <p>Your response --&nbsp;</p>
-
-                                <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_0"
-                                        type="radio" value="0"/>False</label></div>
-
-                                <div class="radio"><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_1"
-                                        type="radio" value="1"/>True
-                                </div>
-
-                                <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_2"
-                                        type="radio" value="2"/>Skip/cannot be
-                                    verified</label></div>
-                            </fieldset>
-                        </section>
-                    {% endfor %}
-                    <a href="{{ task.url }}"><!-- End Content Body --></a></div>
-            </section>
-
-            <p><a href="{{ task.url }}"><!-- close container -->
-                <style type="text/css">fieldset {
-                    padding: 10px;
-                    background: #fbfbfb;
-                    border-radius: 5px;
-                    margin-bottom: 5px;
-                }
-                </style>
-            </a></p>
-
-
-
-
-
-
-            <!-- dmajeti-->
-        {% elif project.requester == 3 and project.index == 1 %}
             <section class="container" id="TaggingOfAnImage"
                      style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
-                <style type="text/css">img {
-                    width: 300px;
-                    height: 300px;
-                    border: 5px solid #ffffff;
-                }
-                </style>
-                <style type="text/css">.imagecontainer {
-                    display: block;
-                    float: left;
-                    position: relative;
-                    border: 1px solid #fbfbfb;
-                    margin: 0px 15px 15px 0px;
-                    height: 200px;
-                    width: auto;
-                }
-
-                .tagfields {
-                    display: block;
-                    float: left;
-                }
-                </style>
                 <div class="row col-xs-12 col-md-12"><!-- Instructions -->
                     <div class="panel panel-primary">
                         <div class="panel-heading"><strong>Instructions</strong></div>
 
                         <div class="panel-body">
-                            <p>You must provide categories to the restaurant based on the 5 photos of the restaurant.
-                                You
-                                can provide more than one labels.</p>
+                            <p>You must click on the given url, visit the web page and label the contents of that web
+                                page based on the options given below.</p>
                         </div>
                     </div>
                     <!-- End Instructions -->
                     {% for task in project.tasks %}
-                        <fieldset><img src="{{ task.photoUrl1 }}"/> <img src="{{ task.photoUrl2 }}"/> <img
-                                src="{{ task.photoUrl3 }}"/> <img
-                                src="{{ task.photoUrl4 }}"/> <img src="{{ task.photoUrl5 }}"/><br/>
-                            &nbsp;
-                            <div class="tagfields"><input
-                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_0"
-                                    type="checkbox" value="0"/> good for
-                                lunch<br/>
-                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_1"
-                                       type="checkbox" value="1"/> good for dinner<br/>
-                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_2"
-                                       type="checkbox" value="2"/> takes reservations<br/>
-                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_3"
-                                       type="checkbox" value="3"/> outdoor_seating<br/>
-                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_4"
-                                       type="checkbox" value="4"/>
-                                restaurant_is_expensive<br/>
-                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_5"
-                                       type="checkbox" value="5"/> has alcohol<br/>
-                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_6"
-                                       type="checkbox" value="6"/> has table service<br/>
-                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_7"
-                                       type="checkbox" value="7"/> ambience is classy<br/>
-                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_8"
-                                       type="checkbox" value="8"/> good for kids
-                            </div>
-                        </fieldset>
-                    {% endfor %}
-                </div>
-            </section>
-        {% elif project.requester == 3 and project.index == 2 %}
-            <section class="container" id="TaggingOfAnImage"
-                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
-                <!-- close container -->
-                <style type="text/css">.imagecontainer {
-                    display: block;
-                    float: left;
-                    position: relative;
-                    border: 1px solid #fbfbfb;
-                    margin: 0px 15px 15px 0px;
-                    height: 200px;
-                    width: auto;
-                }
-
-
-                </style>
-                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><strong>Instructions</strong></div>
-
-                        <div class="panel-body">
-                            <p>You must note what the best coaching decision would be for a football scenario.</p>
-                        </div>
-                    </div>
-                    <!-- End Instructions -->
-                    {% for task in project.tasks %}
-                        <h3>Scenario</h3>
-
-                        <p>{{ task.football_scenario }}</p>
+                        <p><a href="{{ task.url }}" target="_blank">{{ task.url }}</a></p>
                         &nbsp;
 
-                        <div class="tagfields"><input
-                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_punt"
-                                type="checkbox" value="punt"/> punt<br/>
-                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_pass"
-                                   type="checkbox" value="pass"/> pass<br/>
-                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_run"
-                                   type="checkbox" value="run"/> run<br/>
-                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_kick-a-field-goal"
-                                   type="checkbox" value="kick a field goal"/> kick a field goal<br/>
-                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_kneel-down"
-                                   type="checkbox" value="kneel down"/> kneel down<br/>
-                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_dont-know"
-                                   type="checkbox" value="dont know"/> don&#39;t know
-                        </div>
-                        <br>
-                    {% endfor %}
-                </div>
-            </section>
-
-        {% elif project.requester == 3 and project.index == 3 %}
-            <section class="container" id="TaggingOfAnImage"
-                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
-                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><strong>Instructions</strong></div>
-
-                        <div class="panel-body">
-                            <p>You must read the tweet displayed and classify it as given below</p>
-                        </div>
-                    </div>
-                    <!-- End Instructions -->
-                    {% for task in project.tasks %}
-                        <h3>Tweet</h3>
-
-                        <p>{{ task.tweet }}</p>
-                        &nbsp;
-
-                        <div class="tagfields"><input
-                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_5"
-                                type="checkbox"
-                                value="5"/> very
-                            positive<br/>
-                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_4"
-                                   type="checkbox" value="4"/> slightly positive<br/>
-                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_3"
-                                   type="checkbox" value="3"/> neutral<br/>
-                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_2"
-                                   type="checkbox" value="2"/> slightly negative<br/>
-                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_1"
-                                   type="checkbox" value="1"/> very negative
-                        </div>
-                        <div style="display: inline-block;">Is the tweet not relevant to self-driving cars? <input
-                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_not-relevant"
-                                type="checkbox"
-                                value="not_relevant"/>​
-                        </div>
-                    {% endfor %}
-                </div>
-                &nbsp; &nbsp;
-
-
-                <!-- close container -->
-                <style type="text/css">.imagecontainer {
-                    display: block;
-                    float: left;
-                    position: relative;
-                    border: 1px solid #fbfbfb;
-                    margin: 0px 15px 15px 0px;
-                    height: 200px;
-                    width: auto;
-                }
-
-                </style>
-            </section>
-        {% elif project.requester == 3 and project.index == 4 %}
-            <section class="container" id="TaggingOfAnImage"
-                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
-                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><strong>Instructions</strong></div>
-
-                        <div class="panel-body">
-                            <p>Is the fact in the (subject, predicate, object) true in given the excerpted text.</p>
-                        </div>
-                    </div>
-                    <!-- End Instructions -->
-                    {% for task in project.tasks %}
-                        <p>Subject - <a target="_blank" href="{{ task.sub }}">{{ task.sub }}</a></p>
-
-                        <p>Object - <a target="_blank" href="{{ task.obj }}">{{ task.sub }}</a></p>
-
-                        <p>Predicate - <a target="_blank" href="{{ task.pred }}">{{ task.sub }}</a></p>
-
-                        <p>{{ task.snippet }}</p>
-                        &nbsp;
-
-                        <div class="tagfields" style="border-bottom: dashed 1px rgba(0, 0, 0, 0.2)"><input
-                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_0" type="radio"
-                                value="0"/> false<br/>
-                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_1"
-                                   type="radio"
-                                   value="1"/> true<br/>
-                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_2"
-                                   type="radio"
-                                   value="2"/> skip/cannot be verified
+                        <div class="tagfields">
+                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                   type="radio" value="Pro-legalization"/> Pro-legalization<br/>
+                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                   type="radio" value="Anti-legalization"/> Anti-legalization<br/>
+                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                   type="radio" value="Neither"/> Neither
                         </div>
                         &nbsp; &nbsp; <!-- close container -->
                     {% endfor %}
@@ -1077,545 +49,333 @@
                         width: auto;
                     }
 
-
+                    .tagfields1 {
+                        display: block;
+                        float: left;
+                    }
                     </style>
                 </div>
             </section>
-
-
-
-
-            <!-- varshine-->
-        {% elif project.requester == 4 and project.index == 1 %}
-            <section class="container" id="ModerationOfAnImage" style="margin-bottom: 15px; padding: 10px;">
-                <style type="text/css">td {
-                    vertical-align: top;
-
-                }
-
-                img {
-                    display: block;
-                    border: 1px solid #ddd;
-                    border-radius: 4px;
-                    padding: 5px;
-                }
-
-                td:last-child {
-                    padding-bottom: 0;
-                }
-
-                label {
-                    display: block;
-                }
-
-                label:hover {
-                    cursor: pointer;
-                }
-
-                td label#label_none {
-                    padding-left: 5px;
-                }
-                </style>
-                {% for task in project.tasks %}
-                    <div class="row col-xs-12 col-md-12" style="border-bottom: solid 3px rgba(0, 0, 0, 0.7)">
-                        <!-- Instructions -->
-                        {% if forloop.counter0 == 0 %}
-                            <div class="panel panel-primary">
-                                <div class="panel-heading"
-                                     style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-
-                                    <strong>Instructions</strong></div>
-
-
-                            </div>
-                        {% endif %}
-                        <div class=" panel panel-body">
-                            <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                Given
-                                below are 5 images of the <strong>same restaurant</strong>. Select<strong> any
-                                number</strong>
-                                of&nbsp;<strong>most appropriate business attributes (labels)</strong> for the
-                                restaurant.
-                            </p>
-
-                            <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                <strong>The label values&nbsp;range from 0-8. Each of the numbers stand for the
-                                    following:</strong></p>
-
-                            <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                0
-                                :
-                                good_for_lunch</p>
-
-                            <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                1
-                                :
-                                good_for_dinner</p>
-
-                            <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                2
-                                :
-                                takes_ reservations</p>
-
-                            <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                3
-                                :
-                                outdoor_seating</p>
-
-                            <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                4
-                                :
-                                restaurant_is_expensive</p>
-
-                            <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                5
-                                :
-                                has_alcohol</p>
-
-                            <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                6
-                                :
-                                has_table_service</p>
-
-                            <p><font face="Verdana, Geneva, sans-serif"><span
-                                    style="font-size: 0.9em;">7 : ambience_is_classy</span></font></p>
-
-                            <p><font face="Verdana, Geneva, sans-serif"><span
-                                    style="font-size: 0.9em;">8 : good_for_kids</span></font>
-                            </p>
-
-                            <p><font face="Verdana, Geneva, sans-serif"><span style="font-size: 0.9em;">Example:<br/> If the has outdoor seating and good for lunch, you&#39;d have to select 3 and 0.</span></font><br/>
-                                &nbsp;</p>
-
-                            <p style="color: rgb(51, 51, 51); font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
-                                <strong>Given below are the images of the restaurant that you need to label:</strong>
-                            </p>
-                            <img alt="Image1" src="{{ task.photoUrl1 }}"/><br/>
-                            <img alt="Image2" src="{{ task.photoUrl2 }}"/><br/>
-                            <img alt="Image3" src="{{ task.photoUrl3 }}"/><br/>
-                            <img alt="Image4" src="{{ task.photoUrl4 }}"/><br/>
-                            <img alt="Image5" src="{{ task.photoUrl5 }}"/><br/>
-                            ​
-                        </div>
-                        <label for="checkid0" style="word-wrap:break-word"><input
-                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_0"
-                                type="checkbox"
-                                value="0"/>0
-                        </label> <label for="checkid1" style="word-wrap:break-word"> <input
-                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_1" type="checkbox"
-                            value="1"/>1 </label> <label
-                            for="checkid2" style="word-wrap:break-word"> <input
-                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_2" type="checkbox"
-                            value="2"/>2
-                    </label> <label for="checkid3" style="word-wrap:break-word"> <input
-                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_3" type="checkbox"
-                            value="3"/>3 </label> <label
-                            for="checkid4" style="word-wrap:break-word"> <input
-                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_4" type="checkbox"
-                            value="4"/>4</label> <label
-                            for="checkid5"
-                            style="word-wrap:break-word">
-                        <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_5"
-                               type="checkbox"
-                               value="5"/>5 </label>
-                        <label for="checkid6"
-                               style="word-wrap:break-word">
-                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_6"
-                                   type="checkbox" value="6"/>6</label> <label for="checkid7"
-                                                                               style="word-wrap:break-word">
-                        <input
-                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_7"
-                                type="checkbox"
-                                value="7"/>7</label> <label for="checkid8"
-                                                            style="word-wrap:break-word">
-                        <input
-                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_8"
-                                type="checkbox"
-                                value="8"/>8</label></div>
-                {% endfor %}
-            </section>
-        {% elif project.requester == 4 and project.index == 2 %}
-            <section class="container" id="Survey"
+        {% elif project.requester == 2 and project.index == 1 %}
+            <section class="container" id="TranscriptionFromAV"
                      style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
-                <!-- close container -->
-                <style type="text/css">fieldset {
-                    padding: 10px;
-                    background: #fbfbfb;
-                    border-radius: 5px;
-                    margin-bottom: 5px;
-                }
-                </style>
                 <div class="row col-xs-12 col-md-12"><!-- Instructions -->
                     <div class="panel panel-primary">
                         <div class="panel-heading"><strong>Instructions</strong></div>
 
                         <div class="panel-body">
-                            <p>You&#39;d be presented with a football scenario, such as:&nbsp;</p>
-
-                            <p>&quot;<span id="docs-internal-guid-89024a14-0ea5-4b7b-aa21-4b1944af22c9"><span
-                                    style="font-size: 14.6667px; font-family: Arial; color: rgb(0, 0, 0); vertical-align: baseline; white-space: pre-wrap; background-color: transparent;">&quot;It is third down and 3. The ball is on your opponent&#39;s 20 yard line. There are five seconds left. You are down by 4.&quot;</span></span>
-                            </p>
-
-                            <p><span
-                                    style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">You&#39;d have to pick the <strong>best</strong><strong>
-                                &nbsp;coaching
-                                decision</strong> based on the given&nbsp;scenario. The choices would be:</span></p>
+                            <p>Listen to the short video and give your opinion,</p>
 
                             <ul>
-                                <li>Punt</li>
-                                <li>Pass</li>
-                                <li>Run</li>
-                                <li>Kick a field goal</li>
-                                <li>Kneel down</li>
-                                <li>Don&#39;t know</li>
+                                <li>Pro-legalization</li>
+                                <li>Anti-legalization</li>
+                                <li>Neither</li>
                             </ul>
+                        </div>
+                    </div>
+                    <!-- End Instructions -->
+                    {% for task in project.tasks %}
+                        <div><label>Video link:</label> <a href="{{ task.url }}" target="_blank"> {{ task.url }}</a>
+                        </div>
+
+                        <div>
+                            <div><label>Please select your opinion&nbsp;about the video </label><br/>
+                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                       type="radio" value="Pro-legalization"/> Pro-legalization<br/>
+                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                       type="radio" value="Anti-legalization"/> Anti-legalization<br/>
+                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                       type="radio" value="Neither"/> Neither
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% elif project.requester == 3 and project.index == 1 %}
+            <!-- Presrini-->
+            <section class="container" id="Other"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+
+                        <div class="panel-body">
+                            <ul>
+                                <li>Read the contents of&nbsp;the website by clicking the given&nbsp;URL</li>
+                                <li>Provide your opinion about whether the website is&nbsp;for/against&nbsp;legalizing
+                                    marijuana or neither
+                                </li>
+                                <li>You can pick your opinion from the following options: Pro-legalization (for),
+                                    Anti-legalization (against), neither
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Instructions --><!-- Content Body -->
+                    {% for task in project.tasks %}
+                        <section>
+                            <fieldset><label>URL: {{ task.url }} </label>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Pro-legalization"/>Pro-legalization</label>
+                                </div>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Anti-legalization"/>Anti-legalization</label>
+                                </div>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Neither"/>Neither</label>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>&nbsp;</fieldset>
+                        </section>
+                    {% endfor %}
+                    <!-- End Content Body --></div>
+            </section>
+        {% elif project.requester == 4 and project.index == 1 %}
+            <section class="container" id="Survey"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+
+                        <div class="panel-body">
+                            <p>You&#39;d be given link that has content relating to Marijuana. Based on your
+                                understanding of the content present in that link, you&#39;d have to categorize it as
+                                &quot;Pro-legalization&quot;, &quot;Anti-<span
+                                        style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">legaliz</span><span
+                                        style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">ation&quot; or &quot;Neither&quot;</span>
+                            </p>
+
+                            <p><strong>Example : </strong></p>
+
+                            <p>URL :&nbsp;http://www.drugrehab.us/news/pros-cons-legalizing-recreational-marijuana/</p>
+
+                            <p><strong>Choices:</strong></p>
+
+                            <ul>
+                                <li>Pro-legalization</li>
+                                <li>Anti-legalization</li>
+                                <li>Neither</li>
+                            </ul>
+
+                            <p><strong>Answer:</strong></p>
+
+                            <p><b>Neither</b></p>
                         </div>
                     </div>
                     <!-- End Instructions --><!-- Survey Body -->
                     {% for task in project.tasks %}
                         <section>
                             <fieldset>
-                                <p><label>Here is the scenario you&#39;ve to work on:</label></p>
+                                <p><b>Here is the URL to the content you need to categorize:</b></p>
 
-                                <p>{{ task.football_scenario }}</p>
+                                <p><label>URL:<a href="{{ task.url }}" target="_blank">{{ task.url }}</a></label></p>
 
                                 <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_punt"
-                                        type="radio" value="punt"/>Punt</label>
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Pro-legalization"/>Pro-legalization</label>
                                 </div>
 
                                 <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_pass"
-                                        type="radio" value="pass"/>Pass</label>
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Anti-legalization"/>Anti-legalization</label>
                                 </div>
 
                                 <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_run"
-                                        type="radio" value="run"/>Run</label></div>
-
-                                <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_kick-a-field-goal"
-                                        type="radio" value="kick a field goal"/>Kick
-                                    a
-                                    field
-                                    goal</label></div>
-
-                                <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_kneel-down"
-                                        type="radio" value="kneel down"/>Kneel
-                                    Down</label>
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio"
+                                        value="Neither"/>Neither</label>
                                 </div>
-
-                                <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_dont-know"
-                                        type="radio" value="dont know"/>Don&#39;t
-                                    know</label>
-                                </div>
-
-                                <div class="radio">&nbsp;</div>
                             </fieldset>
                         </section>
                     {% endfor %}
-                    <!-- End Survey Body --></div>
-            </section>
-
-        {% elif project.requester == 4 and project.index == 3 %}
-            <style type="text/css">body {
-                color: #444;
-                font: 14px/21px Arial, Helvetica, sans-serif;
-            }
-
-            #wrapper {
-                margin: 10px auto;
-                padding: 1em;
-                /* Shadow */
-                box-shadow: 0 0 5px #000;
-                -webkit-box-shadow: 0 0 5px #000;
-                -moz-box-shadow: 0 0 5px #000;
-                /* Auto-fit content */
-                width: -moz-fit-content;
-                display: table;
-                max-width: 90%;
-            }
-
-            h3 {
-                margin: 0;
-            }
-
-            #categories {
-                list-style: none;
-            }
-
-            .question_image {
-                margin-right: 10px;
-                max-width: 200px;
-                max-height: 200px;
-                /* Shadow */
-                box-shadow: 0 0 5px #000;
-                -webkit-box-shadow: 0 0 5px #000;
-                -moz-box-shadow: 0 0 5px #000;
-            }
-            </style>
-            <div id="wrapper">
-                <p><strong>Sentiment Analysis of Tweets</strong></p>
-
-                <div id="guideline_box"><span class="bold_text">Instructions</span>
-
-                    <div class="instruction_text" id="guideline" style="display: block;">
-                        <p>Pick the best sentiment based on the following criterion.</p>
-
-                        <table class="criterion_table instruction_text">
-                            <tbody>
-                            <tr>
-                                <td>Strongly positive</td>
-                                <td>Select this if the item embodies emotion that was extremely happy or excited toward
-                                    the
-                                    topic. For example, &quot;Self-driving cars are SO COOL!! They are surely going to
-                                    change
-                                    transportation around the world!&quot;</td>
-                            </tr>
-                            <tr>
-                                <td>Positive</td>
-                                <td>Select this if the item embodies emotion that was generally happy or satisfied, but
-                                    the
-                                    emotion wasn&#39;t extreme. For example, &quot;The concept is
-                                    interesting!.&quot;</td>
-                            </tr>
-                            <tr>
-                                <td>Neutral</td>
-                                <td>Select this if the item does not embody much of positive or negative emotion toward
-                                    the
-                                    topic. For example, &quot;Yeah, I guess it&#39;s ok.&quot;&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>Negative</td>
-                                <td>Select this if the item embodies emotion that is perceived to be angry or upsetting
-                                    toward
-                                    the topic, but not to the extreme. For example, &quot;I don&#39;t know if I&#39;ll
-                                    ever use
-                                    a self-driving car because I don&#39;t trust them.&quot;</td>
-                            </tr>
-                            <tr>
-                                <td>Strongly negative</td>
-                                <td>Select this if the item embodies negative emotion toward the topic that can be
-                                    perceived as
-                                    extreme. For example, &quot;I&#39;ll NEVER use a self-driving car!! It is SO
-                                    dangerous and
-                                    risky&quot;</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <!-- End Survey Body -->
                 </div>
-                <br/>
-                <span style="font: arial; font-size: 14px; font-weight:bold;">Judge the sentiment expressed by the following tweet toward: Self-driving cars</span>
-                {% for task in project.tasks %}
-                    <div style="width:100%; background-color:#F8F5D8;">
-                        <p><strong>Tweet to be analysed:</strong> {{ task.tweet }}</p>
-                    </div>
-                    <div class="outer_div" id="sentiment_scale">
-                        <div class="canvas_div">
-                            <canvas id="line_canvas"></canvas>
-                        </div>
-
-                        <div class="radio_div">
-                            <table>
-                                <tbody>
-                                <tr>
-                                    <td><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_1"
-                                            type="radio" value="1"/></td>
-                                    <td><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_2"
-                                            type="radio" value="2"/></td>
-                                    <td><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_3"
-                                            type="radio" value="3"/></td>
-                                    <td><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_4"
-                                            type="radio" value="4"/></td>
-                                    <td><input
-                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_5"
-                                            type="radio" value="5"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Strongly negative</td>
-                                    <td>Negative</td>
-                                    <td>Neutral</td>
-                                    <td>Positive</td>
-                                    <td>Strongly positive</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                {% endfor %}
-                <!-- STARTSCALE -->
-                <style type="text/css">.outer_div {
-                    position: relative;
-                }
-
-                .canvas_div {
-                    width: 400px;
-                    height: 75px;
-                }
-
-                .canvas_div canvas {
-                    width: 400px;
-                    height: 75px;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                }
-
-                .radio_div {
-                    width: 400px;
-                    height: 75px;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                }
-
-                .radio_div table {
-                    width: 400px;
-                    border: none;
-                    border-collapse: collapse;
-                }
-
-                .radio_div table tr td {
-                    font-size: 14px;
-                    background-color: transparent;
-                    vertical-align: top;
-                    text-align: center;
-                    border: none;
-                    padding: 0px;
-                }
-
-                .radio_div table tr:nth-child(1) td {
-                    width: 20%;
-                    height: 25px;
-                    vertical-align: middle;
-                }
-                </style>
-
-            </div>
-            <style type="text/css">#guideline_box {
-            }
-
-            #guideline {
-                width: 97%;
-                height: 150px;
-                overflow: auto;
-                border-style: solid;
-                border-width: 1px;
-                padding: 5px;
-            }
-
-            .criterion_table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            .criterion_table tr td {
-                border-style: solid;
-                border-width: 1px;
-                border-color: black;
-            }
-
-            .criterion_table tr:nth-child(1) td:nth-child(1) {
-                width: 25%
-            }
-
-            .criterion_table tr td {
-                text-align: left;
-                vertical-align: top;
-            }
-
-            .bold_text {
-                font-size: 13px;
-                font-weight: bold;
-            }
-
-            .instruction_text {
-                font-size: 12px;
-            }
-            </style>
-
-        {% elif project.requester == 4 and project.index == 4 %}
-            <section class="container" id="Survey"
+            </section>
+        {% elif project.requester == 5 and project.index == 1 %}
+            <section class="container" id="Other"
                      style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
                 <div class="row col-xs-12 col-md-12"><!-- Instructions -->
                     <div class="panel panel-primary">
                         <div class="panel-heading"><strong>Instructions</strong></div>
 
                         <div class="panel-body">
-                            <p>A text excerpt along with the subject, object and predicate are provided. You&#39;d have
-                                to
-                                determine
-                                if the given values of Subject, Object and predicate are False (0), True(1) or Cannot be
-                                verified(2).</p>
-
-                            <p><strong>Example : </strong></p>
-
-                            <p>Excerpt : &quot;Stephan Hawking graduated from Oxford University&quot;.</p>
-
-                            <p>Subject : Stephan Hawking ; Object : Oxford University ; Predicate : graduated from</p>
-
-                            <p><strong>Choices:</strong></p>
+                            <p>Visit and view each website at the appropriate URLs</p>
 
                             <ul>
-                                <li>0 - False</li>
-                                <li>1 - True</li>
-                                <li>2 - Skip/cannot be verified</li>
+                                <li>Choose the category that best corresponds to the information at the website</li>
                             </ul>
-
-                            <p><strong>Answer:</strong></p>
-
-                            <p><strong>1 - True</strong></p>
                         </div>
                     </div>
-                    <!-- End Instructions --><!-- Survey Body -->
+                    <!-- End Instructions --><!-- Content Body -->
                     {% for task in project.tasks %}
                         <section>
-                            <fieldset><label>Excerpt : {{ task.snippet }}</label><br/>
-                                <label>Subject : <a href="{{ task.sub }}" target="_blank">{{ task.sub }}</a>;
-                                    Object : <a href="{{ task.obj }}"
-                                                target="_blank">{{ task.obj }}</a>
-                                    ; Predicate : <a href="{{ task.obj }}"
-                                                     target="_blank">{{ task.obj }}</a></label><br/>
-                                <label>URL:<a href="{{ task.url }}" target="_blank">{{ task.url }}</a>{Example of usage}</label>
+                            <div><label>View Article Here:</label> <a href="{{ task.url }}"
+                                                                      target="_blank"> {{ task.url }}</a></div>
+
+                            <fieldset><label>Choose the description that best fits the website. Select only ONE of the
+                                following:</label>
 
                                 <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_0"
-                                        type="radio" value="0"/>0 - False </label>
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio"
+                                        value="Neither"/>Neither</label></div>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Pro-legalization"/>Pro-legalization</label>
                                 </div>
 
                                 <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_1"
-                                        type="radio" value="1"/>1 - True </label></div>
-
-                                <div class="radio"><label><input
-                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_2"
-                                        type="radio" value="2"/>2 - Skip/Cannot be
-                                    verified
-                                </label></div>
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio"
+                                        value="Anti-legalization"/>Anti-legalization</label>
+                                </div>
                             </fieldset>
                         </section>
                     {% endfor %}
-                    <!-- End Survey Body --></div>
+                    <!-- End Content Body --></div>
             </section>
-            <!-- close container -->
-            <style type="text/css">fieldset {
-                padding: 10px;
-                background: #fbfbfb;
-                border-radius: 5px;
-                margin-bottom: 5px;
-            }
-            </style>
+        {% elif project.requester == 6 and project.index == 1 %}
+            <!-- ahmednasser-->
+            <section class="container" id="TranscriptionFromAV"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+                        ​
+                        <div class="panel-body">
+                            <p>Click the provided link and identify the article opinion about <strong> marijuana
+                                legalization</strong>.</p>
+                        </div>
+                    </div>
+                    <!-- End Instructions -->
+                    ​ {% for task in project.tasks %}
+                        <div>
+                            <h3><a href="{{ task.url }}" target="_blank">The Article</a></h3>
+                        </div>
+                        ​
+                        <div class="radio"><label><input
+                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}" type="radio"
+                                value="Anti-legalization"/>Anti-legalization</label>
+                        </div>
+                        ​
+                        <div class="radio"><label><input
+                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}" type="radio"
+                                value="Pro-legalization"/>Pro-legalization</label>
+                        </div>
+                        ​
+                        <div class="radio"><label><input
+                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}" type="radio"
+                                value="Neither"/>Neither </label></div>
+                    {% endfor %}
+                </div>
 
+            </section>
+        {% elif project.requester == 7 and project.index == 1 %}
+            <!--mahesh-->
+            <section class="container" id="Other"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+                        ​
+                        <div class="panel-body">
+                            <p>Identify if articles about legalization of marijuana are pro-legalization,
+                                anti-legalization, or neutral.</p>
+                        </div>
+                    </div>
+                    <!-- End Instructions --><!-- Content Body -->
+                    ​{% for task in project.tasks %}
+                        <section>
+                            <fieldset><label><a target="_blank" href="{{ task.url }}">Link to Article</a></label>
+                                ​
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Pro-legalization"/>Pro-legalization</label>
+                                </div>
+                                ​
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Anti-legalization"/>Anti-legalization</label>
+                                </div>
+                                ​
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Neither"/>Neutral/Neither</label>
+                                </div>
+                            </fieldset>
+                        </section>
+                    {% endfor %}
+                    <!-- End Content Body --></div>
+            </section>
+        {% elif project.requester == 8 and project.index == 1 %}
+            <section class="container" id="Other"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+
+                        <div class="panel-body">
+                            <p>Visit the URL linked on this page. Label the URL&#39;s content as either as <b>pro-legalization</b>
+                                of marijuana, <b>anti-legalization</b> of marijuana, or <b>neither</b> .</p>
+
+                            <p>Tips when labeling:</p>
+
+                            <ul>
+                                <li>Consider the URL&#39;s author or source.<br/>
+                                    <i>Newspapers</i> tend to take neutral stances on controversial issues and discuss
+                                    facts, not opinions. For example, <a
+                                            href="http://www.thedailychronic.net/2015/45489/uk-parliament-to-debate-marijuana-legalization-after-petition-gathers-150k-signatures/"
+                                            target="_blank">this article</a> by The Daily Chronical would be labeled as
+                                    <strong>neither</strong>.<br/>
+                                    However, <em>cable news</em> tend to be more opinionated. For instance, this <a a=""
+                                                                                                                    href="http://www.cnbc.com/id/36267223"
+                                                                                                                    target="_blank">this
+                                        article</a> by CNBC would labled as <strong>anti-legalization</strong>.
+                                </li>
+                                <li>URLs discussing both pros and cons about marijuana are often <b>pro-legalization</b>.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <b><!-- End Instructions --><!-- Content Body --> </b>
+                    {% for task in project.tasks %}
+                        <section>
+                            <fieldset><b><label>What is this <a href="{{ task.url }}" target="_blank">website</a>&#39;s
+                                position on
+                                marijuana?</label> </b></fieldset>
+
+                            <div class="radio"><label><input
+                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                    type="radio" value="Pro-legalization"/>Pro-legalization</label>
+                            </div>
+
+                            <div class="radio"><label><input
+                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                    type="radio" value="Anti-legalization"/>Anti-legalization</label>
+                            </div>
+
+                            <div class="radio"><label><input
+                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                    type="radio" value="Neither"/>Neither</label>
+                            </div>
+                        </section>
+                    {% endfor %}
+                </div>
+            </section>
         {% endif %}
     {% endfor %}
-    <button type="submit" style="width: 128px; background-color: #03A9F4; font-size: 22px; margin-bottom: 30px; margin-left: 45%">Submit</button>
+    <button type="submit"
+            style="width: 128px; background-color: #03A9F4; font-size: 22px; margin-bottom: 30px; margin-left: 45%">
+        Submit
+    </button>
 </form>
 </body>
 </html>

@@ -741,3 +741,46 @@ tweets = [
         "gold_reason": "Outside the scope of the task"
     }
 ]
+
+marijuana_data = [
+    {
+        "url": "http://www.noonproposition19.com/",
+        "opinion": "Neither"
+    },
+    {
+        "url": "http://medicalmarijuana.procon.org/",
+        "opinion": "Pro-legalization"
+    },
+    {
+        "url": "http://otfca.net/anti-legalization-of-marijuana/",
+        "opinion": "Anti-legalization"
+    },
+    {
+        "url": "http://legalizationofmarijuana.com/pros-and-cons-of-marijuana.html",
+        "opinion": "Pro-legalization"
+    },
+    {
+        "url": "http://www.calmca.org/",
+        "opinion": "Anti-legalization"
+    },
+    {
+        "url": "http://www.thedailychronic.net/2015/45489/uk-parliament-to-debate-marijuana-legalization-after-petition-gathers-150k-signatures/",
+        "opinion": "Neither"
+    },
+    {
+        "url": "http://www.drugrehab.us/news/pros-cons-legalizing-recreational-marijuana/",
+        "opinion": "Pro-legalization"
+    },
+    {
+        "url": "http://www.pewresearch.org/fact-tank/2015/04/14/6-facts-about-marijuana/",
+        "opinion": "Pro-legalization"
+    },
+    {
+        "url": "http://www.cnbc.com/id/36267223",
+        "opinion": "Anti-legalization"
+    },
+    {
+        "url": "https://learnaboutsam.org/wp-content/uploads/2013/05/Ten-messages-against-legalization.pdf",
+        "opinion": "Anti-legalization"
+    }
+]
