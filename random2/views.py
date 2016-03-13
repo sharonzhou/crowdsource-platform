@@ -12,6 +12,7 @@ from django.db.models import Count
 import numpy as np
 from django.db.models import Q
 
+
 @xframe_options_exempt
 @csrf_exempt
 def random_index(request, *args, **kwargs):
@@ -23,14 +24,15 @@ def random_index(request, *args, **kwargs):
     projects = []
     project_indexes = [1]
     requesters = {
-        "1": 0.125,
-        "2": 0.125,
-        "3": 0.125,
-        "4": 0.125,
-        "5": 0.125,
-        "6": 0.125,
-        "7": 0.125,
-        "8": 0.125
+        "1": 0.25,
+        # "2": 0.125,
+        "3": 0.25,
+        # "4": 0.125,
+        # "5": 0.125,
+        # "6": 0.125,
+        # "7": 0.125,
+        "8": 0.25,
+        "9": 0.25
     }
 
     if not daemo_id:
@@ -49,7 +51,7 @@ def random_index(request, *args, **kwargs):
         processed = []
         if not config:
             for index in project_indexes:
-                current_data = WorkerConfig.objects.values('requester')\
+                current_data = WorkerConfig.objects.values('requester') \
                     .filter(~Q(requester__in=processed), project=index) \
                     .annotate(num_workers=Count('worker_id')).order_by('num_workers')
                 conf = None
@@ -63,10 +65,10 @@ def random_index(request, *args, **kwargs):
                     "requester": int(conf),
                     "tasks": data_mappings[str(index)]
                 })
-            WorkerConfig.objects.filter(worker_id=task_worker.worker_id).delete() #
+            WorkerConfig.objects.filter(worker_id=task_worker.worker_id).delete()  #
             for project in projects:
                 WorkerConfig.objects.create(requester=project['requester'],
-                                            project=project['index'], worker_id=task_worker.worker_id) #
+                                            project=project['index'], worker_id=task_worker.worker_id)  #
         else:
             for conf in config:
                 projects.append({
