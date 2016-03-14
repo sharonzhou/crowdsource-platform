@@ -748,10 +748,6 @@ marijuana_data = [
         "opinion": "Neither"
     },
     {
-        "url": "http://medicalmarijuana.procon.org/",
-        "opinion": "Pro-legalization"
-    },
-    {
         "url": "http://otfca.net/anti-legalization-of-marijuana/",
         "opinion": "Anti-legalization"
     },
@@ -768,12 +764,8 @@ marijuana_data = [
         "opinion": "Neither"
     },
     {
-        "url": "http://www.drugrehab.us/news/pros-cons-legalizing-recreational-marijuana/",
-        "opinion": "Pro-legalization"
-    },
-    {
         "url": "http://www.pewresearch.org/fact-tank/2015/04/14/6-facts-about-marijuana/",
-        "opinion": "Pro-legalization"
+        "opinion": "Neither"
     },
     {
         "url": "http://www.cnbc.com/id/36267223",
@@ -782,5 +774,49 @@ marijuana_data = [
     {
         "url": "https://learnaboutsam.org/wp-content/uploads/2013/05/Ten-messages-against-legalization.pdf",
         "opinion": "Anti-legalization"
+    },
+    {
+        "url": "http://www.usnews.com/debate-club/should-marijuana-use-be-legalized/stop-wasting-time-pretending-marijuana-prohibition-works",
+        "opinion": "Pro-legalization"
+    },
+    {
+        "url": "http://edition.cnn.com/2012/11/20/opinion/sabet-marijuana-legalization/index.html",
+        "opinion": "Anti-legalization"
+    },
+    {
+        "url": "http://www.nytimes.com/interactive/2014/07/27/opinion/sunday/high-time-marijuana-legalization.html?_r=0",
+        "opinion": "Pro-legalization"
+    },
+    {
+        "url": "http://mic.com/articles/112066/the-pot-primary-which-republican-candidates-would-be-best-on-marijuana#.x6EgRDHWP",
+        "opinion": "Neither"
+    },
+    {
+        "url": "http://www.lifehack.org/articles/lifestyle/20-medical-benefits-marijuana-you-probably-never-knew.html",
+        "opinion": "Pro-legalization"
+    },
+    {
+        "url": "http://www.bizjournals.com/dayton/news/2015/08/12/dayton-chamber-forms-anti-pot-group-to-oppose.html",
+        "opinion": "Anti-legalization"
+    },
+    {
+        "url": "http://www.mediaite.com/online/ny-times-readers-overwhelmingly-agree-with-marijuana-legalization/",
+        "opinion": "Pro-legalization"
+    },
+    {
+        "url": "http://edition.cnn.com/2012/11/20/opinion/sabet-marijuana-legalization/index.html",
+        "opinion": "Anti-legalization"
+    },
+    {
+        "url": "http://www.huffingtonpost.com/entry/john-kasich-stephen-colbert-marijuana_us_563e198fe4b0411d307142dd",
+        "opinion": "Neither"
+    },
+    {
+        "url": "http://www.cnn.com/2012/11/20/opinion/sabet-marijuana-legalization/index.html",
+        "opinion": "Neither"
+    },
+    {
+        "url": "https://twitter.com/intent/tweet?text=Nancy%20Grace%20and%20Rapper%202%20Chainz%20have%20an%20incredible%20debate%20over%20legalizing%20pot&url=http%3A%2F%2Fread.bi%2F1FVWoGJ&via=BI_Entertain&original_referer=http%3A%2F%2Fwww.journalism.org%2F",
+        "opinion": "Neither"
     }
 ]
