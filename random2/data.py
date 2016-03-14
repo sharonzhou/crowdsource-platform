@@ -814,9 +814,5 @@ marijuana_data = [
     {
         "url": "http://www.cnn.com/2012/11/20/opinion/sabet-marijuana-legalization/index.html",
         "opinion": "Neither"
-    },
-    {
-        "url": "https://twitter.com/intent/tweet?text=Nancy%20Grace%20and%20Rapper%202%20Chainz%20have%20an%20incredible%20debate%20over%20legalizing%20pot&url=http%3A%2F%2Fread.bi%2F1FVWoGJ&via=BI_Entertain&original_referer=http%3A%2F%2Fwww.journalism.org%2F",
-        "opinion": "Neither"
     }
 ]
