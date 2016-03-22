@@ -262,6 +262,7 @@ class Project(models.Model):
     feedback_permissions = models.IntegerField(choices=PERMISSION, default=PERMISSION_ORW_WRW)
     batch_files = models.ManyToManyField(BatchFile, through='ProjectBatchFile')
     config = JSONField(null=True, default=None)
+    post_mturk = models.BooleanField(default=False)
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
