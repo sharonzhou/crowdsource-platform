@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daemo</title>
+    <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet"/>
+
+</head>
+<body>
+<form method="post" action="{{ POST_URL }}">
+
+
+    {% for project in projects %}
+        <!-- dmajet-->
+        {% if project.requester == 1 and project.index == 1 %}
+            <section class="container" id="TaggingOfAnImage"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+
+                        <div class="panel-body">
+                            <p>You must click on the given url, visit the web page and label the contents of that web
+                                page based on the options given below.</p>
+                        </div>
+                    </div>
+                    <!-- End Instructions -->
+                    {% for task in project.tasks %}
+                        <p><a href="{{ task.url }}" target="_blank">{{ task.url }}</a></p>
+                        &nbsp;
+
+                        <div class="tagfields">
+                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                   type="radio" value="Pro-legalization"/> Pro-legalization<br/>
+                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                   type="radio" value="Anti-legalization"/> Anti-legalization<br/>
+                            <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                   type="radio" value="Neither"/> Neither
+                        </div>
+                        &nbsp; &nbsp; <!-- close container -->
+                    {% endfor %}
+                    <style type="text/css">.imagecontainer {
+                        display: block;
+                        float: left;
+                        position: relative;
+                        border: 1px solid #fbfbfb;
+                        margin: 0px 15px 15px 0px;
+                        height: 200px;
+                        width: auto;
+                    }
+
+                    .tagfields1 {
+                        display: block;
+                        float: left;
+                    }
+                    </style>
+                </div>
+            </section>
+        {% elif project.requester == 2 and project.index == 1 %}
+            <section class="container" id="TranscriptionFromAV"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+
+                        <div class="panel-body">
+                            <p>Listen to the short video and give your opinion,</p>
+
+                            <ul>
+                                <li>Pro-legalization</li>
+                                <li>Anti-legalization</li>
+                                <li>Neither</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Instructions -->
+                    {% for task in project.tasks %}
+                        <div><label>Video link:</label> <a href="{{ task.url }}" target="_blank"> {{ task.url }}</a>
+                        </div>
+
+                        <div>
+                            <div><label>Please select your opinion&nbsp;about the video </label><br/>
+                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                       type="radio" value="Pro-legalization"/> Pro-legalization<br/>
+                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                       type="radio" value="Anti-legalization"/> Anti-legalization<br/>
+                                <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                       type="radio" value="Neither"/> Neither
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% elif project.requester == 3 and project.index == 1 %}
+            <!-- Presrini-->
+            <section class="container" id="Other"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+
+                        <div class="panel-body">
+                            <ul>
+                                <li>Read the contents of&nbsp;the website by clicking the given&nbsp;URL</li>
+                                <li>Provide your opinion about whether the website is&nbsp;for/against&nbsp;legalizing
+                                    marijuana or neither
+                                </li>
+                                <li>You can pick your opinion from the following options: Pro-legalization (for),
+                                    Anti-legalization (against), neither
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Instructions --><!-- Content Body -->
+                    {% for task in project.tasks %}
+                        <section>
+                            <fieldset><label>URL: {{ task.url }} </label>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Pro-legalization"/>Pro-legalization</label>
+                                </div>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Anti-legalization"/>Anti-legalization</label>
+                                </div>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Neither"/>Neither</label>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>&nbsp;</fieldset>
+                        </section>
+                    {% endfor %}
+                    <!-- End Content Body --></div>
+            </section>
+        {% elif project.requester == 4 and project.index == 1 %}
+            <section class="container" id="Survey"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+
+                        <div class="panel-body">
+                            <p>You&#39;d be given link that has content relating to Marijuana. Based on your
+                                understanding of the content present in that link, you&#39;d have to categorize it as
+                                &quot;Pro-legalization&quot;, &quot;Anti-<span
+                                        style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">legaliz</span><span
+                                        style="font-family: Verdana, Geneva, sans-serif; font-size: 11.7px; line-height: 20.8px;">ation&quot; or &quot;Neither&quot;</span>
+                            </p>
+
+                            <p><strong>Example : </strong></p>
+
+                            <p>URL :&nbsp;http://www.drugrehab.us/news/pros-cons-legalizing-recreational-marijuana/</p>
+
+                            <p><strong>Choices:</strong></p>
+
+                            <ul>
+                                <li>Pro-legalization</li>
+                                <li>Anti-legalization</li>
+                                <li>Neither</li>
+                            </ul>
+
+                            <p><strong>Answer:</strong></p>
+
+                            <p><b>Neither</b></p>
+                        </div>
+                    </div>
+                    <!-- End Instructions --><!-- Survey Body -->
+                    {% for task in project.tasks %}
+                        <section>
+                            <fieldset>
+                                <p><b>Here is the URL to the content you need to categorize:</b></p>
+
+                                <p><label>URL:<a href="{{ task.url }}" target="_blank">{{ task.url }}</a></label></p>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Pro-legalization"/>Pro-legalization</label>
+                                </div>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Anti-legalization"/>Anti-legalization</label>
+                                </div>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio"
+                                        value="Neither"/>Neither</label>
+                                </div>
+                            </fieldset>
+                        </section>
+                    {% endfor %}
+                    <!-- End Survey Body -->
+                </div>
+            </section>
+        {% elif project.requester == 5 and project.index == 1 %}
+            <section class="container" id="Other"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+
+                        <div class="panel-body">
+                            <p>Visit and view each website at the appropriate URLs</p>
+
+                            <ul>
+                                <li>Choose the category that best corresponds to the information at the website</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Instructions --><!-- Content Body -->
+                    {% for task in project.tasks %}
+                        <section>
+                            <div><label>View Article Here:</label> <a href="{{ task.url }}"
+                                                                      target="_blank"> {{ task.url }}</a></div>
+
+                            <fieldset><label>Choose the description that best fits the website. Select only ONE of the
+                                following:</label>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio"
+                                        value="Neither"/>Neither</label></div>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Pro-legalization"/>Pro-legalization</label>
+                                </div>
+
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio"
+                                        value="Anti-legalization"/>Anti-legalization</label>
+                                </div>
+                            </fieldset>
+                        </section>
+                    {% endfor %}
+                    <!-- End Content Body --></div>
+            </section>
+        {% elif project.requester == 6 and project.index == 1 %}
+            <!-- ahmednasser-->
+            <section class="container" id="TranscriptionFromAV"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+                        ​
+                        <div class="panel-body">
+                            <p>Click the provided link and identify the article opinion about <strong> marijuana
+                                legalization</strong>.</p>
+                        </div>
+                    </div>
+                    <!-- End Instructions -->
+                    ​ {% for task in project.tasks %}
+                        <div>
+                            <h3><a href="{{ task.url }}" target="_blank">The Article</a></h3>
+                        </div>
+                        ​
+                        <div class="radio"><label><input
+                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}" type="radio"
+                                value="Anti-legalization"/>Anti-legalization</label>
+                        </div>
+                        ​
+                        <div class="radio"><label><input
+                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}" type="radio"
+                                value="Pro-legalization"/>Pro-legalization</label>
+                        </div>
+                        ​
+                        <div class="radio"><label><input
+                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}" type="radio"
+                                value="Neither"/>Neither </label></div>
+                    {% endfor %}
+                </div>
+
+            </section>
+        {% elif project.requester == 7 and project.index == 1 %}
+            <!--mahesh-->
+            <section class="container" id="Other"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+                        ​
+                        <div class="panel-body">
+                            <p>Identify if articles about legalization of marijuana are pro-legalization,
+                                anti-legalization, or neutral.</p>
+                        </div>
+                    </div>
+                    <!-- End Instructions --><!-- Content Body -->
+                    ​{% for task in project.tasks %}
+                        <section>
+                            <fieldset><label><a target="_blank" href="{{ task.url }}">Link to Article</a></label>
+                                ​
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Pro-legalization"/>Pro-legalization</label>
+                                </div>
+                                ​
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Anti-legalization"/>Anti-legalization</label>
+                                </div>
+                                ​
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                        type="radio" value="Neither"/>Neutral/Neither</label>
+                                </div>
+                            </fieldset>
+                        </section>
+                    {% endfor %}
+                    <!-- End Content Body --></div>
+            </section>
+        {% elif project.requester == 8 and project.index == 1 %}
+            <section class="container" id="Other"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+                        <div class="panel-body">1. Follow the link given and read the page&#39;s main text.<br/>
+                            (<span style="font-family: Verdana, Geneva, sans-serif; font-size: 12px;"><strong>Ignore</strong> any advertisements, comments posted on the page, sidebars, or top navigation bars. If a page has no main text &ndash;
+                                e.g.&nbsp;the page is unreachable, is a video without any accompanying text, etc. &ndash;
+                                just select the &quot;<strong>No main
+                                    text</strong>&quot; option. If the page contains <strong>article blurbs or
+                                    links</strong>, you don&#39;t need to follow up on those linked pages &ndash;
+                                instead,&nbsp;treat those fragments as main text.)</span><br/>
+                            <br/>
+                    <span style="font-family: Verdana, Geneva, sans-serif; font-size: 12px;">2. Next select whether or not the page contains content about <strong>marijuana</strong> (related or unrelated to legalization).<br/>
+                    <br/>
+                    3. Then, select <strong>ALL viewpoints</strong> (pro-legalization, anti-legalization, both, or neither)&nbsp;expressed on the page with regards to marijuana<strong>
+                            legalization</strong>. These include viewpoints of interviewees, court opinions, and other views (not just the position of the author).<br/>
+                    <br/>
+                    4. Finally, select the <strong>overall position</strong> the page as a whole advocates for.<br/>
+                    <br/>
+                    5. Answering <strong>all three questions</strong> is necessary to get accepted.</span></div>
+                    </div>
+                    <!-- End Instructions --><!-- Content Body -->
+                    {% for task in project.tasks %}
+                        <a href="{{ task.url }}" target="_blank">{{ task.url }}</a>
+                        <section style="margin-bottom: 50px">
+                            <fieldset><label>1. Does the main text of this page discuss marijuana? </label>
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q1Answer"
+                                        type="radio" value="Yes"/>Yes</label></div>
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q1Answer"
+                                        type="radio" value="No"/>No</label></div>
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q1Answer"
+                                        type="radio" value="NoMainText"/>This page
+                                    does not have any main text</label></div>
+                            </fieldset>
+                            <fieldset><label>2. What viewpoints on marijuana legalization are represented on the main
+                                text
+                                of this page? Consider ALL viewpoints on the page, including viewpoints of interviewees,
+                                legal rulings, etc. (not just the author&#39;s viewpoint).</label>
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q2Answer"
+                                        type="radio" value="Anti-legalization"/>Anti-legalization</label>
+                                </div>
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q2Answer"
+                                        type="radio" value="Pro-legalization"/>Pro-legalization</label>
+                                </div>
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q2Answer"
+                                        type="radio"
+                                        value="Both Pro and Anti-legalization"/>Both Pro and
+                                    Anti-legalization</label></div>
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q2Answer"
+                                        type="radio" value="Neither"/>No
+                                    viewpoint/Releated to marijuana legalization (i.e. A fact, like&nbsp;&quot;Marijuana
+                                    was
+                                    legalized in Washington state,&quot; with no other content/viewpoints.)</label>
+                                </div>
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q2Answer"
+                                        type="radio"
+                                        value="Not about marijuana legalization/No main text"/>Not
+                                    about marijuana legalization/No main text</label></div>
+                            </fieldset>
+                            <fieldset><label>3. What overall position on marijuana legalization does the main text of
+                                this
+                                page advocate for, if any?</label>
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q3Answer"
+                                        type="radio" value="Anti-legalization"/>Anti-legalization</label>
+                                </div>
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q3Answer"
+                                        type="radio" value="Pro-legalization"/>Pro-legalization</label>
+                                </div>
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q3Answer"
+                                        type="radio"
+                                        value="Neither"/>Neutral</label></div>
+                                <div class="radio"><label><input
+                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q3Answer"
+                                        type="radio"
+                                        value="Not about marijuana legalization/No main text"/>Not
+                                    about marijuana legalization/No main text</label></div>
+                            </fieldset>
+                            {% if forloop.last %}
+                                <fieldset><label>(Optional) Do you have any feedback or other comments about this
+                                    HIT?</label><textarea class="form-control" cols="120"
+                                                          name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_Q6MultiLineTextInput"
+                                                          rows="5"></textarea></fieldset>
+                            {% endif %}
+                        </section>
+                    {% endfor %}
+                    <!-- End Content Body -->
+                </div>
+            </section>
+            <!-- close container -->
+            <style type="text/css">fieldset {
+                padding: 10px;
+                background: #fbfbfb;
+                border-radius: 5px;
+                margin-bottom: 5px;
+            }
+            </style>
+        {% elif project.requester == 9 and project.index == 1 %}
+            <section class="container" id="Other"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+
+                        <div class="panel-body">
+                            <p>Visit the URL linked on this page. Label the URL&#39;s content as either as <b>pro-legalization</b>
+                                of marijuana, <b>anti-legalization</b> of marijuana, or <b>neither</b> .</p>
+
+                            <p>Tips when labeling:</p>
+
+                            <ul>
+                                <li>Consider the URL&#39;s author or source.<br/>
+                                    <i>Newspapers</i> tend to take neutral stances on controversial issues and discuss
+                                    facts, not opinions. For example, <a
+                                            href="http://www.thedailychronic.net/2015/45489/uk-parliament-to-debate-marijuana-legalization-after-petition-gathers-150k-signatures/"
+                                            target="_blank">this article</a> by The Daily Chronical would be labeled as
+                                    <strong>neither</strong>.<br/>
+                                    However, <em>cable news</em> tend to be more opinionated. For instance, this <a a=""
+                                                                                                                    href="http://www.cnbc.com/id/36267223"
+                                                                                                                    target="_blank">this
+                                        article</a> by CNBC would labled as <strong>anti-legalization</strong>.
+                                </li>
+                                <li>URLs discussing both pros and cons about marijuana are often <b>pro-legalization</b>.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <b></b>
+                    {% for task in project.tasks %}
+                        <section>
+                            <fieldset><b><label>What is this <a href="{{ task.url }}" target="_blank">website</a>&#39;s
+                                position on
+                                marijuana?</label> </b></fieldset>
+
+                            <div class="radio"><label><input
+                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                    type="radio" value="Pro-legalization"/>Pro-legalization</label>
+                            </div>
+
+                            <div class="radio"><label><input
+                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                    type="radio" value="Anti-legalization"/>Anti-legalization</label>
+                            </div>
+
+                            <div class="radio"><label><input
+                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
+                                    type="radio" value="Neither"/>Neither</label>
+                            </div>
+                        </section>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+    {% endfor %}
+    <button type="submit"
+            style="width: 128px; background-color: #03A9F4; font-size: 22px; margin-bottom: 30px; margin-left: 45%">
+        Submit
+    </button>
+</form>
+</body>
+</html>

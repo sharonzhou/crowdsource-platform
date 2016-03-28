@@ -24,15 +24,12 @@ def random_index(request, *args, **kwargs):
     projects = []
     project_indexes = [1]
     requesters = {
-        "1": 0.125,
-        "2": 0.125,
-        "3": 0.125,
-        "4": 0.125,
-        # "5": 0.125,
-        "6": 0.125,
-        "7": 0.125,
-        "8": 0.125,
-        "9": 0.125
+        "1": 0.166,
+        "2": 0.166,
+        "3": 0.166,
+        "4": 0.166,
+        "5": 0.166,
+        "6": 0.166
     }
 
     if not daemo_id:
@@ -62,8 +59,8 @@ def random_index(request, *args, **kwargs):
                 processed.append(str(conf))
                 projects.append({
                     "index": index,
-                    "requester": int(conf),
-                    "tasks": data_mappings[str(index)]
+                    "requester": int(conf)
+                    # "tasks": data_mappings[str(index)]
                 })
             WorkerConfig.objects.filter(worker_id=task_worker.worker_id).delete()  #
             for project in projects:
@@ -73,8 +70,8 @@ def random_index(request, *args, **kwargs):
             for conf in config:
                 projects.append({
                     "index": conf.project,
-                    "requester": conf.requester,
-                    "tasks": data_mappings[str(conf.project)]
+                    "requester": conf.requester
+                    # "tasks": data_mappings[str(conf.project)]
                 })
 
     except Exception as e:
