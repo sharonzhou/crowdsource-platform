@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daemo</title>
+    <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet"/>
+
+</head>
+<body>
+<form method="post" action="{{ POST_URL }}">
+
+
+    {% for project in projects %}
+        <!-- the real Deal-->
+        {% if project.requester == 1 and project.index == 1 %}
+            <div style="padding: 16px">
+                <div id="header">
+                    <h1> Task: Write a customer review.</h1>
+                </div>
+                <h2> Current task: Review an <span style="color:#03C"> iPod</span></h2>
+
+
+                <div>
+                    Write customer reviews for iPod. Do not copy a review you find online. We will not pay for copied
+                    text.
+                    <h4>Guidelines:</h4>
+                    <div id="bulletPoints">
+                        <ul>
+                            <li>Provide the exact product name and model (if applicable).</li>
+                            <li>Do NOT copy text from some other source. Do NOT plagiarize.</li>
+                            <li>Write an honest and useful customer review.</li>
+                            <li>Share personal stories about your experience with the product.</li>
+                            <li>List good and bad aspects of the product.</li>
+                            <li>Make comparisons between this product and similar products.</li>
+                            <li>Talk about the product's value given its price.</li>
+                            <li>Try to mention the product name/model in the review.</li>
+                            <li>Use correct spelling and grammar.</li>
+                            <li>Avoid excessive punctuation and capitalization.</li>
+                            <li>The review should be long enough to provide useful information, but not too long that it
+                                causes the reader to lose interest.
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <h4>Your product reviews can be positive or negative. Just be honest and write a real review <br>Use
+                        these GOOD example reviews as a guideline:</h4>
+
+                    <table cellpadding="5">
+                        <tr>
+                            <td>
+                                <i>Positive review</i>
+                            </td>
+                            <td>
+                                <i>Negative review</i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &quot;A great everyday camera&quot; <b>4 out of 5 stars </b><br>
+                                I purchased this camera after my Nikon Coolpix S3000 lost its shutter button because I
+                                dropped it on a marble floor. Got the Canon Powershot SD1300IS and have to say, I love
+                                it! I took pictures of my dog running through wildflowers in the wooded area near my
+                                home. They look awesome! The pictures were clear, crisp and vivid -- especially compared
+                                to the Nikon. What I like about the Canon is that it is versatile to the owner. I mostly
+                                use the Program setting because it allows me to set the ISO and flash balances, but I
+                                sometimes use the auto options provided. The only downside is the shutter speed is not
+                                as fast as digital SLR cameras I've used. At just over $100, the camera provides
+                                wonderful value.
+                            </td>
+                            <td>
+                                &quot;A camera with too many limitations&quot; <b>1 out of 5 stars </b><br>
+                                Similar to the old Canon model, the Canon Powershot SD1300IS takes good, clean photos,
+                                and it's compact. However, instead of having an external menu for choosing modes (such
+                                as low-light, macro, or action shot), you need to toggle through multiple submenus on
+                                the display. I couldn't find a way to change the setting in less than 1 min. By the time
+                                I was ready to take a picture of a moving target, the moment had passed. When the camera
+                                petered out after two weeks, I was glad to have an excuse to purchase something better.
+                                I would rather spend a little more money to get the features I want. I ended up buying
+                                the Panasonic Lumix DMC-FH20, which has much better menu system for customizing photos.
+
+                            </td>
+                        </tr>
+                    </table>
+
+                    <h4>Avoid short reviews with no details about the product. <br> Do NOT write reviews like these BAD
+                        examples:</h4>
+
+                    <table cellpadding="5">
+                        <tr>
+                            <td>
+                                &quot;The best camera ever!!!&quot; <b>5 out of 5 stars </b><br>
+                                I LOVE TAKING PICTURES OF MY KIDS!!! I take the camera to the beach, playground, soccer
+                                games . it really goes anywhere. BUY THIS CAMERA!
+                            </td>
+                            <td>
+                                &quot;My camera&quot; <b>3 out of 5 stars </b><br>
+                                The shipment was 2days late. Then it froze up after 1 month and I had to ship back to
+                                Canon. The lens would stick and did not pop back!!
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                <div id="yourReview">
+                    <h1>Write your review of <span style="color:#03C"> iPod</span></h1>
+
+
+                    <div class="leftSide"><b>Product brand </b><br>(e.g., Canon):</div>
+                    <div class="rightSide"><input type="text" name="brand" size="30" id="brand"/><br/><br></div>
+                    <div class="leftSide"><b>Product model </b><br>(e.g., Powershot SD1300IS):</div>
+                    <div class="rightSide"><input type="text" name="model" size="30" id="model"/><br><br/></div>
+                    <div class="leftSide"><b>Title for your review </b><br>(e.g., "A great everyday camera"):</div>
+                    <div class="rightSide"><input type="text" name="title" size="30" id="title"/><br><br/></div>
+
+
+                    <div class="leftSide"><b>How do you rate this item?</b></div>
+                    <div class="rightSide"><i>Good</i>
+                        <input type="radio" name="rating" value="5" id='radio5'/> 5
+                        <input type="radio" name="rating" value="4" id='radio4'/> 4
+                        <input type="radio" name="rating" value="3" id='radio3'/> 3
+                        <input type="radio" name="rating" value="2" id='radio2'/> 2
+                        <input type="radio" name="rating" value="1" id='radio1'/> 1
+                        <i>Bad</i></div>
+                    <br>
+                    <div class="leftSide"><b>Your review:</b></div>
+                    <div class="rightSide">
+                        <div><textarea class="form-control" cols="250" name="WritingTexts_Review" rows="8"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {% elif project.requester == 2 and project.index == 1 %}
+            <section class="container" id="Writing"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+                        <div class="panel-body">
+                            <p>1. You must provide a <strong>comprehensive</strong> review of the <strong>Apple
+                                iPod</strong> you are currently using <strong>or</strong> have used in the past. This
+                                can include the iPod Touch, Shuffle, Nano, Mini or Classic.</p>
+                            <p>2. If you have used more than one iPod, review the one you have used the longest.</p>
+                            <p>3. As a part of review, you must answer each of the following questions given below.
+                                Provide as many details as possible.</p>
+                            <ul>
+                                <p><strong>1. What is the model of the iPod you have used? (Example: iPod Touch, 3rd
+                                    generation)</strong></p>
+                                <p><strong>2. Roughly how long have you used the device? (In terms of years or
+                                    months)</strong></p>
+                                <p><strong>3. Mention what you liked or disliked about the device's physical aspects in
+                                    terms of shape, size, ease of carrying and color</strong>.</p>
+                                <p><strong>4.How has the iPod been useful to you, apart from playing music? Describe any
+                                    apps you found useful or interesting.</strong></p>
+                                <p><strong>5. Describe what you found lacking in the device? (Example, are certain key
+                                    features not functioning as expected?)</strong></p>
+                                <p><strong>6. Would you recommend this device to others? Describe why or why
+                                    not?</strong></p>
+                                <p><strong>7. Describe any other aspects of the device that you would like to mention as
+                                    a part of this review</strong></p>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Instructions -->
+                </div>
+            </section>
+            <section class="container">
+
+                &nbsp;
+                <fieldset>
+                    <label>Enter your review of your iPod here. Please answer all questions asked above to complete the
+                        task successfully.</label>
+                    <div><textarea class="form-control" cols="250" name="WritingTexts_Review" rows="13"></textarea>
+                    </div>
+                </fieldset>
+
+            </section>
+        {% elif project.requester == 3 and project.index == 1 %}
+            <!-- Paul; you know Paul-->
+            <section class="container" id="Writing"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+                        <div class="panel-body">
+                            <p><strong>Conditions</strong></p>
+                            <ul>
+                                <li>Worker must be familiar and be past/current users of the ipod
+                                    <p>&nbsp;</p>
+                                </li>
+                            </ul>
+                            <p><strong>Guidelines</strong></p>
+                            <ul>
+                                <li>The ipod you are choosing should be (touch,3rd generation).</li>
+                                <li>Your review should contain comparison(-ve or +ve)with ipod nano</li>
+                                <li>Your review must describe the music quality of ipod(eg-how it has helped you in your
+                                    music studies)
+                                </li>
+                                <li>Your should review about the appstore and size.</li>
+                                <li>Write about the applications that you have used and how it has saved the money.</li>
+                                <li>write any negative aspect and at the end also mention whether you will recommend the
+                                    ipod to any one
+                                </li>
+                                <li>Your submission <strong>should contain one point from both pros and cons </strong>failing
+                                    which No award will be given for the submissions.
+                                </li>
+                                <li>You can refer to the following website for any help</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Instructions -->
+                    <div>
+                        <p><label>Website address:</label> <span> <a
+                                href="https://en.wikipedia.org/wiki/List_of_iPod_models" target="_blank">list of ipod
+                            models</a> </span></p>
+                    </div>
+                    &nbsp;
+                    <p><strong>Write the reviews</strong></p>
+                    <div><textarea class="form-control" cols="250" name="WritingTexts_Review" rows="8"></textarea></div>
+
+                    &nbsp;
+                    <p><strong>Please provide the feedback about this HIT. It will help us improve the HIT</strong></p>
+                    <div><textarea class="form-control" cols="250" name="WritingTexts_Feedback" rows="8"></textarea>
+                    </div>
+                </div>
+            </section>
+        {% elif project.requester == 4 and project.index == 1 %}
+            <!-- dilrukshi back at it again -->
+            <section class="container" id="Writing"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Write a customer review for iPod</strong></div>
+                        <div class="panel-body">
+                            <p><strong>Instructions</strong></p>
+                            <ul>
+                            </ul>
+                            <p><strong>You can not attempt this tasks if you are not familiar with iPod and use for at
+                                least 2 years.
+                                <br>
+
+                                Please produce a review for the iPod you have been using in terms of usages, usefulness
+                                and if any difficulties you faced with the features.
+                                <br>
+                                When you are writing the review use the checks to construct your review.
+                            </strong></p>
+                            <p> Check1.
+                                How long have you been using iPod? <br>
+                                Check 2.
+                                Why do you use iPod for? <br>
+                                Check 3.
+                                Which iPod do you use? ( first generation .. third Generation) <br>
+                                Check 4 .
+                                How or in what way iPod helps you?<br>
+                                Check 5.
+                                What are the benefits of iPod to you?<br>
+                                Check 6.
+                                Did you have any skepticals or problems before you buy iPod for the first time? If yes
+                                add your description, else do nothing
+                                <br>
+                                Check 7.
+                                What problems you faced in apps of the iPod?
+                                <br>
+                                Check 8.
+                                Would you recommend anyone to buy iPod?
+                                <br>
+                                Check 9.
+                                Main reason for the Check 8
+                                <br>
+                                Check 10.
+                                Any other special remarks you want to say about iPod? </p>
+
+                        </div>
+                    </div>
+                    <!-- End Instructions -->
+                    Write your review here incorporating above checks
+                    &nbsp;
+                    <div><textarea class="form-control" cols="250" name="WritingTexts_Review" rows="8"></textarea></div>
+
+                    &nbsp;
+                    <p><strong>Please provide the feedback about this HIT. It will help us improve the HIT</strong></p>
+                    <div><textarea class="form-control" cols="250" name="WritingTexts_Feedback" rows="8"></textarea>
+                    </div>
+                </div>
+            </section>
+        {% elif project.requester == 5 and project.index == 1 %}
+            <!--another human-->
+            <section class="container" id="Writing"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+                        <div class="panel-body">
+
+                            <p>Before continuing this task, please be honest and only complete if you have ever owned an
+                                apple ipod. Describe the model make year, model, color, size and price information in
+                                detail as it will be verified with an Apple product database before I will accept your
+                                work.</p>
+
+                            <p>in your review answer the following questions:
+                                what events happened for you to purchase the phone? how did it help or hinder your
+                                lifestyle? how did it change your life? what story can you publicly share that helps me
+                                to understand that change?
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Instructions -->
+                    <div>
+                    </div>
+                    &nbsp;
+
+                    <div><textarea class="form-control" cols="250" name="WritingTexts_Review" rows="8"></textarea></div>
+                    &nbsp;
+                    <p><strong>Please provide the feedback about this HIT. It will help us improve the HIT</strong></p>
+                    <div><textarea class="form-control" cols="250" name="WritingTexts_Feedback" rows="8"></textarea>
+                    </div>
+
+                </div>
+            </section>
+        {% elif project.requester == 6 and project.index == 1 %}
+            <!-- ahmednasser-->
+            <section class="container" id="Writing"
+                     style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><strong>Instructions</strong></div>
+                        <div class="panel-body">
+                            <p><strong>In order to complete this task you must have an iPod now or at least one day you
+                                had one.</strong></p>
+
+                            <p>Write <strong>a review</strong> for your iPod and please <strong>cover the points
+                                below</strong> in your review to accomplish the HIT in a perfect way.</p>
+                            <ul>
+                                <li>Things that you like about it.</li>
+                                <li>Hobbies that the iPod helps in practicing it.</li>
+                                <li>Its type and unique features.</li>
+                                <li>Your study/work reflection on using iPod.</li>
+                                <li>Daily functions you do with iPod like (web surfing, music listening,..etc).</li>
+                                <li>Your opinion about its store and free apps.</li>
+                                <li>Things you dislike and the problems you face it.</li>
+                                <li>Give an advice for people who is willing to buy it.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Instructions -->
+
+                    &nbsp;
+                    <p><strong>Write the reviews</strong></p>
+                    <div><textarea class="form-control" cols="250" name="WritingTexts_Review" rows="8"></textarea></div>
+
+                    &nbsp;
+                    <p><strong>Please provide the feedback about this HIT. It will help us improve the HIT</strong></p>
+                    <div><textarea class="form-control" cols="250" name="WritingTexts_Feedback" rows="8"></textarea>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+    {% endfor %}
+    <button type="submit"
+            style="width: 128px; background-color: #03A9F4; font-size: 22px; margin-bottom: 30px; margin-left: 45%">
+        Submit
+    </button>
+</form>
+</body>
+</html>
