@@ -153,10 +153,10 @@ review = [
         "product_name": "Microwave"
     },
     {
-        "product_name": "Android or iOS smartphones"
+        "product_name": "Android or iOS smartphone"
     },
     {
-        "product_name": "Televisions"
+        "product_name": "Television"
     }
 ]
 

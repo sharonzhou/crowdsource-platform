@@ -14,8 +14,6 @@
         <!-- R1-->
         {% if project.requester == 1 and project.index == 1 %}
             <div>
-                <!-- Bootstrap v3.0.3 -->
-                <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet"/>
                 <section class="container" id="Other"
                          style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
                     <div class="row col-xs-12 col-md-12"><!-- Instructions -->
@@ -224,7 +222,6 @@
                             }
                             </style>
                         </div>
-
                     </div>
                 </section>
             </div>
@@ -239,8 +236,6 @@
 
                             <div class="panel-body">
                                 <div id="wrapper">
-
-
                                     <style>
                                         #guideline_box {
                                         }
@@ -336,8 +331,6 @@
                                         </div>
                                     </div>
                                     <br>
-
-
                                     <span style="font: arial; font-size: 14px; font-weight:bold;">Judge the sentiment expressed by the following item toward: marijuana legalization</span>
                                     {% for task in project.tasks %}
                                         <div style="width:100%; background-color:#F8F5D8;">
@@ -345,7 +338,6 @@
                                                 <a href="{{ task.url }}" target="_blank">marijuana article</a>
                                             </p>
                                         </div>
-
 
                                         <!-- STARTSCALE -->
                                         <style>
@@ -450,9 +442,76 @@
                     </div>
                 </section>
             </div>
-
         {% elif project.requester == 1 and project.index == 3 %}
+            <div>
+                <section class="container" id="Other"
+                         style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                    <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><strong>Instructions</strong></div>
 
+                            <div class="panel-body">
+
+                                <div id="hit-wrapper">
+                                    <div class="overview-wrapper">
+                                        <p class="overview title">review household products you already own</p>
+                                    </div>
+                                    <div class="question-wrapper">
+                                        <input value="-" type="hidden" name="QuestionMarker"><input value="MQ--"
+                                                                                                    type="hidden"
+                                                                                                    name="Question_1_Id"><input
+                                            value="MQ--" type="hidden" name="Identifier_MQ--_Identifier"><input
+                                            type="hidden"
+                                            name="ValidationData_1"
+                                            value="IsRequired;">
+                                        {% for task in project.tasks %}
+                                            <div style="border-bottom: solid 1px rgba(0, 0, 0, 0.1)">
+                                                <div class="question-content-wrapper">
+                                                    <p class=" text">Review your {{ task.product_name }}. Be detailed
+                                                        and specific about
+                                                        the
+                                                        brand and
+                                                        model of {{ task.product_name }} you own, and write about
+                                                        whatever you think
+                                                        about
+                                                        that
+                                                        might be
+                                                        relevant - cooking time, consistency, reliability, etc...</p>
+                                                </div>
+                                                <div class="HITAnswer-wrapper">
+                                                    <input type="hidden" value="FreeTextAnswer" name="Answer_1_Type">
+                                                    <div class="free-text-answer-wrapper">
+                                                        <input value="" name="ValidationData_1" type="hidden">
+                                    <textarea cols="80"
+                                              name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_review"
+                                              class="question free-text"
+                                              id="Answer_1_FreeText"
+                                              rows="10"></textarea>
+                                                    </div>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <!-- End Content Body --><!-- close container -->
+                                <style type="text/css">fieldset {
+                                    padding: 10px;
+                                    background: #fbfbfb;
+                                    border-radius: 5px;
+                                    margin-bottom: 5px;
+                                }
+                                </style>
+
+                                <span style="font: arial; font-size: 14px; font-weight:bold;">Please provide feedback on this HIT's design. Let us know how can we improve the HIT.</span>
+                                <p><textarea name="{{ project.index }}_{{ project.requester }}_feedback"
+                                             cols="80"></textarea></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         {% elif project.requester == 1 and project.index == 4 %}
 
             <!-- R2-->
@@ -561,6 +620,54 @@
                 <p><textarea name="{{ project.index }}_{{ project.requester }}_feedback" cols="60"></textarea></p>
             </section>
         {% elif project.requester == 2 and project.index == 3 %}
+            <section class="container" id="Other" style="margin-bottom: 15px; padding: 10px; color: rgb(51, 51, 51);">
+                <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" style="font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
+                            <strong>Instructions</strong></div>
+
+                        <div class="panel-body">
+
+
+                            <p style="font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
+                                <strong>Guidelines:</strong>
+                                <br>
+                                - Directly relate to your experience with the product<br>
+                                - Cite specific details about said experience<br>
+                                - Convey whether you enjoy the product and whether the product has served its
+                                purpose<br>
+                                - Explain any problems/issues you had with the product<br></p>
+                        </div>
+                        {% for task in project.tasks %}
+                            <div style="border-bottom: solid 1px rgba(0, 0, 0, 0.1); margin-top: 30px; margin-left: 10px">
+                                <ul style="font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
+                                    <li>Please write a review of your {{ task.product_name }}.</li>
+                                    <li><strong>NOTE</strong>: This task is only for owners of {{ task.product_name }}.
+                                        Compensation
+                                        will only be given to those who write a review about
+                                        their {{ task.product_name }}.
+                                    </li>
+                                </ul>
+                                <section style="font-family: Verdana, Geneva, sans-serif; font-size: 0.9em;">
+                                    <fieldset><label>1. Enter the exact model of
+                                        your {{ task.product_name }}:</label><br/>
+                                        <input name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_model"
+                                               placeholder="Enter {{ task.product_name }} model here" size="40"
+                                               type="text"/><br/>
+                                        2. Please write the product review, following the above guidelines:<br/>
+                                    <textarea cols="70"
+                                              name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_review"
+                                              rows="17"></textarea></fieldset>
+                                </section>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <span style="font: arial; font-size: 14px; font-weight:bold;">Please provide feedback on this HIT's design. Let us know how can we improve the HIT.</span>
+                    <p><textarea name="{{ project.index }}_{{ project.requester }}_feedback" cols="60"></textarea>
+                    </p>
+                </div>
+
+            </section>
 
         {% elif project.requester == 2 and project.index == 4 %}
 
@@ -723,7 +830,92 @@
                 </style>
             </div>
         {% elif project.requester == 3 and project.index == 3 %}
+            <div>
+                <section class="container" id="DataCollection"
+                         style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                    <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><strong>Instructions</strong></div>
 
+                            <div class="panel-body">
+                                <p>This HIT is limited to are past/current/users of the products mentioned below. Please
+                                    write a
+                                    ~150 word review of your device in the box below. Please indicate what you use it
+                                    for, especially noting any patterns or use cases that may be unique or shared with a
+                                    particular subset of other potential users. Please note how well the product meets
+                                    each of your most important needs, and indicate whether or not you would recommend
+                                    this to others who are in a similar situation. If you have found other advantages or
+                                    disadvantages that you think might affect other groups, feel free to mention those
+                                    too.</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% for task in project.tasks %}
+                        <div style="border-bottom: solid 1px rgba(0, 0, 0, 0.1)">
+                            <div class="panel-body">{{ task.product_name }} model:<br/>
+                                <input class="form-control" id="model" name="model" type="text"/><br/>
+                                Overall rating:
+                                <table id="rating">
+                                    <tbody>
+                                    <tr>
+                                        <td style="text-align: center; width: 50px;">Bad</td>
+                                        <td style="text-align: center; width: 50px;">&nbsp;</td>
+                                        <td style="text-align: center; width: 50px;">Neutral</td>
+                                        <td style="text-align: center; width: 50px;">&nbsp;</td>
+                                        <td style="text-align: center; width: 50px;">Good</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-control" id="rating"
+                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                   type="radio" value="1"/>
+                                        </td>
+                                        <td><input class="form-control" id="rating"
+                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                   type="radio" value="2"/>
+                                        </td>
+                                        <td><input class="form-control" id="rating"
+                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                   type="radio" value="3"/>
+                                        </td>
+                                        <td><input class="form-control" id="rating"
+                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                   type="radio" value="4"/>
+                                        </td>
+                                        <td><input class="form-control" id="rating"
+                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                   type="radio" value="5"/>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <br/>
+                                Please enter your review here:<textarea class="form-control" id="review"
+                                                                        name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_review"
+                                                                        rows="5"> </textarea></div>
+                        </div>
+                    {% endfor %}
+                    <span style="font: arial; font-size: 14px; font-weight:bold;">Please provide feedback on this HIT's design. Let us know how can we improve the HIT.</span>
+                    <p><textarea name="{{ project.index }}_{{ project.requester }}_feedback" id="feedback"
+                                 cols="60"></textarea></p>
+                </section>
+                <!-- close container -->
+                <style type="text/css">td {
+                    font-size: 1.0em;
+                    padding: 5px 5px;
+                }
+
+                fieldset {
+                    padding: 10px;
+                    background: #fbfbfb;
+                    border-radius: 5px;
+                    margin-bottom: 5px;
+                }
+
+                table#options td {
+                    border: 2px solid black;
+                }
+                </style>
+            </div>
         {% elif project.requester == 3 and project.index == 4 %}
 
             <!-- R4-->
@@ -778,7 +970,79 @@
 
         {% elif project.requester == 4 and project.index == 3 %}
 
+            <div>
+                <section class="container" id="Other"
+                         style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                    <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><strong>Instructions</strong></div>
 
+                            <div class="panel-body">
+
+                                <!-- End Content Body --><!-- close container -->
+                                <style type="text/css">fieldset {
+                                    padding: 10px;
+                                    background: #fbfbfb;
+                                    border-radius: 5px;
+                                    margin-bottom: 5px;
+                                }
+                                </style>
+
+                                In this task you will write reviews for your household products:
+                                TV, Smartphone, and Microwave. Only do this task if you have used the product.<br><br>
+
+                                {% for task in project.tasks %}
+                                    <div style="border-bottom: solid 1px rgba(0, 0, 0, 0.1)">
+                                        <h3>{{ task.product_name }}</h3>
+
+                                        What model is the model name of your {{ task.product_name }}?<br>
+                                        <input class="form-control" name="model" size="120" type="text"><br>
+
+
+                                        Write a review of your {{ task.product_name }} here<br>
+
+                            <textarea class="form-control" cols="250"
+                                      name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_review"
+                                      rows="6"></textarea><br>
+
+                                        How would you rate your {{ task.product_name }} on a scale of 1 (Bad) to 5
+                                        (Good)?<br>
+
+                                        <div class="radio"><label><input type="radio"
+                                                                         name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                                         value="1"> 1 (Bad)</label>
+                                        </div>
+                                        <div class="radio"><label><input type="radio"
+                                                                         name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                                         value="2"> 2 (Somewhat
+                                            Bad)</label>
+                                        </div>
+                                        <div class="radio"><label><input type="radio"
+                                                                         name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                                         value="3"> 3
+                                            (Neutral)</label>
+                                        </div>
+                                        <div class="radio"><label><input type="radio"
+                                                                         name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                                         value="4"> 4 (Somewhat
+                                            Good)</label></div>
+                                        <div class="radio"><label><input type="radio"
+                                                                         name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                                         value="5"> 5 (Good)</label>
+                                        </div>
+
+                                    </div>
+                                {% endfor %}
+                                <span style="font: arial; font-size: 14px; font-weight:bold;">Please provide feedback on this HIT's design. Let us know how can we improve the HIT.</span>
+                                <p><textarea name="{{ project.index }}_{{ project.requester }}_feedback" id="feedback"
+                                             cols="60"></textarea></p>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         {% elif project.requester == 4 and project.index == 4 %}
 
 
@@ -911,7 +1175,115 @@
 
         {% elif project.requester == 5 and project.index == 3 %}
 
+            <div>
+                <!-- Bootstrap v3.0.3 -->
+                <style type="text/css">fieldset {
+                    padding: 10px;
+                    background: #fbfbfb;
+                    border-radius: 5px;
+                    margin-bottom: 5px;
+                }
+                </style>
+                <section class="container" id="Other"
+                         style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                    <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" style="font-size: 24px;">Instructions</div>
+                            <div class="panel-body">
+                                <ul>
+                                    <li><b>Please do not accept this task if you have not used these products (TV,
+                                        Microwave, Android or iOS Smartphone) for an
+                                        extended period of time.</b></li>
+                                    <li>We are interested in your opinion of your product.</li>
+                                    <li>Your task is to <b>write a review</b> for each of these products.</li>
+                                    <li>(If you have used any of these products for a significant amount of time in the
+                                        past, but do not currently use/own one, this is ok.)
+                                    </li>
+                                </ul>
+                                <h4>Example Review</h4>
+                                <ul>
+                                    <li>Product: Music player</li>
+                                    <li>Product Model: iPod Touch (3rd Generation)</li>
+                                    <li>Product Review: As a musician, the 3rd generation iPod Touch has helped me
+                                        immensely in
+                                        my music studies and in learning to play guitar. The app store is huge, and
+                                        most of the apps are free or only $1. I was skeptical at first about buying
+                                        this product because of its size (I like to carry my mp3 in my pocket). This
+                                        is simply not a problem, even with a rubber case on it. My iPod is a music
+                                        player, web browser, video player, metronome, synthesizer, video game
+                                        system, graphing calculator, notebook, and much more. I base the iPod's
+                                        value on the fact that I saved $100 by getting a graphing calculator app for
+                                        only $1. I can't believe I kept my iPod Nano for so long when I could've
+                                        had an iPod Touch. The only problem is the Facebook app, which is often
+                                        very slow and unresponsive, even with updates. This is no a problem with
+                                        the iPod, though. I strongly recommend this product for anyone, even my
+                                        grandma has one!
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Content Body --><!-- close container -->
+                        {% for task in project.tasks %}
+                            <div style="border-bottom: solid 1px rgba(0, 0, 0, 0.1)">
+                                <h3>{{ task.product_name }} Review</h3>
 
+                                <p>
+                                    Do you currently own a {{ task.product_name }}?
+                                    <label for="product_own1"><input required="required" id="product_own1"
+                                                                     name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_product_own"
+                                                                     type="radio" value="pro"/> Yes</label>&nbsp;&nbsp;&nbsp;
+                                    <label for="product_own2"><input required="required" id="product_own2"
+                                                                     name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_product_own"
+                                                                     type="radio" value="anti"/> No</label><br/>
+                                </p>
+
+                                <p>
+                                    Have you owned a {{ task.product_name }} in the past?
+                                    <label for="product_past1"><input required="required" id="product_past1"
+                                                                      name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_product_past"
+                                                                      type="radio" value="pro"/> Yes</label>&nbsp;&nbsp;&nbsp;
+                                    <label for="product_past2"><input required="required" id="product_past2"
+                                                                      name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_product_past"
+                                                                      type="radio" value="anti"/> No</label><br/>
+                                </p>
+
+                                <p>
+                                    Are you familiar with that {{ task.product_name }}?
+                                    <label for="product_familiar1"><input required="required" id="product_familiar1"
+                                                                          name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_product_familiar"
+                                                                          type="radio"
+                                                                          value="pro"/> Yes</label>&nbsp;&nbsp;&nbsp;
+                                    <label for="product_familiar2"><input required="required" id="product_familiar2"
+                                                                          name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_product_familiar"
+                                                                          type="radio"
+                                                                          value="anti"/> No</label><br/>
+                                </p>
+
+                                <p>
+                                    What kind of {{ task.product_name }} is it? (specify the model number if applicable)<br>
+                                    <input required="required" type="text"
+                                           name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_model"/>
+                                </p>
+
+                                <p>
+                                    Please write a review of your {{ task.product_name }}:<br>
+                                <textarea id="reason"
+                                          name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_review"
+                                          required="required" rows="10" cols="100"></textarea>
+                                </p>
+                            </div>
+                        {% endfor %}
+                        <p>Please provide feedback on this HIT's design. Let us know how can we improve the HIT<br>
+                            <textarea id="feedback" name="{{ project.index }}_{{ project.requester }}_feedback"
+                                      cols="60"></textarea></p>
+
+                        <hr>
+
+
+                    </div>
+                </section>
+
+            </div>
         {% elif project.requester == 5 and project.index == 4 %}
 
 
@@ -1125,7 +1497,138 @@
             </section>
 
         {% elif project.requester == 6 and project.index == 3 %}
+            <section id="DataCollection">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="card">
+                                <h1>Product Review</h1>
+                                <div class="instructions">
+                                    <h2>Requirement</h2>
+                                    <p>You must be a past or current user of the products: TV, Microwave, and Android or
+                                        iOS Smartphone.</p>
+                                    <h2>Instructions</h2>
+                                    <p>In this task, you will be asked to enter reviews for a few products that you
+                                        use.</p>
+                                    <p>
 
+                                        For each product below, rate the product from a scale of 1 (bad) to 5 (good),
+                                        and compose a review of your experience with it (100-200 words). Your review
+                                        should explain your rating.
+                                    </p>
+                                </div>
+                                {% for task in project.tasks %}
+                                    <div style="border-bottom: solid 1px rgba(0, 0, 0, 0.1)">
+
+                                        <div class="qa-wrap">
+                                            <h2>{{ task.product_name }}</h2>
+                                            <div class="radio-inline">
+                                                <label>
+                                                    <input type="radio"
+                                                           name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                           value="1">1
+                                                </label>
+                                            </div>
+                                            <div class="radio-inline">
+                                                <label>
+                                                    <input type="radio"
+                                                           name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                           value="2">2
+                                                </label>
+                                            </div>
+                                            <div class="radio-inline">
+                                                <label>
+                                                    <input type="radio"
+                                                           name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                           value="3">3
+                                                </label>
+                                            </div>
+                                            <div class="radio-inline">
+                                                <label>
+                                                    <input type="radio"
+                                                           name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                           value="4">4
+                                                </label>
+                                            </div>
+                                            <div class="radio-inline">
+                                                <label>
+                                                    <input type="radio"
+                                                           name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                           value="5">5
+                                                </label>
+                                            </div>
+                                    <textarea
+                                            name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_review"
+                                            type="text"
+                                            placeholder="Enter your review for {{ task.product_name }}  here."
+                                            class="review"></textarea>
+                                            <!--grammarly-btn>
+                                                <div style="z-index: 2; opacity: 1; transform: translate(693px, 676px);"
+                                                     class="_9b5ef6-textarea_btn _9b5ef6-anonymous _9b5ef6-not_focused"
+                                                     data-grammarly-reactid=".0">
+                                                    <div class="_9b5ef6-transform_wrap" data-grammarly-reactid=".0.0">
+                                                        <div title="Protected by Grammarly" class="_9b5ef6-status"
+                                                             data-grammarly-reactid=".0.0.0">&nbsp;</div>
+                                                    </div>
+                                            <span class="_9b5ef6-btn_text"
+                                                  data-grammarly-reactid=".0.1">Not signed in</span></div>
+                                            </grammarly-btn-->
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                                <p>Please provide feedback on this HIT's design. Let us know how can we improve the
+                                    HIT<br><br>
+                                    <textarea id="feedback" name="{{ project.index }}_{{ project.requester }}_feedback"
+                                              cols="60" class="review"></textarea></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <style type="text/css">
+                    .card {
+                        border: 1px solid #eee;
+                        background-color: white;
+                        padding: 40px;
+                    }
+
+                    h1 {
+                        font-weight: 200;
+                        font-size: 2.0em;
+                    }
+
+                    .qa-wrap {
+                        padding: 10px 0px;
+                        border-bottom: 1px solid #eee;
+                    }
+
+                    .instructions {
+                        border-top: 1px solid #eee;
+                        border-bottom: 1px solid #eee;
+                        padding: 30px;
+                        margin: 10px 0px;
+                    }
+
+                    h2 {
+                        font-weight: 200;
+                        font-size: 1.5em;
+                    }
+
+                    .review {
+                        height: 200px;
+                        width: 100%;
+                        padding: 10px;
+                        border: 1px solid #eee;
+                    }
+
+                    section {
+                        font-family: Verdana, Geneva, sans-serif;
+                        color: #333333;
+                        background-color: #f8f8f8;
+                        padding: 40px;
+                    }
+                </style>
+            </section>
 
         {% elif project.requester == 6 and project.index == 4 %}
 
@@ -1159,7 +1662,7 @@
                                 <form class="form">
                                     <label class="radio-inline">
                                         <input id="inlineradio1" name="sampleinlineradio" value="option1" type="radio"
-                                               checked>
+                                        >
                                         pass</label>
                                     <br/>
                                     <label class="radio-inline">
@@ -1185,11 +1688,13 @@
                                 <p>Now it's your turn:</p>
                                 <div class="form-group">
                                     <label for="usr">Last time you watched American Football:</label>
-                                    <input type="text" class="form-control" id="usr">
+                                    <input type="text" class="form-control" id="usr"
+                                           name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_last-time">
                                 </div>
                                 <div class="form-group">
                                     <label for="usr">Unbelievable play:</label>
-                                    <input type="text" class="form-control" id="usr">
+                                    <input type="text" class="form-control" id="usr"
+                                           name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_unbelievable-play">
                                 </div>
                                 {% for task in project.tasks %}
                                     <ul>
@@ -1199,8 +1704,7 @@
                                         <label class="radio-inline">
                                             <input id="inlineradio1"
                                                    name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}"
-                                                   value="pass" type="radio"
-                                                   checked>
+                                                   value="pass" type="radio">
                                             pass</label>
                                         <br/>
                                         <label class="radio-inline">
@@ -1334,7 +1838,183 @@
             </div>
 
         {% elif project.requester == 7 and project.index == 3 %}
+            <div>
+                <section class="container" id="Other"
+                         style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                    <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><strong>Instructions</strong></div>
 
+                            <div class="panel-body">
+                                <p>Please exit the task if you do not own any of the following
+                                    or you don't remember the item's model name: </p>
+                                <ul>
+                                    <li>TV, Microwave, and Smartphone</li>
+                                </ul>
+
+                                For each of these items, you are required to:
+                                <ul>
+                                    <li>Enter the model name of device</li>
+                                    <li>Enter the dates of ownership of device</li>
+                                    <li>Enter something unique about the device</li>
+                                    <li>Write a review with a minimum of <b>5 sentences</b></li>
+                                    <li>Rate the product on a scale of 1 to 5</li>
+                                </ul>
+
+                                <p>
+                                    Below is a sample review and rating:
+                                </p>
+                                <div class="form-group">
+                                    <label for="usr">Smartphone Model:</label>
+                                    <input type="text" class="form-control" id="usr" value="Apple Iphone 4g">
+                                </div>
+                                <div class="form-group">
+                                    <label for="usr">Ownership date start:</label>
+                                    <input type="text" class="form-control" id="usr" value="Jan 3rd, 2015">
+                                </div>
+                                <div class="form-group">
+                                    <label for="usr">Something unique:</label>
+                                    <input type="text" class="form-control" id="usr"
+                                           value="It had a huge dent in the back">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="comment">Review:</label>
+                            <textarea class="form-control" rows="5" id="comment" required>
+                    As a musician, the 3rd generation iPod Touch has helped me immensely in
+                    my music studies and in learning to play guitar. The app store is huge, and
+                    most of the apps are free or only $1. I was skeptical at first about buying
+                    this product because of its size (I like to carry my mp3 in my pocket). This
+                    is simply not a problem, even with a rubber case on it. My iPod is a music
+                    player, web browser, video player, metronome, synthesizer, video game
+                    system, graphing calculator, notebook, and much more. I base the iPod's
+                    value on the fact that I saved $100 by getting a graphing calculator app for
+                    only $1. I can't believe I kept my iPod Nano for so long when I could've
+                    had an iPod Touch. The only problem is the Facebook app, which is often
+                    very slow and unresponsive, even with updates. This is no a problem with
+                    the iPod, though. I strongly recommend this product for anyone, even my
+                    grandma has one!
+                    </textarea>
+                                </div>
+                                <div class="form-inline">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label class="radio-inline">I rate this device:</label>
+                                            <label class="radio-inline">
+                                                <input id="inlineradio1" name="sampleinlineradio" value="option1"
+                                                       type="radio">
+                                                1</label>
+                                            <label class="radio-inline">
+                                                <input id="inlineradio2" name="sampleinlineradio" value="option2"
+                                                       type="radio">
+                                                2</label>
+                                            <label class="radio-inline">
+                                                <input id="inlineradio3" name="sampleinlineradio" value="option3"
+                                                       type="radio">
+                                                3</label>
+                                            <label class="radio-inline">
+                                                <input id="inlineradio3" name="sampleinlineradio" value="option3"
+                                                       type="radio">
+                                                4</label>
+                                            <label class="radio-inline">
+                                                <input id="inlineradio3" name="sampleinlineradio" value="option3"
+                                                       type="radio">
+                                                5</label>
+                                        </div>
+                                        <!--form-group-->
+                                    </fieldset>
+                                </div>
+
+
+                                {% for task in project.tasks %}
+                                    <div style="border-bottom: solid 1px rgba(0, 0, 0, 0.1)">
+                                        <p>
+                                            Your ratings:
+                                        </p>
+                                        <div class="form-group">
+                                            <label for="usr">{{ task.product_name }} Model:</label>
+                                            <input type="text" class="form-control" id="usr"
+                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_model">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="usr">Ownership date start:</label>
+                                            <input type="text" class="form-control" id="usr"
+                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_start-date">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="usr">Something unique:</label>
+                                            <input type="text" class="form-control" id="usr"
+                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_unique">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="comment">Review:</label>
+                        <textarea class="form-control" rows="5"
+                                  name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_review"
+                                  id="comment" required></textarea>
+                                        </div>
+                                        <div class="form-inline">
+                                            <fieldset>
+                                                <div class="form-group">
+                                                    <label class="radio-inline">I rate this device:</label>
+                                                    <label class="radio-inline">
+                                                        <input id="inlineradio1"
+                                                               name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                               value="1" type="radio">
+                                                        1</label>
+                                                    <label class="radio-inline">
+                                                        <input id="inlineradio2"
+                                                               name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                               value="2" type="radio">
+                                                        2</label>
+                                                    <label class="radio-inline">
+                                                        <input id="inlineradio3"
+                                                               name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                               value="3" type="radio">
+                                                        3</label>
+                                                    <label class="radio-inline">
+                                                        <input id="inlineradio3"
+                                                               name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                               value="4" type="radio">
+                                                        4</label>
+                                                    <label class="radio-inline">
+                                                        <input id="inlineradio3"
+                                                               name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_rating"
+                                                               value="5" type="radio">
+                                                        5</label>
+                                                </div>
+                                                <!--form-group-->
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                                <div class="form-group">
+                                    <label for="feedback">Please provide feedback on this HIT's design. Let us know how
+                                        can we
+                                        improve the HIT</label>
+
+                        <textarea id="feedback" name="{{ project.index }}_{{ project.requester }}_feedback"
+                                  class="form-control" cols="60"></textarea>
+
+                                </div>
+
+
+                                <!-- End Content Body --><!-- close container -->
+                                <style type="text/css">
+
+                                    fieldset {
+                                        padding: 10px;
+                                        background: #fbfbfb;
+                                        border-radius: 5px;
+                                        margin-bottom: 5px;
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
         {% elif project.requester == 7 and project.index == 4 %}
 

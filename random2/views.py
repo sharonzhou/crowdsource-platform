@@ -63,7 +63,7 @@ def random_index(request, *args, **kwargs):
                     conf = current_data.first()['requester']
                 processed.append(str(conf))
                 projects.append({
-                    "index": 2, #index,
+                    "index": index,
                     "requester": 7, #int(conf),
                     "tasks": data_mappings[str(index)]
                 })
