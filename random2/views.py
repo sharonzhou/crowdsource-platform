@@ -43,13 +43,12 @@ def random_index(request, *args, **kwargs):
         import random
         from hashids import Hashids
         identifier_hash = Hashids(salt=settings.SECRET_KEY, min_length=settings.ID_HASH_MIN_LENGTH)
-        #if len(identifier_hash.decode(daemo_id)) == 0:
-        #    return HttpResponse("Invalid identifier", status=400)
-        #task_worker_id, task_id, template_item_id = identifier_hash.decode(daemo_id)
-        #task_worker = TaskWorker.objects.get(id=task_worker_id)
-        #task = Task.objects.get(id=task_id)
-        #config = WorkerConfig.objects.filter(worker_id=task_worker.worker_id)
-        config = []
+        if len(identifier_hash.decode(daemo_id)) == 0:
+           return HttpResponse("Invalid identifier", status=400)
+        task_worker_id, task_id, template_item_id = identifier_hash.decode(daemo_id)
+        task_worker = TaskWorker.objects.get(id=task_worker_id)
+        task = Task.objects.get(id=task_id)
+        config = WorkerConfig.objects.filter(worker_id=task_worker.worker_id)
         processed = []
         if not config:
             for index in project_indexes:
@@ -64,13 +63,13 @@ def random_index(request, *args, **kwargs):
                 processed.append(str(conf))
                 projects.append({
                     "index": index,
-                    "requester": 2, #int(conf),
+                    "requester": int(conf),
                     "tasks": data_mappings[str(index)]
                 })
-            # WorkerConfig.objects.filter(worker_id=task_worker.worker_id).delete()  #
-            #for project in projects:
-            #    WorkerConfig.objects.create(requester=project['requester'],
-            #                                project=project['index'], worker_id=task_worker.worker_id)  #
+            WorkerConfig.objects.filter(worker_id=task_worker.worker_id).delete()  #
+            for project in projects:
+               WorkerConfig.objects.create(requester=project['requester'],
+                                           project=project['index'], worker_id=task_worker.worker_id)  #
         else:
             for conf in config:
                 projects.append({
