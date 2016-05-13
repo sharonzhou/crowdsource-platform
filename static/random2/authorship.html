@@ -513,6 +513,240 @@
                 </section>
             </div>
         {% elif project.requester == 1 and project.index == 4 %}
+            <div>
+                <section class="container" id="Other"
+                         style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                    <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><strong>Instructions</strong></div>
+
+                            <div id="wrapper">
+                                <style>
+                                    #guideline_box {
+                                    }
+
+                                    #guideline {
+                                        width: 97%;
+                                        height: 150px;
+                                        overflow: auto;
+                                        border-style: solid;
+                                        border-width: 1px;
+                                        padding: 5px;
+                                    }
+
+                                    .criterion_table {
+                                        width: 100%;
+                                        border-collapse: collapse;
+                                    }
+
+                                    .criterion_table tr td {
+                                        border-style: solid;
+                                        border-width: 1px;
+                                        border-color: black;
+                                    }
+
+                                    .criterion_table tr:nth-child(1) td:nth-child(1) {
+                                        width: 25%
+                                    }
+
+                                    .criterion_table tr td {
+                                        text-align: left;
+                                        vertical-align: top;
+                                    }
+
+                                    .bold_text {
+                                        font: arial;
+                                        font-size: 13;
+                                        font-weight: bold;
+                                    }
+
+                                    .instruction_text {
+                                        font: arial;
+                                        font-size: 12;
+                                    }
+                                </style>
+                                <div id="guideline_box">
+                                    <span class="bold_text">Instructions<span id="guideline_arrow">↓</span></span>
+                                    <div id="guideline" class="instruction_text" style="">
+                                        <p>Pick the best sentiment based on the following criterion.</p>
+                                        <table class="criterion_table instruction_text">
+                                            <tbody>
+                                            <tr>
+                                                <td>Strongly positive</td>
+                                                <td>
+                                                    Select this if the item embodies emotion that was extremely happy or
+                                                    excited
+                                                    toward the topic.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Positive</td>
+                                                <td>
+                                                    Select this if the item embodies emotion that was generally happy or
+                                                    satisfied, but the emotion wasn't extreme.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Neutral</td>
+                                                <td>
+                                                    Select this if the item does not embody much of positive or negative
+                                                    emotion
+                                                    toward the topic.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Negative</td>
+                                                <td>
+                                                    Select this if the item embodies emotion that is perceived to be
+                                                    angry or
+                                                    upsetting toward the topic, but not to the extreme.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Strongly negative</td>
+                                                <td>
+                                                    Select this if the item embodies negative emotion toward the topic
+                                                    that can
+                                                    be perceived as extreme.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Not relevant</td>
+                                                <td>
+                                                    Select this if the item is not related or relevant to self-driving
+                                                    cars
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <br>
+
+
+                                <span style="font: arial; font-size: 14px; font-weight:bold;">Judge the sentiment expressed by the following item toward: self driving cars tweets</span>
+                                {% for task in project.tasks %}
+                                    <div style="border-bottom: solid 1px rgba(0, 0, 0, 0.1)">
+                                        <div style="width:100%; background-color:#F8F5D8;">
+                                            <p>
+                                                <strong>tweet:</strong>
+                                                {{ task.tweet }}
+                                            </p>
+                                        </div>
+
+
+                                        <!-- STARTSCALE -->
+                                        <style>
+                                            .outer_div {
+                                                position: relative;
+                                            }
+
+                                            .canvas_div {
+                                                width: 400px;
+                                                height: 175px;
+                                            }
+
+                                            .canvas_div canvas {
+                                                width: 400px;
+                                                height: 75px;
+                                                position: absolute;
+                                                top: 0;
+                                                left: 0;
+                                            }
+
+                                            .radio_div {
+                                                width: 400px;
+                                                height: 75px;
+                                                position: absolute;
+                                                top: 0;
+                                                left: 0;
+                                            }
+
+                                            .radio_div table {
+                                                width: 400px;
+                                                border: none;
+                                                border-collapse: collapse;
+                                            }
+
+                                            .radio_div table tr td {
+                                                font-size: 14px;
+                                                background-color: transparent;
+                                                vertical-align: top;
+                                                text-align: center;
+                                                border: none;
+                                                padding: 0px;
+                                            }
+
+                                            .radio_div table tr:nth-child(1) td {
+                                                width: 20%;
+                                                height: 25px;
+                                                vertical-align: middle;
+                                            }
+                                        </style>
+                                        <div id="sentiment_scale" class="outer_div">
+                                            <div class="canvas_div">
+                                                <canvas id="line_canvas"></canvas>
+                                            </div>
+                                            <div class="radio_div">
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td><input type="radio"
+                                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                                   value="1"></td>
+                                                        <td><input type="radio"
+                                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                                   value="2"></td>
+                                                        <td><input type="radio"
+                                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                                   value="3"></td>
+                                                        <td><input type="radio"
+                                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                                   value="4"></td>
+                                                        <td><input type="radio"
+                                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                                   value="5"></td>
+                                                        <td><input type="radio"
+                                                                   name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                                   value="6"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Strongly negative</td>
+                                                        <td>Negative</td>
+                                                        <td>Neutral</td>
+                                                        <td>Positive</td>
+                                                        <td>Strongly positive</td>
+                                                        <td>This tweet is not relevant to self-driving cars</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                {% endfor %}
+                                <!-- ENDSCALE -->
+                                <span style="font: arial; font-size: 14px; font-weight:bold;">Please provide feedback on this HIT's design. Let us know how can we improve the HIT.</span>
+                                <p><textarea name="{{ project.index }}_{{ project.requester }}_feedback"
+                                             form="mturk_form"
+                                             cols="80"></textarea></p>
+
+                            </div>
+
+
+                            <!-- End Content Body --><!-- close container -->
+                            <style type="text/css">fieldset {
+                                padding: 10px;
+                                background: #fbfbfb;
+                                border-radius: 5px;
+                                margin-bottom: 5px;
+                            }
+                            </style>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
 
             <!-- R2-->
         {% elif project.requester == 2 and project.index == 1 %}
@@ -670,7 +904,81 @@
             </section>
 
         {% elif project.requester == 2 and project.index == 4 %}
+            <div>
+                <section class="container" id="Other"
+                         style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                    <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><strong>Instructions</strong></div>
 
+                            <div class="panel-body">
+                                <ul>
+                                    <li>Read the below <strong>Tweet</strong> and determine the sentiment expressed in
+                                        the tweet
+                                    </li>
+                                    <li>Answer the question regarding sentiment below after reading the
+                                        <strong>Tweet</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Instructions --><!-- Content Body -->
+
+                        {% for task in project.tasks %}
+                            <div style="border-bottom: solid 1px rgba(0, 0, 0, 0.1)">
+                                <h1>Tweet: {{ task.tweet }}</h1>
+
+                                <section>
+                                    <fieldset><label>Which of the following best describes the sentiment of the
+                                        <strong>Tweet</strong></label>
+
+                                        <div class="radio"><label><input
+                                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                type="radio"
+                                                value="Very negative (1)"/>Very negative
+                                            (1)</label>
+                                        </div>
+
+                                        <div class="radio"><label><input
+                                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                type="radio"
+                                                value="Slightly negative (2)"/>Slightly
+                                            negative
+                                            (2)</label></div>
+
+                                        <div class="radio"><label><input
+                                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                type="radio"
+                                                value="Neutral (3)"/>Neutral
+                                            (3)</label></div>
+
+                                        <div class="radio"><label><input
+                                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                type="radio"
+                                                value="Slightly positive (4)"/>Slightly
+                                            positive
+                                            (4)</label></div>
+
+                                        <div class="radio"><label><input
+                                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                type="radio"
+                                                value="Very positive (5)"/>Very positive
+                                            (5)</label>
+                                        </div>
+
+                                        <div class="radio"><label><input
+                                                name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                type="radio"
+                                                value="This tweet is not relevant to self-driving cars (6)"/>This
+                                            tweet is not relevant to self-driving cars (6)</label></div>
+                                    </fieldset>
+                                </section>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <span style="font: arial; font-size: 14px; font-weight:bold;">Please provide feedback on this HIT's design. Let us know how can we improve the HIT.</span>
+                    <p><textarea name="{{ project.index }}_{{ project.requester }}_feedback" cols="60"></textarea></p>
+                </section>
+            </div>
             <!-- R3-->
         {% elif project.requester == 3 and project.index == 1 %}
             <div>
@@ -917,6 +1225,106 @@
                 </style>
             </div>
         {% elif project.requester == 3 and project.index == 4 %}
+            <div>
+                <section class="container" id="DataCollection"
+                         style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:0.9em;">
+                    <div class="row col-xs-12 col-md-12"><!-- Instructions -->
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><strong>Instructions</strong></div>
+
+                            <div class="panel-body">
+                                <p>Indicate whether or not the author of the tweet below thinks self-driving cars are
+                                    GOOD (positive sentiment) or BAD (negative sentiment).</p>
+
+                                <p>Some tweets will be rated by multiple people to check for accuracy.</p>
+
+                            </div>
+                        </div>
+
+                        {% for task in project.tasks %}
+                            <div style="border-bottom: solid 1px rgba(0, 0, 0, 0.1)">
+                                <p><input id="tweetID" name="tweetID" type="hidden" value="tweet"/>
+                                    <label>Tweet:</label> {{ task.tweet }}</p>
+                                <div class="panel-body">This tweet is ___ toward self-driving cars.
+                                    <table id="rating">
+                                        <tbody>
+                                        <tr>
+                                            <td><input class="form-control" id="rating"
+                                                       name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                       type="radio"
+                                                       value="1"/>
+                                            </td>
+                                            <td>Very negative</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input class="form-control" id="rating"
+                                                       name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                       type="radio"
+                                                       value="2"/>
+                                            </td>
+                                            <td>Slightly negative</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input class="form-control" id="rating"
+                                                       name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                       type="radio"
+                                                       value="3"/>
+                                            </td>
+                                            <td>Neutral</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input class="form-control" id="rating"
+                                                       name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                       type="radio"
+                                                       value="4"/>
+                                            </td>
+                                            <td>Slightly positive</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input class="form-control" id="rating"
+                                                       name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                       type="radio"
+                                                       value="5"/>
+                                            </td>
+                                            <td>Very positive</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input class="form-control" id="rating"
+                                                       name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_tweet"
+                                                       type="radio"
+                                                       value="6"/>
+                                            </td>
+                                            <td>This tweet is not relevant to self-driving cars.</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <span style="font: arial; font-size: 14px; font-weight:bold;">Please provide feedback on this HIT's design. Let us know how can we improve the HIT.</span>
+                    <p><textarea name="{{ project.index }}_{{ project.requester }}_feedback" id="feedback"
+                                 cols="60"></textarea></p>
+                </section>
+                <!-- close container -->
+                <style type="text/css">td {
+                    font-size: 1.0em;
+                    padding: 5px 5px;
+                }
+
+                fieldset {
+                    padding: 10px;
+                    background: #fbfbfb;
+                    border-radius: 5px;
+                    margin-bottom: 5px;
+                }
+
+                table#options td {
+                    border: 2px solid black;
+                }
+                </style>
+
+            </div>
 
             <!-- R4-->
         {% elif project.requester == 4 and project.index == 1 %}

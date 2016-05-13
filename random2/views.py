@@ -64,7 +64,7 @@ def random_index(request, *args, **kwargs):
                 processed.append(str(conf))
                 projects.append({
                     "index": index,
-                    "requester": 7, #int(conf),
+                    "requester": 2, #int(conf),
                     "tasks": data_mappings[str(index)]
                 })
             # WorkerConfig.objects.filter(worker_id=task_worker.worker_id).delete()  #
