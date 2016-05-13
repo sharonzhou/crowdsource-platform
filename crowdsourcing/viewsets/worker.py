@@ -79,8 +79,9 @@ class WorkerViewSet(viewsets.ModelViewSet):
         worker = self.get_object()
         projects = Project.objects.all().filter(deleted=False, status=4, task__taskworker__worker=worker).distinct()
         serializer = ProjectSerializer(instance=projects, many=True, fields=('id', 'name', 'categories',
-                                                                           'num_reviews', 'completed_on', 'num_raters',
-                                                                           'total_tasks', 'average_time'))
+                                                                             'num_reviews', 'completed_on',
+                                                                             'num_raters',
+                                                                             'total_tasks', 'average_time'))
         return Response(serializer.data)
 
     def retrieve(self, request, profile__user__username=None):
@@ -103,6 +104,31 @@ class WorkerViewSet(viewsets.ModelViewSet):
         response_data = WorkerSerializer(instance=worker, fields=('id', 'alias')).data
         response_data.update({'daemo_id': daemo_id})
         return Response(data=response_data, status=status.HTTP_200_OK)
+
+    @list_route(methods=['post'], url_path='pay-amt')
+    def pay_amt(self, request, *args, **kwargs):
+        data = request.data.get('workers', [])
+        from boto.mturk.connection import MTurkConnection, MTurkRequestError, Price
+        from csp import settings
+        connection = MTurkConnection(aws_access_key_id=settings.MTURK_CLIENT_ID,
+                                     aws_secret_access_key=settings.MTURK_CLIENT_SECRET,
+                                     host='mechanicalturk.amazonaws.com')
+        for worker in data:
+            tasks = TaskWorker.objects.values('task__project__price', 'id') \
+                .filter(worker_id=worker['worker_id'], task_status=TaskWorker.STATUS_ACCEPTED, is_paid=False)
+            total = sum(tasks.values_list('task__project__price', flat=True))
+            if total > 0:
+                price = Price(total)
+                try:
+                    reason = worker.get('reason', 'Daemo payment')
+                    connection.grant_bonus(worker['workerId'], worker['assignmentId'],
+                                           bonus_price=price, reason=reason)
+                    tasks.update(is_paid=True)
+                    worker.update({"is_paid": True})
+                except MTurkRequestError:
+                    worker.update({"is_paid": False})
+
+        return Response(data=data, status=status.HTTP_200_OK)
 
 
 class WorkerSkillViewSet(viewsets.ModelViewSet):
