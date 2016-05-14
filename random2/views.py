@@ -20,9 +20,9 @@ def random_index(request, *args, **kwargs):
     post_url = '/api/done/?daemo_id=' + str(daemo_id)
     data_mappings = {
         "1": data.football,
-        "2": data.marijuana[:25],
+        "2": data.marijuana,
         "3": data.review,
-        "4": data.tweet[:25]
+        "4": data.tweet
     }
     projects = []
     project_indexes = [1, 2, 3, 4]
