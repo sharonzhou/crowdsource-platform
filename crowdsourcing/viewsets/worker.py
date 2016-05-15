@@ -115,7 +115,8 @@ class WorkerViewSet(viewsets.ModelViewSet):
                                      host='mechanicalturk.amazonaws.com')
         for worker in data:
             tasks = TaskWorker.objects.values('task__project__price', 'id') \
-                .filter(worker__alias=worker['worker_id'], task_status=TaskWorker.STATUS_ACCEPTED, is_paid=False)
+                .filter(worker__alias=worker['worker_id'],
+                        task_status__in=[TaskWorker.STATUS_ACCEPTED, TaskWorker.STATUS_SUBMITTED], is_paid=False)
             total = sum(tasks.values_list('task__project__price', flat=True))
             if total > 0:
                 price = Price(total)
