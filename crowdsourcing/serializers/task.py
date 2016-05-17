@@ -355,10 +355,10 @@ class ReviewSerializer(DynamicFieldsModelSerializer):
         model = models.Review
         fields = (
             'id', 'task_worker', 'reviewer', 'status', 'created_timestamp', 'last_updated', 'rating', 'comment',
-            'is_acceptable', 'review_data', 'worker_level', 'is_child_review', 'time_spent')
+            'is_acceptable', 'review_data', 'worker_level', 'is_child_review', 'time_spent', 'price')
         read_only_fields = (
             'id', 'task_worker', 'reviewer', 'status', 'created_timestamp', 'last_updated', 'review_data',
-            'worker_level', 'is_child_review')
+            'worker_level', 'is_child_review', 'price')
 
     @staticmethod
     def get_review_data(obj):
@@ -367,7 +367,7 @@ class ReviewSerializer(DynamicFieldsModelSerializer):
 
         review = ReviewSerializer(instance=obj.parent, many=False, fields=(
             'id', 'task_worker', 'reviewer', 'status', 'created_timestamp', 'last_updated', 'rating', 'comment',
-            'is_acceptable')).data
+            'is_acceptable', 'price')).data
         return review
 
     @staticmethod

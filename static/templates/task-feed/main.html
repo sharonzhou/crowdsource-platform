@@ -8,7 +8,8 @@
             <div class="_task-top" ng-click="taskfeed.showPreview(review.task_worker.project_data)">
                 <div layout="row">
                     <div flex="10" class="_price">
-                        {{ review.task_worker.project_data.price | currency:"$":2}}
+                        <span ng-if="review.price == 0">{{ review.task_worker.project_data.price | currency:"$":2}}</span>
+                        <span ng-if="review.price > 0">{{ review.price | currency:"$":2}}</span>
                     </div>
                     <div flex="60" class="_title">
                         <span class="bubble primary">Review Task</span> <span
