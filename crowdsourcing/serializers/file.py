@@ -1,4 +1,5 @@
 from __future__ import division
+from django.core.files.storage import default_storage
 from rest_framework import serializers
 from crowdsourcing.models import BatchFile
 from crowdsourcing.serializers.dynamic import DynamicFieldsModelSerializer
@@ -31,10 +32,12 @@ class BatchFileSerializer(DynamicFieldsModelSerializer):
         return batch_file
 
     def get_size(self, obj):
-        size_bytes = obj.file.size
-        size = '1 KB'
-        if 1024 <= size_bytes < 1048576:
-            size = str(round(size_bytes / 1024, 2)) + ' KB'
-        elif size_bytes >= 1048576:
-            size = str(round(size_bytes / 1024 / 1024, 2)) + ' MB'
-        return size
+        if obj is not None and obj.file is not None and default_storage.exists(obj.file.path):
+            size_bytes = obj.file.size
+            size = '1 KB'
+            if 1024 <= size_bytes < 1048576:
+                size = str(round(size_bytes / 1024, 2)) + ' KB'
+            elif size_bytes >= 1048576:
+                size = str(round(size_bytes / 1024 / 1024, 2)) + ' MB'
+            return size
+        return '0 KB'
