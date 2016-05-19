@@ -1,5 +1,6 @@
 from datetime import datetime
 from django.db.models import Count
+from django.db.models.query_utils import Q
 
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
@@ -117,10 +118,14 @@ class ProjectSerializer(DynamicFieldsModelSerializer):
                                                 task__project=obj).count()
 
     def get_num_worker_reviews(self, obj):
-        return models.Review.objects.filter(task_worker__worker__profile__user=self.context.get('request').user,
-                                            task_worker__task__project=obj,
-                                            parent__isnull=True,
-                                            status=models.Review.STATUS_SUBMITTED).count()
+        return models.Review.objects.filter(
+            Q(task_worker__worker__profile__user=self.context.get('request').user,
+              parent__isnull=True) |
+            Q(parent__isnull=False,
+              parent__reviewer__profile__user=self.context.get('request').user),
+            task_worker__task__project=obj,
+            status=models.Review.STATUS_SUBMITTED
+        ).count()
 
     def get_num_task_rejections(self, obj):
         return models.Rejection.objects.filter(project=obj).count()

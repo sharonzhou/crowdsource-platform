@@ -24,6 +24,7 @@
         self.filterByStatus = filterByStatus;
         self.dropSavedTasks = dropSavedTasks;
         self.getRatingText = getRatingText;
+        self.filterReviewsByStatus = filterReviewsByStatus;
         self.tasks = [];
         self.status = {
             RETURNED: 5,
@@ -32,6 +33,11 @@
             SUBMITTED: 2,
             IN_PROGRESS: 1,
             SKIPPED: 6
+        };
+        self.review_status = {
+            PENDING_ASSIGNMENT: 0,
+            IN_PROGRESS: 1,
+            SUBMITTED: 2
         };
         activate();
         function activate() {
@@ -81,6 +87,7 @@
             Task.listMyTasks(project.id).then(
                 function success(response) {
                     self.tasks = response[0].tasks;
+                    self.reviews = response[0].reviews;
                     self.selectedProject = project;
                     RatingService.listByTarget(project.owner.profile, 'worker').then(
                         function success(response) {
@@ -122,6 +129,10 @@
 
         function filterByStatus(status) {
             return $filter('filter')(self.tasks, {'task_status': status})
+        }
+        
+        function filterReviewsByStatus(review_status) {
+            return $filter('filter')(self.reviews, {'status': review_status})
         }
 
         function dropSavedTasks(task) {
