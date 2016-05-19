@@ -19,21 +19,35 @@ def random_index(request, *args, **kwargs):
     daemo_id = request.GET.get('daemo_id', False)
     post_url = '/api/done/?daemo_id=' + str(daemo_id)
     data_mappings = {
-        "1": data.football,
-        "2": data.marijuana,
-        "3": data.review,
-        "4": data.tweet
+        "1": data.marijuana,
+        "2": data.review,
+        "3": data.tweet
     }
     projects = []
-    project_indexes = [1, 2, 3, 4]
+    project_indexes = [1, 2, 3]
     requesters = {
-        "1": 0.14285,
-        "2": 0.14285,
-        "3": 0.14285,
-        "4": 0.14285,
-        "5": 0.14285,
-        "6": 0.14285,
-        "7": 0.14285
+        "0": 0.04545,
+        "1": 0.04545,
+        "2": 0.04545,
+        "3": 0.04545,
+        "4": 0.04545,
+        "5": 0.04545,
+        "6": 0.04545,
+        "7": 0.04545,
+        "8": 0.04545,
+        "9": 0.04545,
+        "10": 0.04545,
+        "11": 0.04545,
+        "12": 0.04545,
+        "13": 0.04545,
+        "14": 0.04545,
+        "15": 0.04545,
+        "16": 0.04545,
+        "17": 0.04545,
+        "18": 0.04545,
+        "19": 0.04545,
+        "20": 0.04545,
+        "21": 0.04545,
     }
 
     if not daemo_id:
