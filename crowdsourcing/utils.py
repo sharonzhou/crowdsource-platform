@@ -80,6 +80,13 @@ def get_time_delta(time_stamp):
     return "{days}{hours}{minutes}ago".format(days=days, hours=hours, minutes=minutes)
 
 
+def float_or_0(x):
+    try:
+        x = float(x)
+    except:
+        x = 0
+    return x
+
 class Oauth2Backend(OAuthLibCore):
     def _extract_params(self, request):
         """
