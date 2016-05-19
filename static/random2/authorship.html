@@ -512,13 +512,7 @@
                                         <p class="overview title">review household products you already own</p>
                                     </div>
                                     <div class="question-wrapper">
-                                        <input value="-" type="hidden" name="QuestionMarker"><input value="MQ--"
-                                                                                                    type="hidden"
-                                                                                                    name="Question_1_Id"><input
-                                            value="MQ--" type="hidden" name="Identifier_MQ--_Identifier"><input
-                                            type="hidden"
-                                            name="ValidationData_1"
-                                            value="IsRequired;">
+
                                         <div class="question-content-wrapper">
                                             <p class=" text">Review your {{ task.product_name }}. Be detailed and
                                                 specific
@@ -532,9 +526,6 @@
                                                 relevant - cooking time, consistency, reliability, etc...</p>
                                         </div>
                                         <div class="HITAnswer-wrapper">
-                                            <input type="hidden" value="FreeTextAnswer" name="Answer_1_Type">
-                                            <div class="free-text-answer-wrapper">
-                                                <input value="" name="ValidationData_1" type="hidden">
                                             <textarea cols="80"
                                                       name="{{ project.index }}_{{ forloop.counter }}_{{ project.requester }}_productreview"
                                                       class="question free-text"
