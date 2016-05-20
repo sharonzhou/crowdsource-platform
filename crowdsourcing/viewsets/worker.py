@@ -117,7 +117,19 @@ class WorkerViewSet(viewsets.ModelViewSet):
             tasks = TaskWorker.objects.values('task__project__price', 'id') \
                 .filter(worker__alias=worker['worker_id'],
                         task_status__in=[TaskWorker.STATUS_ACCEPTED, TaskWorker.STATUS_SUBMITTED], is_paid=False)
-            total = sum(tasks.values_list('task__project__price', flat=True))
+
+            reviews = Review.objects.filter(
+                reviewer__alias=worker['worker_id'],
+                status=Review.STATUS_SUBMITTED, is_paid=False)
+
+            for review in reviews:
+                if review.price == 0 or review.price is None:
+                    review.price = review.task_worker.task.project.price
+                    review.save()
+
+            total = sum(map(float_or_0, tasks.values_list('task__project__price', flat=True)))
+            total += sum(map(float_or_0, reviews.values_list('price', flat=True)))
+
             if total > 0:
                 price = Price(total)
                 try:
@@ -125,6 +137,7 @@ class WorkerViewSet(viewsets.ModelViewSet):
                     connection.grant_bonus(worker['workerId'], worker['assignmentId'],
                                            bonus_price=price, reason=reason)
                     tasks.update(is_paid=True)
+                    reviews.update(is_paid=True)
                     worker.update({"is_paid": True})
                 except MTurkRequestError:
                     worker.update({"is_paid": False})
