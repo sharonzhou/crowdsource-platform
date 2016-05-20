@@ -8,6 +8,7 @@ from ws4redis.publisher import RedisPublisher
 from ws4redis.redis_store import RedisMessage
 
 from crowdsourcing import models
+from crowdsourcing.utils import float_or_0
 from csp.celery import app as celery_app
 
 
@@ -28,15 +29,16 @@ def monitor_tasks_for_review():
         if len(task_workers) >= worker.num_tasks_post_review:
             task_workers = task_workers[:worker.num_tasks_post_review]
 
-        reviews = models.Review.objects \
-            .filter(reviewer=worker, parent__isnull=True) \
-            .order_by('-last_updated')[:worker.num_reviews_post_review]
-
-        if len(reviews) >= worker.num_reviews_post_review:
-            reviews = reviews[:worker.num_reviews_post_review]
+        # reviews = models.Review.objects \
+        #     .filter(reviewer=worker, parent__isnull=True) \
+        #     .order_by('-last_updated')[:worker.num_reviews_post_review]
+        #
+        # if len(reviews) >= worker.num_reviews_post_review:
+        #     reviews = reviews[:worker.num_reviews_post_review]
 
         # choose 1 randomly
-        merged = list(task_workers) + list(reviews)
+        merged = list(task_workers)
+                 # + list(reviews)
         result = random.choice(merged)
 
         # create review without reviewer - ready for assignment
@@ -48,14 +50,14 @@ def monitor_tasks_for_review():
                 price=0.20
             )
 
-        if result.__class__.__name__ == 'Review':
-            models.Review.objects.create(
-                task_worker=result.task_worker,
-                parent=result,
-                level=result.reviewer.level,
-                time_spent=0,
-                price=0.20
-            )
+        # if result.__class__.__name__ == 'Review':
+        #     models.Review.objects.create(
+        #         task_worker=result.task_worker,
+        #         parent=result,
+        #         level=result.reviewer.level,
+        #         time_spent=0,
+        #         price=0.20
+        #     )
 
         worker.num_tasks_post_review = 0
         worker.num_reviews_post_review = 0
@@ -74,10 +76,14 @@ def monitor_reviews_for_leveling():
             .filter(status=models.Review.STATUS_SUBMITTED) \
             .filter(
                 Q(task_worker__worker=worker) | Q(reviewer=worker, parent__isnull=False)) \
-            .order_by('-last_updated')[:settings.NUM_REVIEWS_FOR_LEVELING]
+            .order_by('-last_updated')
+
+        if len(reviews) >= settings.NUM_REVIEWS_FOR_LEVELING:
+            reviews = reviews[:settings.NUM_REVIEWS_FOR_LEVELING]
 
         # calculate moving average
-        avg = reduce(lambda x, y: x.rating + y.rating, reviews) / len(reviews)
+        avg = sum(map(float_or_0, reviews.values_list('rating', flat=True))) / len(reviews)
+        # avg = reduce(lambda x, y: x.rating + y.rating, reviews) / len(reviews)
 
         level = worker.level
 

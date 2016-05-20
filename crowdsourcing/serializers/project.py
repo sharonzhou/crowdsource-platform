@@ -1,5 +1,6 @@
 from datetime import datetime
 from django.db.models import Count
+from django.db.models.query_utils import Q
 
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError

@@ -24,6 +24,7 @@
         self.filterByStatus = filterByStatus;
         self.dropSavedTasks = dropSavedTasks;
         self.getRatingText = getRatingText;
+        self.filterReviewsByStatus = filterReviewsByStatus;
         self.tasks = [];
         self.status = {
             RETURNED: 5,
@@ -32,6 +33,11 @@
             SUBMITTED: 2,
             IN_PROGRESS: 1,
             SKIPPED: 6
+        };
+        self.review_status = {
+            PENDING_ASSIGNMENT: 0,
+            IN_PROGRESS: 1,
+            SUBMITTED: 2
         };
         activate();
         function activate() {
@@ -81,6 +87,7 @@
             Task.listMyTasks(project.id).then(
                 function success(response) {
                     self.tasks = response[0].tasks;
+                    self.reviews = response[0].reviews;
                     self.selectedProject = project;
                     RatingService.listByTarget(project.owner.profile, 'worker').then(
                         function success(response) {
@@ -124,6 +131,10 @@
             return $filter('filter')(self.tasks, {'task_status': status})
         }
 
+        function filterReviewsByStatus(review_status) {
+            return $filter('filter')(self.reviews, {'status': review_status})
+        }
+
         function dropSavedTasks(task) {
             var request_data = {
                 task_ids: [task.task]
@@ -140,10 +151,10 @@
         function getRatingText(rating, level) {
             var level = parseInt(level);
             var ratings = [
-                'Underperforming for Level ' + level,
-                'Appropriate for Level ' + level,
-                'Good enough work to endorse for Level ' + (level + 1),
-                'Good enough work to endorse for Level ' + (level + 2)
+                'Underperforming',
+                'Appropriate',
+                'Good',
+                'Excellent'
             ];
 
             return ratings[rating - 1];

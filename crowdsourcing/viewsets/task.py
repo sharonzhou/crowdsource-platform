@@ -173,15 +173,26 @@ class TaskWorkerViewSet(viewsets.ModelViewSet):
     @list_route(methods=['get'], url_path='list-my-tasks')
     def list_my_tasks(self, request, *args, **kwargs):
         project_id = request.query_params.get('project_id', -1)
+
         task_workers = TaskWorker.objects.exclude(task_status=TaskWorker.STATUS_SKIPPED). \
             filter(worker=request.user.userprofile.worker, task__project_id=project_id)
-        serializer = TaskWorkerSerializer(instance=task_workers, many=True,
-                                          fields=(
-                                              'id', 'task_status', 'task', 'task_worker_results',
-                                              'is_paid', 'reviews_data'))
+        reviews = Review.objects.filter(
+            reviewer=request.user.userprofile.worker,
+            task_worker__task__project_id=project_id
+        )
+
+        task_serializer = TaskWorkerSerializer(instance=task_workers, many=True,
+                                               fields=('id', 'task_status', 'task', 'task_worker_results',
+                                                       'is_paid', 'reviews_data'))
+        review_serializer = ReviewSerializer(instance=reviews, many=True,
+                                             fields=('id', 'task_worker', 'reviewer', 'status', 'created_timestamp',
+                                                     'last_updated', 'rating', 'comment', 'is_acceptable',
+                                                     'review_data', 'worker_level', 'is_child_review', 'time_spent',
+                                                     'price', 'reviews_data'))
         response_data = {
             "project_id": project_id,
-            "tasks": serializer.data
+            "tasks": task_serializer.data,
+            "reviews": review_serializer.data,
         }
         return Response(data=response_data, status=status.HTTP_200_OK)
 
