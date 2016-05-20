@@ -8,6 +8,7 @@ from ws4redis.publisher import RedisPublisher
 from ws4redis.redis_store import RedisMessage
 
 from crowdsourcing import models
+from crowdsourcing.utils import float_or_0
 from csp.celery import app as celery_app
 
 
@@ -74,10 +75,14 @@ def monitor_reviews_for_leveling():
             .filter(status=models.Review.STATUS_SUBMITTED) \
             .filter(
                 Q(task_worker__worker=worker) | Q(reviewer=worker, parent__isnull=False)) \
-            .order_by('-last_updated')[:settings.NUM_REVIEWS_FOR_LEVELING]
+            .order_by('-last_updated')
+
+        if len(reviews) >= settings.NUM_REVIEWS_FOR_LEVELING:
+            reviews = reviews[:settings.NUM_REVIEWS_FOR_LEVELING]
 
         # calculate moving average
-        avg = reduce(lambda x, y: x.rating + y.rating, reviews) / len(reviews)
+        avg = sum(map(float_or_0, reviews.values_list('rating', flat=True))) / len(reviews)
+        # avg = reduce(lambda x, y: x.rating + y.rating, reviews) / len(reviews)
 
         level = worker.level
 
