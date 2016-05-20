@@ -348,6 +348,7 @@ class TaskSerializer(DynamicFieldsModelSerializer):
 class ReviewSerializer(DynamicFieldsModelSerializer):
     task_worker = TaskWorkerSerializer(read_only=True)
     review_data = serializers.SerializerMethodField()
+    reviews_data = serializers.SerializerMethodField()
     worker_level = serializers.SerializerMethodField()
     is_child_review = serializers.SerializerMethodField()
 
@@ -355,10 +356,10 @@ class ReviewSerializer(DynamicFieldsModelSerializer):
         model = models.Review
         fields = (
             'id', 'task_worker', 'reviewer', 'status', 'created_timestamp', 'last_updated', 'rating', 'comment',
-            'is_acceptable', 'review_data', 'worker_level', 'is_child_review', 'time_spent', 'price')
+            'is_acceptable', 'review_data', 'reviews_data','worker_level', 'is_child_review', 'time_spent', 'price')
         read_only_fields = (
             'id', 'task_worker', 'reviewer', 'status', 'created_timestamp', 'last_updated', 'review_data',
-            'worker_level', 'is_child_review', 'price')
+            'reviews_data','worker_level', 'is_child_review', 'price')
 
     @staticmethod
     def get_review_data(obj):
@@ -369,6 +370,13 @@ class ReviewSerializer(DynamicFieldsModelSerializer):
             'id', 'task_worker', 'reviewer', 'status', 'created_timestamp', 'last_updated', 'rating', 'comment',
             'is_acceptable')).data
         return review
+
+    @staticmethod
+    def get_reviews_data(obj):
+        reviews = obj.child_reviews.filter(status=models.Review.STATUS_SUBMITTED)
+        serializer = ReviewSerializer(instance=reviews, many=True,
+                                      fields=('id', 'rating', 'is_acceptable', 'comment', 'worker_level'))
+        return serializer.data
 
     @staticmethod
     def get_worker_level(obj):
