@@ -22,14 +22,18 @@ def monitor_tasks_for_review():
     for worker in workers:
         task_workers = models.TaskWorker.objects \
             .filter(worker=worker) \
-            .filter(
-                Q(task_status=models.TaskWorker.STATUS_ACCEPTED) | Q(
-                    task_status=models.TaskWorker.STATUS_REJECTED)) \
-            .order_by('-last_updated')[:worker.num_tasks_post_review]
+            .filter(task_status=models.TaskWorker.STATUS_SUBMITTED) \
+            .order_by('-last_updated')
+
+        if len(task_workers) >= worker.num_tasks_post_review:
+            task_workers = task_workers[:worker.num_tasks_post_review]
 
         reviews = models.Review.objects \
             .filter(reviewer=worker, parent__isnull=True) \
             .order_by('-last_updated')[:worker.num_reviews_post_review]
+
+        if len(reviews) >= worker.num_reviews_post_review:
+            reviews = reviews[:worker.num_reviews_post_review]
 
         # choose 1 randomly
         merged = list(task_workers) + list(reviews)
@@ -85,6 +89,12 @@ def monitor_reviews_for_leveling():
         else:
             if avg > 3:
                 level += 1
+
+        if level < 1:
+            level = 1
+
+        if level > 4:
+            level = 4
 
         # message = "worker level updated from %d to %d" %(worker.level, level)
         if level != worker.level:
