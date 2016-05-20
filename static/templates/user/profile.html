@@ -1,80 +1,89 @@
 <div class="_main-content _middle-content" ng-class="{'_sm': $mdMedia('sm'), '_gt-sm': $mdMedia('gt-sm')}">
-    <div layout="row" class="layout-align-start-center _task-nav _task-feed-shadow"
-         ng-class="{'_sm': $mdMedia('sm'), '_gt-sm': $mdMedia('gt-sm')}">
-        <span class="_nav-title _left-inset">My Profile</span>
-    </div>
-    <div class="md-whiteframe-z1 md-padding" flex>
-        <div layout="row" layout-align="start start" layout-margin>
-            <div layout="column" layout-align="start">
-                <img ng-src="{{ vm.user.picture || '/static/images/ic_account_circle_black_48dp.png' }}" alt="Profile">
+  <div layout="row" class="layout-align-start-center _task-nav _task-feed-shadow"
+       ng-class="{'_sm': $mdMedia('sm'), '_gt-sm': $mdMedia('gt-sm')}">
+    <span class="_nav-title _left-inset">My Profile</span>
+  </div>
+  <div class="md-whiteframe-z1 md-padding" flex>
+    <div layout="row" layout-align="start start" layout-margin>
+      <div layout="column" layout-align="start">
+        <img ng-src="{{ vm.user.picture || '/static/images/ic_account_circle_black_48dp.png' }}" alt="Profile">
 
-                <p class="md-display-1 md-margin-0">{{ vm.user.first_name }} {{ vm.user.last_name }}</p>
+        <p class="md-display-1 md-margin-0">{{ vm.user.first_name }} {{ vm.user.last_name }}</p>
 
-                <p>Member since {{ vm.user.created_timestamp | date:'yyyy-MM-dd' }}</p>
-            </div>
-            <div layout="column" layout-align="start" class="md-padding" flex>
-                <div class="inset">
-                    <p><span class="md-subheader">Date of Birth :</span> {{ vm.user.birthday || 'Not Available'}}</p>
+        <p>Member since {{ vm.user.created_timestamp | date:'yyyy-MM-dd' }}</p>
+      </div>
+      <div layout="column" layout-align="start" class="md-padding" flex>
+        <div class="inset">
+          <p><span class="md-subheader">Date of Birth :</span> {{ vm.user.birthday || 'Not Available'}}</p>
 
-                    <p><span class="md-subheader">Address :</span> {{ vm.user.address || 'Not Available'}}</p>
+          <p><span class="md-subheader">Address :</span> {{ vm.user.address || 'Not Available'}}</p>
 
-                    <p><span class="md-subheader">Nationality:</span>
-                        {{ vm.user.nationality.length || 'Not Available'}}
-                    </p>
-                </div>
-            </div>
-            <md-menu md-position-mode="target-right target">
-                <md-button aria-label="Actions" ng-click="$mdOpenMenu($event)">Actions</md-button>
-                <md-menu-content width="2">
-                    <md-menu-item>
-                        <md-button ng-click="vm.paypal_payment($event)">Deposit</md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="vm.awsAccountEdit=true">{{ vm.aws_account.id ? 'Edit MTurk/AWS' : 'Add MTurk/AWS' }}</md-button>
-                    </md-menu-item>
-                    <!-- TODO: Drive -->
-                    <!--<md-menu-item>-->
-                    <!--<md-button ng-controller="DriveController as drive"-->
-                    <!--ng-click="drive.addDriveAccount()">Connect Google Drive</md-button>-->
-                    <!--</md-menu-item>-->
-                </md-menu-content>
-            </md-menu>
-
+          <p><span class="md-subheader">Nationality:</span>
+            {{ vm.user.nationality.length || 'Not Available'}}
+          </p>
         </div>
+      </div>
+      <md-menu md-position-mode="target-right target">
+        <md-button aria-label="Actions" ng-click="$mdOpenMenu($event)">Actions</md-button>
+        <md-menu-content width="2">
+          <md-menu-item>
+            <md-button ng-click="vm.paypal_payment($event)">Deposit</md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="vm.awsAccountEdit=true">{{ vm.aws_account.id ? 'Edit MTurk/AWS' : 'Add MTurk/AWS' }}
+            </md-button>
+          </md-menu-item>
+          <!-- TODO: Drive -->
+          <!--<md-menu-item>-->
+          <!--<md-button ng-controller="DriveController as drive"-->
+          <!--ng-click="drive.addDriveAccount()">Connect Google Drive</md-button>-->
+          <!--</md-menu-item>-->
+        </md-menu-content>
+      </md-menu>
 
-        <md-list>
-            <div class="md-no-sticky md-subheader">Financial Accounts</div>
-            <md-list-item ng-repeat="financial_account in vm.user.financial_accounts">
-                <p ng-bind="financial_account.type"></p>
-                <h4 style="margin-top:0;margin-bottom:0;">{{ financial_account.balance | currency:"$" }}</h4>
-            </md-list-item>
-        </md-list>
-
-        <div ng-if="vm.aws_account || vm.awsAccountEdit">
-            <div class="md-no-sticky md-subheader">AWS Account</div>
-            <div>
-                <p class="_ml-16" ng-if="!vm.awsAccountEdit" style="text-transform: lowercase;">{{ vm.aws_account.client_id }}
-                </p>
-                <div layout="row" ng-if="vm.awsAccountEdit" >
-                    <md-input-container class="_ml-16 md-block _small-container">
-                        <label>Client ID</label>
-                        <input name="client_id" required ng-model="vm.aws_account.client_id">
-                    </md-input-container>
-                    <md-input-container class="_ml-24 md-block _small-container">
-                        <label>Client Secret</label>
-                        <input name="client_secret" autocomplete="off" required ng-model="vm.aws_account.client_secret">
-                    </md-input-container>
-                    <md-button style="height: 46px;" ng-click="vm.create_or_update_aws()">Save</md-button>
-                    <md-button ng-if="vm.aws_account.id" style="height: 46px;" ng-click="vm.removeAWSAccount()">Delete</md-button>
-                </div>
-                <div class="_small-note _error _ml-16">{{ vm.AWSError }}</div>
-            </div>
-            <div ng-if="!vm.aws_account.id && vm.awsAccountEdit" class="_small-note">
-                To obtain Amazon keys for posting to Mechanical Turk, click
-                <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html" target="_blank">here</a>
-                and add the AmazonMechanicalTurkFullAccess Policy.
-                Then, copy/paste the ID and secret here.
-            </div>
-        </div>
     </div>
+
+    <md-list>
+      <div class="md-no-sticky md-subheader">Financial Accounts</div>
+      <md-list-item>
+        <p>Earnings</p>
+        <h4 style="margin-top:0;margin-bottom:0;">{{ vm.user.worker.earnings | currency:"$" }}</h4>
+      </md-list-item>
+      <md-list-item>
+        <p>Payment due</p>
+        <h4 style="margin-top:0;margin-bottom:0;">{{ vm.user.worker.dues | currency:"$" }}</h4>
+      </md-list-item>
+      <!--<md-list-item ng-repeat="financial_account in vm.user.financial_accounts">-->
+      <!--<p ng-bind="financial_account.type"></p>-->
+      <!--<h4 style="margin-top:0;margin-bottom:0;">{{ financial_account.balance | currency:"$" }}</h4>-->
+      <!--</md-list-item>-->
+    </md-list>
+
+    <div ng-if="vm.aws_account || vm.awsAccountEdit">
+      <div class="md-no-sticky md-subheader">AWS Account</div>
+      <div>
+        <p class="_ml-16" ng-if="!vm.awsAccountEdit" style="text-transform: lowercase;">{{ vm.aws_account.client_id }}
+        </p>
+        <div layout="row" ng-if="vm.awsAccountEdit">
+          <md-input-container class="_ml-16 md-block _small-container">
+            <label>Client ID</label>
+            <input name="client_id" required ng-model="vm.aws_account.client_id">
+          </md-input-container>
+          <md-input-container class="_ml-24 md-block _small-container">
+            <label>Client Secret</label>
+            <input name="client_secret" autocomplete="off" required ng-model="vm.aws_account.client_secret">
+          </md-input-container>
+          <md-button style="height: 46px;" ng-click="vm.create_or_update_aws()">Save</md-button>
+          <md-button ng-if="vm.aws_account.id" style="height: 46px;" ng-click="vm.removeAWSAccount()">Delete</md-button>
+        </div>
+        <div class="_small-note _error _ml-16">{{ vm.AWSError }}</div>
+      </div>
+      <div ng-if="!vm.aws_account.id && vm.awsAccountEdit" class="_small-note">
+        To obtain Amazon keys for posting to Mechanical Turk, click
+        <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html" target="_blank">here</a>
+        and add the AmazonMechanicalTurkFullAccess Policy.
+        Then, copy/paste the ID and secret here.
+      </div>
+    </div>
+  </div>
 </div>

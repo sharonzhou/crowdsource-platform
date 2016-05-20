@@ -1,6 +1,7 @@
 from crowdsourcing import models
 from rest_framework import serializers
 from crowdsourcing.serializers.dynamic import DynamicFieldsModelSerializer
+from crowdsourcing.utils import float_or_0
 
 
 class SkillSerializer(serializers.ModelSerializer):
@@ -32,11 +33,13 @@ class WorkerSerializer(DynamicFieldsModelSerializer):
     Good Lord, this needs cleanup :D, yes it really does
     '''
     num_tasks = serializers.SerializerMethodField()
+    earnings = serializers.SerializerMethodField()
+    dues = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Worker
-        fields = ('profile', 'skills', 'num_tasks', 'alias', 'id', 'level', 'has_guild')
-        read_only_fields = ('num_tasks', 'level', 'has_guild')
+        fields = ('profile', 'skills', 'num_tasks', 'alias', 'id', 'level', 'has_guild', 'earnings', 'dues')
+        read_only_fields = ('num_tasks', 'level', 'has_guild', 'earnings', 'dues')
 
     def create(self, validated_data):
         worker = models.Worker.objects.create(**validated_data)
@@ -52,6 +55,41 @@ class WorkerSerializer(DynamicFieldsModelSerializer):
         # response_data = models.Worker.objects.filter(taskworker__worker = instance).count()
         response_data = models.TaskWorker.objects.filter(worker=instance).count()
         return response_data
+
+    def get_earnings(self, instance):
+        tasks = models.TaskWorker.objects.values('task__project__price', 'id') \
+            .filter(worker__alias=instance.alias,
+                    task_status__in=[models.TaskWorker.STATUS_ACCEPTED, models.TaskWorker.STATUS_SUBMITTED],
+                    is_paid=True)
+
+        reviews = models.Review.objects.filter(
+            reviewer__alias=instance.alias,
+            status=models.Review.STATUS_SUBMITTED, is_paid=True)
+
+        total = sum(map(float_or_0, tasks.values_list('task__project__price', flat=True)))
+        total += sum(map(float_or_0, reviews.values_list('price', flat=True)))
+
+        return total
+
+    def get_dues(self, instance):
+        tasks = models.TaskWorker.objects.values('task__project__price', 'id') \
+            .filter(worker__alias=instance.alias,
+                    task_status__in=[models.TaskWorker.STATUS_ACCEPTED, models.TaskWorker.STATUS_SUBMITTED],
+                    is_paid=False)
+
+        reviews = models.Review.objects.filter(
+            reviewer__alias=instance.alias,
+            status=models.Review.STATUS_SUBMITTED, is_paid=False)
+
+        for review in reviews:
+            if review.price == 0 or review.price is None:
+                review.price = review.task_worker.task.project.price
+                review.save()
+
+        total = sum(map(float_or_0, tasks.values_list('task__project__price', flat=True)))
+        total += sum(map(float_or_0, reviews.values_list('price', flat=True)))
+
+        return total
 
 
 class WorkerSkillSerializer(serializers.ModelSerializer):
