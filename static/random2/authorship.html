@@ -2137,7 +2137,9 @@
                             <div class="row col-xs-12">
                                 {% for task in project.tasks %}
                                     <div class="row">
-
+                                        <div class="col-xs-12 col-lg-9">
+                                            <a href="{{ task.url }}" target="_blank">{{ task.url }}</a>
+                                        </div>
                                         <div class="col-xs-12 col-lg-3 sidebar">
                                             <h4>What is the stance of this webpage on marijuana legalization?</h4>
 
@@ -2162,9 +2164,7 @@
 
                                         </div>
 
-                                        <div class="col-xs-12 col-lg-9">
-                                            <iframe src="{{ task.url }}"></iframe>
-                                        </div>
+
 
                                     </div>
                                     <br>
@@ -2618,7 +2618,7 @@
                             <b>Please read this web page carefully (<a href="{{ task.url }}" target="_blank">open in a
                                 new
                                 window</a>):</b><br>
-                            <iframe height="600" src="{{ task.url }}" width="960"></iframe>
+                            <a href="{{ task.url }}">{{ task.url }}</a>
                             <br>
                             <p>Is this web page:<br/>
                                 <label for="choice1"><input id="choice1"
