@@ -340,7 +340,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
         serializer = ReviewSerializer(instance=review_results, many=True,
                                       fields=('id', 'task_worker', 'status', 'review_data',
-                                              'created_timestamp', 'last_updated',
+                                              'created_timestamp', 'last_updated', 'price',
                                               'reviewer', 'worker_level', 'is_child_review',
                                               'rating', 'is_acceptable', 'comment'))
         return Response(data=serializer.data, status=status.HTTP_200_OK)
