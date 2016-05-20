@@ -76,13 +76,14 @@ def monitor_reviews_for_leveling():
             .filter(status=models.Review.STATUS_SUBMITTED) \
             .filter(
                 Q(task_worker__worker=worker) | Q(reviewer=worker, parent__isnull=False)) \
-            .order_by('-last_updated')
+            .order_by('-last_updated') \
+            .values_list('rating', flat=True)
 
         if len(reviews) >= settings.NUM_REVIEWS_FOR_LEVELING:
             reviews = reviews[:settings.NUM_REVIEWS_FOR_LEVELING]
 
         # calculate moving average
-        avg = sum(map(float_or_0, reviews.values_list('rating', flat=True))) / len(reviews)
+        avg = sum(map(float_or_0, reviews)) / len(reviews)
         # avg = reduce(lambda x, y: x.rating + y.rating, reviews) / len(reviews)
 
         level = worker.level

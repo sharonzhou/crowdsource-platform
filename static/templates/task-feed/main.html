@@ -12,11 +12,10 @@
                         <span ng-if="review.price > 0">{{ review.price | currency:"$":2}}</span>
                     </div>
                     <div flex="60" class="_title">
-                        <span class="bubble primary">Review Task</span> <span
-                            ng-if="review.review_data">Review of </span>{{ review.task_worker.project_data.name }}
+                        Review of {{ review.task_worker.project_data.name }}
                     </div>
                     <div flex="30" class="_author _right-offset">
-                        <div class="_user-alias _no-border">Crowd Guild</div>
+                        <div class="_user-alias _no-border">robert.james</div>
                     </div>
                 </div>
                 <div layout="row" class="layout-align-start-center">

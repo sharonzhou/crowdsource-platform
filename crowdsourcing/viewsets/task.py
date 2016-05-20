@@ -388,6 +388,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
             return Response({'detail': 'Review is not assigned to you'}, status.HTTP_400_BAD_REQUEST)
 
         review.status = Review.STATUS_PENDING_ASSIGNMENT
+        review.time_spent = 0
         review.reviewer = None
         review.save()
 
