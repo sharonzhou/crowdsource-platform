@@ -44,10 +44,18 @@
 
         <md-list>
             <div class="md-no-sticky md-subheader">Financial Accounts</div>
-            <md-list-item ng-repeat="financial_account in vm.user.financial_accounts">
-                <p ng-bind="financial_account.type"></p>
-                <h4 style="margin-top:0;margin-bottom:0;">{{ financial_account.balance | currency:"$" }}</h4>
+            <md-list-item>
+                <p>Earnings</p>
+                <h4 style="margin-top:0;margin-bottom:0;">{{ vm.user.worker.earnings | currency:"$" }}</h4>
             </md-list-item>
+          <md-list-item>
+                <p>Payment due</p>
+                <h4 style="margin-top:0;margin-bottom:0;">{{ vm.user.worker.dues | currency:"$" }}</h4>
+            </md-list-item>
+            <!--<md-list-item ng-repeat="financial_account in vm.user.financial_accounts">-->
+                <!--<p ng-bind="financial_account.type"></p>-->
+                <!--<h4 style="margin-top:0;margin-bottom:0;">{{ financial_account.balance | currency:"$" }}</h4>-->
+            <!--</md-list-item>-->
         </md-list>
 
         <div ng-if="vm.aws_account || vm.awsAccountEdit">
