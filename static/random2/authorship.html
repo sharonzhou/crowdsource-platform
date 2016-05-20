@@ -1273,6 +1273,7 @@
 
                                 <br>
                                 {% for task in project.tasks %}
+                                    URL: <a href="{{ task.url }}" target="_blank"></a>
                                     <strong>The position of this article on marijuana legalization is:</strong>
                                     <div>
                                         <input type="radio"
@@ -1286,8 +1287,6 @@
                                                value="Neither"> Neither
                                     </div>
 
-
-                                    <iframe width="100%" height="450" src="{{ task.url }}"></iframe>
                                 {% endfor %}
 
                                 <!-- https://www.google.com/ -->
