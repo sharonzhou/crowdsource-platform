@@ -204,6 +204,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
         projects = request.user.userprofile.requester.project_owner.all().filter(deleted=False)
         serializer = ProjectSerializer(instance=projects, many=True,
                                        fields=('id', 'name', 'age', 'total_tasks', 'total_tasks_pending_review',
+                                               'num_task_rejections', 'num_review_rejections',
                                                'status', 'price'),
                                        context={'request': request})
         return Response(serializer.data)

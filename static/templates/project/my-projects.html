@@ -18,7 +18,9 @@
                 <div flex="15">Status</div>
                 <div flex="8">Tasks</div>
                 <div flex>Pending Review</div>
-                <div flex="25">Age</div>
+                <div flex>Tasks Rejected</div>
+                <div flex>Reviews Rejected</div>
+                <!--<div flex="18">Age</div>-->
                 <div flex="20"></div>
             </md-list-item>
             <md-list-item class="list-item-with-padding" ng-repeat="item in project.myProjects">
@@ -26,7 +28,9 @@
                 <div flex="15">{{ project.statusToString(item.status) }}</div>
                 <div flex="8">{{ item.total_tasks }}</div>
                 <div flex>{{ item.total_tasks_pending_review }}</div>
-                <div flex="25">{{ item.age }}</div>
+                <div flex>{{ item.num_task_rejections }}</div>
+                <div flex>{{ item.num_review_rejections }}</div>
+                <!--<div flex="18">{{ item.age }}</div>-->
                 <div flex="20" layout="row">
                     <!-- add md-secondary classes when supported -->
                     <md-button ng-disabled="item.status==1" aria-label="Review" class="md-icon-button" ng-click="project.navigateToTasks(item.id)">

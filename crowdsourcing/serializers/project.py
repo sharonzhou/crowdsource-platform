@@ -44,6 +44,8 @@ class ProjectSerializer(DynamicFieldsModelSerializer):
     allowed_levels = serializers.SerializerMethodField()
     num_accepted_worker_tasks = serializers.SerializerMethodField()
     num_worker_reviews = serializers.SerializerMethodField()
+    num_task_rejections = serializers.SerializerMethodField()
+    num_review_rejections = serializers.SerializerMethodField()
     comments = serializers.SerializerMethodField()
     name = serializers.CharField(default='Untitled Project')
     status = serializers.IntegerField(default=1)
@@ -62,10 +64,12 @@ class ProjectSerializer(DynamicFieldsModelSerializer):
                   'data_set_location', 'total_tasks', 'total_tasks_pending_review', 'file_id', 'age', 'is_micro',
                   'is_prototype', 'task_time', 'allowed_levels', 'num_accepted_worker_tasks', 'num_worker_reviews',
                   'allow_feedback', 'feedback_permissions', 'min_rating', 'has_comments',
+                  'num_task_rejections', 'num_review_rejections',
                   'available_tasks', 'comments', 'num_rows', 'requester_rating', 'raw_rating', 'post_mturk', 'level')
         read_only_fields = (
             'created_timestamp', 'last_updated', 'deleted', 'owner', 'has_comments', 'available_tasks',
-            'comments', 'templates', 'level', 'allowed_levels', 'num_accepted_worker_tasks', 'num_worker_reviews',)
+            'comments', 'templates', 'level', 'allowed_levels', 'num_accepted_worker_tasks', 'num_worker_reviews',
+            'num_task_rejections', 'num_review_rejections',)
 
     def create(self, with_defaults=True, **kwargs):
         templates = self.validated_data.pop('templates') if 'templates' in self.validated_data else []
@@ -117,6 +121,12 @@ class ProjectSerializer(DynamicFieldsModelSerializer):
                                             task_worker__task__project=obj,
                                             parent__isnull=True,
                                             status=models.Review.STATUS_SUBMITTED).count()
+
+    def get_num_task_rejections(self, obj):
+        return models.Rejection.objects.filter(project=obj).count()
+
+    def get_num_review_rejections(self, obj):
+        return models.Rejection.objects.filter(review__task_worker__task__project=obj).count()
 
     @staticmethod
     def get_total_tasks_pending_review(obj):
