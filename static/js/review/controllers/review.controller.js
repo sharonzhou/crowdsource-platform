@@ -113,11 +113,11 @@
         function getRatingList(level) {
             var level = parseInt(level);
             return [
-                'Underperforming for Level ' + level,
-                'Appropriate for Level ' + level,
-                'Good enough work to endorse for Level ' + (level + 1),
-                'Good enough work to endorse for Level ' + (level + 2)
-            ]
+                'Underperforming',
+                'Appropriate',
+                'Good',
+                'Excellent'
+            ];
         }
 
 

@@ -137,7 +137,34 @@
             <md-subheader>Submitted</md-subheader>
             <md-list>
               <md-list-item ng-repeat="task in myTasks.filterByStatus(myTasks.status.SUBMITTED)">
-                <p>{{ 'Task '+task.task }}</p>
+                <div>
+                  <p>{{ 'Task '+task.task }}</p>
+                  <h4 class="md-subheader"
+                      ng-if="task.reviews_data && task.reviews_data.length">
+                    Reviews
+                    <div style="display: inline;">
+                      <md-icon md-font-set="material-icons" class="md-20">help_outline
+                      </md-icon>
+                      <md-tooltip md-direction="top" class="md-14">
+                        Your work has been reviewed by a worker.
+                      </md-tooltip>
+                    </div>
+                  </h4>
+
+                  <div class="boxed" ng-repeat="review in task.reviews_data">
+                    <strong>1) How would you rate this submission?</strong>
+
+                    <p>{{myTasks.getRatingText(review.rating, review.worker_level)}}</p>
+
+                    <strong>2) If you were the requester, would you accept this?</strong>
+
+                    <p>{{review.is_acceptable?'Yes': 'No' }}</p>
+
+                    <strong>3) If this was your work, how would you improve it?</strong>
+
+                    <p>{{review.comment}}</p>
+                  </div>
+                </div>
               </md-list-item>
             </md-list>
             <md-divider></md-divider>
@@ -156,9 +183,7 @@
                       <md-icon md-font-set="material-icons" class="md-20">help_outline
                       </md-icon>
                       <md-tooltip md-direction="top" class="md-14">
-                        Your work has been reviewed by a worker in a higher level. <br>
-                        Your level is adjusted based on your 10 most recently reviewed<br>
-                        tasks. Find out more about leveling on the forum.
+                        Your work has been reviewed by a worker.
                       </md-tooltip>
                     </div>
                   </h4>
@@ -193,7 +218,6 @@
 
 
           <md-divider ng-if="myTasks.reviews.length"></md-divider>
-
 
           <div class="_sheet-header _detail-sheet" layout="row" layout-align="start center"
                ng-if="myTasks.reviews.length">

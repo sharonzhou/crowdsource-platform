@@ -238,7 +238,7 @@ POST_TO_MTURK = os.environ.get('POST_TO_MTURK', False)
 
 # Leveling + Guild
 NUM_TASKS_FOR_REVIEW = int(os.environ.get('NUM_TASKS_FOR_REVIEW', 10))
-NUM_REVIEWS_FOR_LEVELING = int(os.environ.get('NUM_REVIEWS_FOR_LEVELING', 10))
+NUM_REVIEWS_FOR_LEVELING = int(os.environ.get('NUM_REVIEWS_FOR_LEVELING', 5))
 
 # Celery
 BROKER_URL = REDIS_URL
@@ -253,10 +253,10 @@ CELERYBEAT_SCHEDULE = {
     #     'task': 'mturk.tasks.mturk_publish',
     #     'schedule': timedelta(minutes=int(MTURK_BEAT)),
     # },
-    # 'create-reviews': {
-    #     'task': 'crowdsourcing.tasks.monitor_tasks_for_review',
-    #     'schedule': timedelta(seconds=15)
-    # },
+    'create-reviews': {
+        'task': 'crowdsourcing.tasks.monitor_tasks_for_review',
+        'schedule': timedelta(seconds=15)
+    },
     # 'perform-leveling': {
     #     'task': 'crowdsourcing.tasks.monitor_reviews_for_leveling',
     #     'schedule': timedelta(seconds=15)

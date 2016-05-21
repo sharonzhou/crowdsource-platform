@@ -252,14 +252,17 @@ class TaskWorkerResultViewSet(viewsets.ModelViewSet):
         task_status = request.data.get('task_status', None)
         saved = request.data.get('saved')
 
+        is_requester = hasattr(request.user.userprofile, 'requester')
         with transaction.atomic():
             task_worker = TaskWorker.objects.get(worker=request.user.userprofile.worker, task=task)
 
             # consider it first time it is submitted to avoid multiple reviews
-            if task_worker.task_status == TaskWorker.STATUS_IN_PROGRESS and task_status == TaskWorker.STATUS_SUBMITTED\
-                    and task_worker.worker != request.user.userprofile.worker:
-                task_worker.worker.num_tasks_post_review += 1
-                task_worker.worker.save()
+            if task_worker.task_status == TaskWorker.STATUS_IN_PROGRESS and task_status == TaskWorker.STATUS_SUBMITTED:
+                if is_requester and request.user.userprofile.requester.id == task_worker.task.project.owner_id:
+                    pass
+                else:
+                    task_worker.worker.num_tasks_post_review += 1
+                    task_worker.worker.save()
 
             task_worker.task_status = task_status
             task_worker.save()
