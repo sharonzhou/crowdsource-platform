@@ -49,7 +49,7 @@
                 <div layout="row" class="layout-align-start-center">
                     <div flex="10" class="_sample">Sample</div>
                         <span flex="90" class="_accept">
-                          <md-button ng-click="taskfeed.reject($event, review,'review')" href=""
+                          <md-button ng-click="taskfeed.reject($event, review,'review')" href="" analytics-on="click" analytics-event="reject" analytics-category="Review" analytics-label="{{review.id}}"
                                      aria-label="reject" class="md-action-button no-surround">
                               Reject
                               <md-icon md-font-set="material-icons" class="md-20">help_outline
@@ -59,11 +59,11 @@
                                   if you do not want to complete the task for any other reason.
                               </md-tooltip>
                           </md-button>
-                          <md-button ui-sref="review_feed({reviewId:review.id})"
+                          <md-button ui-sref="review_feed({reviewId:review.id})" analytics-on="click" analytics-event="accept" analytics-category="Review" analytics-label="{{review.id}}"
                                      aria-label="attempt" class="md-action-button no-surround">
                               Accept
                           </md-button>
-                          <md-button href="http://daemo-forum.herokuapp.com/" target="_blank"
+                          <md-button href="http://daemo-forum.herokuapp.com/" target="_blank" analytics-on="click" analytics-event="discuss" analytics-category="Review" analytics-label="{{review.id}}"
                                      class="md-action-button no-surround">
                               Discuss
                               <md-icon md-font-set="material-icons" class="md-20">help_outline
@@ -131,8 +131,8 @@
                 <div layout="row" class="layout-align-start-center">
                     <div flex="10" class="_sample">Sample</div>
                         <span flex="90" class="_accept">
-                        <md-button ng-click="taskfeed.reject($event, project,'project')" href=""
-                                   aria-label="reject" class="md-action-button no-surround">
+                        <md-button ng-click="taskfeed.reject($event, project,'project')"  href=""
+                                   aria-label="reject" class="md-action-button no-surround" analytics-on="click" analytics-event="reject" analytics-category="Project" analytics-label="{{project.id}}">
                             Reject
                             <md-icon md-font-set="material-icons" class="md-20">help_outline
                             </md-icon>
@@ -141,12 +141,12 @@
                                 if you do not want to complete the task for any other reason.
                             </md-tooltip>
                         </md-button>
-                          <md-button ui-sref="task_project({projectId:project.id})"
+                          <md-button ui-sref="task_project({projectId:project.id})" analytics-on="click" analytics-event="accept" analytics-category="Project" analytics-label="{{project.id}}"
                                      ng-disabled="!project.available_tasks || project.status>3"
                                      aria-label="attempt" class="md-action-button no-surround">
                               Accept
                           </md-button>
-                         <md-button href="http://daemo-forum.herokuapp.com/" target="_blank"
+                         <md-button href="http://daemo-forum.herokuapp.com/" target="_blank" analytics-on="click" analytics-event="discuss" analytics-category="Project" analytics-label="{{project.id}}"
                                     class="md-action-button no-surround">
                              Discuss
                              <md-icon md-font-set="material-icons" class="md-20">help_outline
