@@ -64,6 +64,10 @@
 <script type="text/javascript"
         src="{% static 'bower_components/ng-file-upload/ng-file-upload-shim.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/ng-websocket/ng-websocket.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'bower_components/angulartics/dist/angulartics.min.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js' %}"></script>
 {% endcompress %}
 {% compress js %}
 <script type="text/javascript" src="{% static 'js/crowdsource.js' %}"></script>
@@ -161,5 +165,16 @@
 <script type="text/javascript" src="{% static 'js/message/services/message.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/message/directives/message.directive.js' %}"></script>
 {% endcompress %}
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-78052091-1', 'auto');
+//  ga('send', 'pageview');
+
+</script>
 </body>
 </html>

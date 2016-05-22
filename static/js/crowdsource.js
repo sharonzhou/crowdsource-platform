@@ -11,6 +11,8 @@ angular
         'ng-sortable',
         'ui.router',
         'ngWebsocket',
+        'angulartics',
+        'angulartics.google.analytics',
 
         // local modules
         'crowdsource.config',
