@@ -11,6 +11,7 @@
 
             <div ng-repeat="item in vm.review.task_worker.task_data.template.template_items">
                 <div>{{ item.position }}) {{item.aux_attributes.question.value}}</div>
+                <img ng-src="{{item.aux_attributes.src}}" ng-if="item.type=='image'" style="max-width: 100%;">
                 <div ng-if="vm.hasOptions(item)">
                     <div style="margin-left: 20px" class="_review-content"
                          ng-repeat="option in item.aux_attributes.options">
