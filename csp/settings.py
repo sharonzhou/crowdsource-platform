@@ -237,7 +237,7 @@ MTURK_THRESHOLD = 0.61
 POST_TO_MTURK = os.environ.get('POST_TO_MTURK', False)
 
 # Leveling + Guild
-NUM_TASKS_FOR_REVIEW = int(os.environ.get('NUM_TASKS_FOR_REVIEW', 10))
+NUM_TASKS_FOR_REVIEW = int(os.environ.get('NUM_TASKS_FOR_REVIEW', 5))
 NUM_REVIEWS_FOR_LEVELING = int(os.environ.get('NUM_REVIEWS_FOR_LEVELING', 5))
 
 # Celery
